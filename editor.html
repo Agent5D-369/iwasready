@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Site Editor — Stopping the Collapse</title>
+<style>
+:root {
+  --navy:#07080E; --surface:#0E1022; --card:#111526; --card2:#161A34;
+  --gold:#C89B3C; --gold-hi:#F0C050; --gold-dim:rgba(200,155,60,.12);
+  --teal:#0E8A7A; --ember:#E87830;
+  --white:#FFFFFF; --pearl:#EDE8DC; --silver:#C0C0D0; --mist:#7878A0;
+  --border:rgba(255,255,255,.07); --border-gold:rgba(200,155,60,.25);
+  --r:10px; --r2:6px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;}
+body{
+  background:var(--navy); color:var(--pearl);
+  font-family:'Segoe UI',system-ui,sans-serif; font-size:13px;
+  display:flex; flex-direction:column;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── TOP BAR ── */
+.topbar{
+  display:flex;align-items:center;gap:0;
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+  height:48px; flex-shrink:0; padding:0;
+  position:relative; z-index:100;
+}
+.tb-brand{
+  padding:0 20px; font-weight:700; font-size:13px;
+  color:var(--gold); letter-spacing:.04em; white-space:nowrap;
+  border-right:1px solid var(--border);
+  height:100%; display:flex; align-items:center; gap:8px;
+}
+.tb-brand-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+.tb-files{
+  display:flex;align-items:center;height:100%;
+  flex:1; overflow-x:auto; gap:0;
+}
+.tb-tab{
+  display:flex;align-items:center;gap:8px;
+  padding:0 18px; height:100%; cursor:pointer;
+  font-size:12px; font-weight:600; color:var(--mist);
+  border-right:1px solid var(--border);
+  transition:background .15s, color .15s;
+  white-space:nowrap; flex-shrink:0;
+  position:relative;
+}
+.tb-tab:hover{background:rgba(255,255,255,.03);color:var(--silver);}
+.tb-tab.active{
+  background:var(--navy); color:var(--pearl);
+  border-bottom:2px solid var(--gold);
+}
+.tb-tab.active::after{
+  content:'';position:absolute;bottom:-1px;left:0;right:0;
+  height:1px;background:var(--navy);
+}
+.tab-icon{font-size:14px;line-height:1;}
+.tb-actions{
+  display:flex;align-items:center;gap:8px;
+  padding:0 16px;margin-left:auto;flex-shrink:0;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:6px;
+  border:none;cursor:pointer;border-radius:var(--r2);
+  font-size:11px;font-weight:700;letter-spacing:.06em;
+  padding:7px 14px;transition:opacity .15s,transform .15s;
+}
+.btn:hover{opacity:.85;}
+.btn:active{transform:scale(.97);}
+.btn-gold{background:linear-gradient(135deg,var(--gold),#A87828);color:var(--navy);}
+.btn-ghost{background:rgba(255,255,255,.06);color:var(--silver);border:1px solid var(--border);}
+.btn-teal{background:rgba(14,138,122,.2);color:#3EC8B8;border:1px solid rgba(14,138,122,.3);}
+.btn-danger{background:rgba(232,80,60,.15);color:#E87060;border:1px solid rgba(232,80,60,.25);}
+
+/* ── MAIN LAYOUT ── */
+.main{display:flex;flex:1;overflow:hidden;}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  width:220px;flex-shrink:0;
+  background:var(--surface);
+  border-right:1px solid var(--border);
+  display:flex;flex-direction:column;
+  overflow-y:auto;
+}
+.sb-section{padding:16px 12px 8px;}
+.sb-label{
+  font-size:9px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mist);padding:0 6px;margin-bottom:8px;display:block;
+}
+.sb-file{
+  display:flex;align-items:center;gap:9px;
+  padding:8px 8px;border-radius:var(--r2);cursor:pointer;
+  transition:background .14s;color:var(--silver);
+  font-size:12px;font-weight:500;
+}
+.sb-file:hover{background:rgba(255,255,255,.04);color:var(--pearl);}
+.sb-file.active{background:var(--gold-dim);color:var(--pearl);}
+.sb-file-icon{font-size:13px;width:16px;text-align:center;flex-shrink:0;}
+.sb-file-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.sb-file-size{font-size:10px;color:var(--mist);flex-shrink:0;}
+
+.sb-img{
+  display:flex;align-items:center;gap:9px;
+  padding:7px 8px;border-radius:var(--r2);
+  color:var(--mist);font-size:11px;
+}
+.sb-img-thumb{
+  width:32px;height:32px;border-radius:4px;
+  object-fit:cover;flex-shrink:0;
+  border:1px solid rgba(255,255,255,.08);
+  background:var(--card);
+}
+.sb-img-info{flex:1;overflow:hidden;}
+.sb-img-name{
+  font-size:11px;font-weight:600;color:var(--silver);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  display:block;
+}
+.sb-img-dims{font-size:10px;color:var(--mist);}
+
+.sb-divider{
+  height:1px;background:var(--border);margin:8px 12px;
+}
+
+.status-dot{
+  width:7px;height:7px;border-radius:50%;flex-shrink:0;
+}
+.dot-green{background:#3EC870;}
+.dot-amber{background:var(--gold);}
+.dot-mist{background:var(--mist);}
+
+/* ── EDITOR AREA ── */
+.editor-wrap{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+
+.editor-toolbar{
+  display:flex;align-items:center;gap:6px;
+  padding:8px 14px;
+  background:var(--card);
+  border-bottom:1px solid var(--border);
+  flex-shrink:0; flex-wrap:wrap;
+}
+.et-group{display:flex;align-items:center;gap:3px;}
+.et-divider{width:1px;height:20px;background:var(--border);margin:0 4px;}
+.et-btn{
+  width:28px;height:28px;border:none;border-radius:4px;cursor:pointer;
+  background:transparent;color:var(--silver);font-size:13px;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .12s,color .12s;
+  font-family:'Segoe UI',system-ui,sans-serif;
+}
+.et-btn:hover{background:rgba(255,255,255,.08);color:var(--pearl);}
+.et-btn.active{background:var(--gold-dim);color:var(--gold);}
+.et-select{
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--silver);font-size:11px;border-radius:4px;
+  padding:4px 8px;cursor:pointer;height:28px;
+}
+.et-select:focus{outline:none;border-color:var(--border-gold);}
+.editor-path{
+  margin-left:auto;font-size:10px;color:var(--mist);
+  font-family:monospace;white-space:nowrap;
+}
+
+/* ── CODE / PREVIEW PANE ── */
+.pane-tabs{
+  display:flex;align-items:center;
+  background:var(--card);border-bottom:1px solid var(--border);
+  flex-shrink:0;
+}
+.pane-tab{
+  padding:8px 18px;font-size:11px;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;
+  color:var(--mist);cursor:pointer;border-bottom:2px solid transparent;
+  transition:color .14s;
+}
+.pane-tab:hover{color:var(--silver);}
+.pane-tab.active{color:var(--pearl);border-bottom-color:var(--gold);}
+.pane-badge{
+  display:inline-block;padding:1px 6px;border-radius:20px;
+  font-size:9px;font-weight:800;letter-spacing:.08em;
+  background:rgba(200,155,60,.15);color:var(--gold);margin-left:6px;
+}
+
+.panes{flex:1;overflow:hidden;position:relative;}
+.pane{position:absolute;inset:0;display:none;flex-direction:column;}
+.pane.active{display:flex;}
+
+/* CODE EDITOR */
+.code-editor{
+  flex:1;overflow:auto;position:relative;
+}
+textarea.code{
+  width:100%;height:100%;
+  background:var(--navy);color:#ABB2BF;
+  border:none;outline:none;resize:none;
+  font-family:'Fira Code','Cascadia Code','Consolas',monospace;
+  font-size:12.5px;line-height:1.7;
+  padding:20px 24px;
+  tab-size:2;
+  -moz-tab-size:2;
+}
+textarea.code::selection{background:rgba(200,155,60,.2);}
+
+/* PREVIEW */
+.preview-frame{
+  flex:1;border:none;background:white;
+}
+
+/* DIFF / CHANGES pane */
+.changes-pane{
+  flex:1;overflow-y:auto;padding:20px 24px;
+}
+.change-item{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:12px 14px;border-radius:var(--r2);
+  background:var(--card);border:1px solid var(--border);
+  margin-bottom:8px;
+}
+.change-type{
+  font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  padding:3px 7px;border-radius:3px;flex-shrink:0;margin-top:1px;
+}
+.ct-save{background:rgba(62,200,112,.12);color:#3EC870;}
+.ct-note{background:rgba(200,155,60,.12);color:var(--gold);}
+.change-msg{font-size:12px;color:var(--silver);line-height:1.5;}
+.change-time{font-size:10px;color:var(--mist);margin-top:3px;}
+
+/* STATUSBAR */
+.statusbar{
+  display:flex;align-items:center;gap:16px;
+  padding:0 16px;height:24px;
+  background:var(--card);border-top:1px solid var(--border);
+  font-size:10px;color:var(--mist);flex-shrink:0;
+}
+.sb-item{display:flex;align-items:center;gap:5px;}
+.sb-sep{width:1px;height:12px;background:var(--border);}
+.sb-right{margin-left:auto;display:flex;align-items:center;gap:14px;}
+
+/* TOAST */
+.toast{
+  position:fixed;bottom:36px;right:24px;z-index:999;
+  background:var(--card);border:1px solid var(--border-gold);
+  border-radius:var(--r);padding:12px 18px;
+  font-size:12px;color:var(--pearl);
+  box-shadow:0 8px 32px rgba(0,0,0,.5);
+  display:flex;align-items:center;gap:10px;
+  transform:translateY(20px);opacity:0;
+  transition:opacity .22s,transform .22s;
+  pointer-events:none;
+}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast-icon{font-size:16px;}
+
+/* MODAL */
+.modal-overlay{
+  position:fixed;inset:0;z-index:500;
+  background:rgba(7,8,14,.85);
+  display:none;align-items:center;justify-content:center;
+  padding:20px;
+}
+.modal-overlay.open{display:flex;}
+.modal{
+  background:var(--surface);border:1px solid var(--border-gold);
+  border-radius:var(--r);padding:28px 28px 24px;
+  max-width:480px;width:100%;
+  box-shadow:0 20px 80px rgba(0,0,0,.7);
+}
+.modal h3{
+  font-size:16px;font-weight:700;color:var(--white);margin-bottom:8px;
+}
+.modal p{font-size:13px;color:var(--silver);line-height:1.6;margin-bottom:20px;}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end;}
+
+/* MOBILE NOTICE */
+.mobile-notice{display:none;}
+@media(max-width:700px){
+  .mobile-notice{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    position:fixed;inset:0;background:var(--navy);z-index:9999;
+    padding:32px;text-align:center;gap:16px;
+  }
+  .mobile-notice h2{
+    font-family:'Georgia',serif;font-size:22px;color:var(--white);
+  }
+  .mobile-notice p{font-size:14px;color:var(--silver);line-height:1.7;}
+  .mobile-notice a{color:var(--gold);}
+}
+
+/* Scrollbars */
+::-webkit-scrollbar{width:6px;height:6px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:3px;}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.18);}
+</style>
+</head>
+<body>
+
+<div class="mobile-notice">
+  <h2>Editor requires a desktop browser</h2>
+  <p>Open this file on a laptop or desktop to edit your site files. On mobile, open your site pages directly: <a href="index.html">index.html</a></p>
+</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="tb-brand">
+    <div class="tb-brand-dot"></div>
+    STC Editor
+  </div>
+  <div class="tb-files" id="tabBar">
+    <div class="tb-tab active" data-file="index.html" onclick="switchTab(this)">
+      <span class="tab-icon">🏠</span> index.html
+    </div>
+    <div class="tb-tab" data-file="about.html" onclick="switchTab(this)">
+      <span class="tab-icon">👤</span> about.html
+    </div>
+    <div class="tb-tab" data-file="privacy.html" onclick="switchTab(this)">
+      <span class="tab-icon">🔒</span> privacy.html
+    </div>
+  </div>
+  <div class="tb-actions">
+    <button class="btn btn-teal" onclick="openPreview()">⬡ Preview</button>
+    <button class="btn btn-ghost" onclick="copyToClipboard()">⎘ Copy</button>
+    <button class="btn btn-gold" onclick="saveFile()">↓ Save File</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sb-section">
+      <span class="sb-label">Pages</span>
+      <div class="sb-file active" onclick="switchFile('index.html')">
+        <div class="status-dot dot-green"></div>
+        <span class="sb-file-icon">🏠</span>
+        <span class="sb-file-name">index.html</span>
+        <span class="sb-file-size">Main</span>
+      </div>
+      <div class="sb-file" onclick="switchFile('about.html')">
+        <div class="status-dot dot-green"></div>
+        <span class="sb-file-icon">👤</span>
+        <span class="sb-file-name">about.html</span>
+        <span class="sb-file-size">About</span>
+      </div>
+      <div class="sb-file" onclick="switchFile('privacy.html')">
+        <div class="status-dot dot-green"></div>
+        <span class="sb-file-icon">🔒</span>
+        <span class="sb-file-name">privacy.html</span>
+        <span class="sb-file-size">Legal</span>
+      </div>
+    </div>
+
+    <div class="sb-divider"></div>
+
+    <div class="sb-section">
+      <span class="sb-label">Images</span>
+      <div class="sb-img">
+        <img src="hero-seven-fires.png" class="sb-img-thumb" alt="">
+        <div class="sb-img-info">
+          <span class="sb-img-name">hero-seven-fires.png</span>
+          <span class="sb-img-dims">Hero background</span>
+        </div>
+      </div>
+      <div class="sb-img">
+        <img src="cracked-earth-dusk.png" class="sb-img-thumb" alt="">
+        <div class="sb-img-info">
+          <span class="sb-img-name">cracked-earth-dusk.png</span>
+          <span class="sb-img-dims">Problem section</span>
+        </div>
+      </div>
+      <div class="sb-img">
+        <img src="divider-light-band.png" class="sb-img-thumb" alt="">
+        <div class="sb-img-info">
+          <span class="sb-img-name">divider-light-band.png</span>
+          <span class="sb-img-dims">Section divider</span>
+        </div>
+      </div>
+      <div class="sb-img">
+        <img src="rick-portrait-600.jpg" class="sb-img-thumb" alt="">
+        <div class="sb-img-info">
+          <span class="sb-img-name">rick-portrait-600.jpg</span>
+          <span class="sb-img-dims">Author portrait</span>
+        </div>
+      </div>
+      <div class="sb-img">
+        <img src="book-mockup-dark.png" class="sb-img-thumb" alt="">
+        <div class="sb-img-info">
+          <span class="sb-img-name">book-mockup-dark.png</span>
+          <span class="sb-img-dims">Book mockup</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sb-divider"></div>
+
+    <div class="sb-section">
+      <span class="sb-label">Quick Links</span>
+      <div class="sb-file" onclick="window.open('https://rickbroider.substack.com','_blank')">
+        <span class="sb-file-icon">📮</span>
+        <span class="sb-file-name">Substack</span>
+      </div>
+      <div class="sb-file" onclick="window.open('https://github.com','_blank')">
+        <span class="sb-file-icon">⬡</span>
+        <span class="sb-file-name">GitHub Pages</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDITOR AREA -->
+  <div class="editor-wrap">
+
+    <div class="editor-toolbar">
+      <div class="et-group">
+        <select class="et-select" onchange="execCmd('formatBlock', this.value)">
+          <option value="p">Paragraph</option>
+          <option value="h1">Heading 1</option>
+          <option value="h2">Heading 2</option>
+          <option value="h3">Heading 3</option>
+        </select>
+      </div>
+      <div class="et-divider"></div>
+      <div class="et-group">
+        <button class="et-btn" title="Bold (Ctrl+B)" onclick="execCmd('bold')"><b>B</b></button>
+        <button class="et-btn" title="Italic (Ctrl+I)" onclick="execCmd('italic')"><i>I</i></button>
+        <button class="et-btn" title="Underline" onclick="execCmd('underline')"><u>U</u></button>
+      </div>
+      <div class="et-divider"></div>
+      <div class="et-group">
+        <button class="et-btn" title="Find & Replace" onclick="openFindReplace()">⌕</button>
+        <button class="et-btn" title="Word count" onclick="showWordCount()">≡</button>
+        <button class="et-btn" title="Format / indent HTML" onclick="formatHTML()">⟨/⟩</button>
+      </div>
+      <div class="et-divider"></div>
+      <div class="et-group">
+        <button class="et-btn" title="Undo (Ctrl+Z)" onclick="document.getElementById('codeArea').focus();document.execCommand('undo')">↩</button>
+        <button class="et-btn" title="Redo (Ctrl+Y)" onclick="document.getElementById('codeArea').focus();document.execCommand('redo')">↪</button>
+      </div>
+      <span class="editor-path" id="editorPath">index.html</span>
+    </div>
+
+    <div class="pane-tabs">
+      <div class="pane-tab active" onclick="switchPane('code', this)">Code <span class="pane-badge">HTML</span></div>
+      <div class="pane-tab" onclick="switchPane('preview', this)">Preview</div>
+      <div class="pane-tab" onclick="switchPane('changes', this)">Log</div>
+    </div>
+
+    <div class="panes">
+      <div class="pane active" id="pane-code">
+        <div class="code-editor">
+          <textarea class="code" id="codeArea" spellcheck="false"
+            placeholder="Loading file content..."
+            oninput="onCodeChange()"></textarea>
+        </div>
+      </div>
+
+      <div class="pane" id="pane-preview">
+        <iframe class="preview-frame" id="previewFrame" title="Page preview"></iframe>
+      </div>
+
+      <div class="pane" id="pane-changes">
+        <div class="changes-pane" id="changeLog">
+          <div class="change-item">
+            <span class="change-type ct-note">INFO</span>
+            <div>
+              <div class="change-msg">Editor loaded. All three pages and assets are ready.</div>
+              <div class="change-time">Session start</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- STATUSBAR -->
+<div class="statusbar">
+  <div class="sb-item">
+    <div class="status-dot dot-green"></div>
+    <span id="sbFile">index.html</span>
+  </div>
+  <div class="sb-sep"></div>
+  <div class="sb-item">Lines: <span id="sbLines">0</span></div>
+  <div class="sb-sep"></div>
+  <div class="sb-item">Chars: <span id="sbChars">0</span></div>
+  <div class="sb-right">
+    <span id="sbUnsaved" style="color:var(--gold);display:none;">● Unsaved changes</span>
+    <span>Stopping the Collapse · Site Editor</span>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icon" id="toastIcon">✓</span>
+  <span id="toastMsg">Done</span>
+</div>
+
+<!-- FIND/REPLACE MODAL -->
+<div class="modal-overlay" id="frModal">
+  <div class="modal">
+    <h3>Find &amp; Replace</h3>
+    <p>Search and replace text in the current file.</p>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
+      <input id="frFind" placeholder="Find..." style="background:var(--card);border:1px solid var(--border);color:var(--pearl);padding:9px 12px;border-radius:6px;font-size:13px;outline:none;">
+      <input id="frReplace" placeholder="Replace with..." style="background:var(--card);border:1px solid var(--border);color:var(--pearl);padding:9px 12px;border-radius:6px;font-size:13px;outline:none;">
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeFindReplace()">Cancel</button>
+      <button class="btn btn-gold" onclick="doFindReplace()">Replace All</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── FILE STORE ──
+// Each file's content is stored in memory; loaded from embedded data below
+const files = {};
+let currentFile = 'index.html';
+let unsaved = {};
+
+// Files are injected by Python below
+files["index.html"] = "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\">\n<meta name=\"theme-color\" content=\"#07080E\">\n<title>Is Your Project Collapsing? Free Navigation Legend</title>\n<meta name=\"description\" content=\"7 structural patterns end most regenerative projects. Get the free Navigation Legend and find yours in under 5 minutes.\">\n\n<!-- Open Graph -->\n<meta property=\"og:title\" content=\"Your project is failing right now. The pattern has a name.\">\n<meta property=\"og:description\" content=\"Free Navigation Legend: maps 7 collapse patterns to the chapters that stop each one.\">\n<meta property=\"og:url\" content=\"https://iwasready.com\">\n<meta property=\"og:type\" content=\"website\">\n<meta property=\"og:image\" content=\"https://iwasready.com/og-preview.jpg\">\n<meta property=\"og:image:width\" content=\"1200\">\n<meta property=\"og:image:height\" content=\"630\">\n\n<!-- Canonical -->\n<link rel=\"canonical\" href=\"https://iwasready.com/\">\n\n<!-- Preload hero image for LCP -->\n<link rel=\"preload\" as=\"image\" href=\"hero-seven-fires.png\" fetchpriority=\"high\">\n\n<!-- Fonts with display=swap for no invisible text -->\n<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n<link href=\"https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Syne:wght@500;600;700;800&family=Lora:ital,wght@0,400;1,400;1,500&display=swap&display=swap\" rel=\"stylesheet\">\n\n<!-- Schema.org: Book + Person -->\n<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Book\",\n  \"name\": \"Bridging Earth and Kanaria\",\n  \"alternativeHeadline\": \"A New Earth Field Guide to Galactic Ethics, AI, and the Architecture of Harmony\",\n  \"author\": {\n    \"@type\": \"Person\",\n    \"name\": \"Rick Broider\",\n    \"url\": \"https://iwasready.com/about.html\",\n    \"image\": \"https://iwasready.com/rick-portrait-600.jpg\"\n  },\n  \"url\": \"https://iwasready.com\",\n  \"description\": \"A 33-chapter audiobook mapping 7 structural collapse patterns for regenerative businesses, intentional communities, and New Earth organizations.\",\n  \"inLanguage\": \"en\",\n  \"genre\": [\"Self-help\", \"Community Building\", \"Organizational Design\"],\n  \"offers\": {\n    \"@type\": \"Offer\",\n    \"price\": \"0\",\n    \"priceCurrency\": \"USD\",\n    \"description\": \"Free Navigation Legend PDF + 3 chapters\"\n  }\n}\n</script>\n\n<style>\n/* ============================================================\n   TOKENS\n============================================================ */\n:root {\n  --navy:     #07080E;\n  --surface:  #0E1022;\n  --card:     #111526;\n  --gold:     #C89B3C;\n  --gold-hi:  #F0C050;\n  --gold-dim: rgba(200,155,60,.15);\n  --teal:     #0E8A7A;\n  --ember:    #E87830;\n  --white:    #FFFFFF;\n  --pearl:    #EDE8DC;\n  --silver:   #C0C0D0;\n  --mist:     #7878A0;\n  --r:        14px;\n  --max:      680px;\n}\n\n/* ============================================================\n   RESET + BASE\n============================================================ */\n*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }\nhtml { scroll-behavior:smooth; }\nbody {\n  background: var(--navy);\n  color: var(--pearl);\n  font-family: 'Syne', sans-serif;\n  font-weight: 500;\n  line-height: 1.65;\n  overflow-x: hidden;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/* GRAIN */\nbody::after {\n  content:''; position:fixed; inset:0; z-index:900;\n  background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.038'/%3E%3C/svg%3E\");\n  pointer-events:none; opacity:.6;\n}\n\n/* COSMOS */\n.cosmos {\n  position:fixed; inset:0; z-index:0;\n  background: radial-gradient(ellipse 140% 65% at 50% -8%, #16203C 0%, var(--navy) 58%);\n}\n.cosmos::before {\n  content:''; position:absolute; inset:0;\n  background:\n    radial-gradient(1.5px 1.5px at 6%  9%, rgba(255,255,255,.75) 0%,transparent 100%),\n    radial-gradient(1px  1px  at 19%  4%, rgba(255,255,255,.55) 0%,transparent 100%),\n    radial-gradient(1px  1px  at 36% 17%, rgba(255,255,255,.60) 0%,transparent 100%),\n    radial-gradient(1.5px 1.5px at 58%  7%, rgba(255,255,255,.45) 0%,transparent 100%),\n    radial-gradient(1px  1px  at 77% 12%, rgba(255,255,255,.70) 0%,transparent 100%),\n    radial-gradient(1px  1px  at 91%  3%, rgba(255,255,255,.50) 0%,transparent 100%),\n    radial-gradient(1px  1px  at 13% 31%, rgba(255,255,255,.35) 0%,transparent 100%),\n    radial-gradient(1.5px 1.5px at 44% 43%, rgba(255,255,255,.50) 0%,transparent 100%),\n    radial-gradient(1px  1px  at 70% 37%, rgba(255,255,255,.40) 0%,transparent 100%),\n    radial-gradient(1px  1px  at 88% 52%, rgba(255,255,255,.60) 0%,transparent 100%),\n    radial-gradient(1px  1px  at  3% 63%, rgba(255,255,255,.40) 0%,transparent 100%),\n    radial-gradient(1.5px 1.5px at 31% 70%, rgba(255,255,255,.50) 0%,transparent 100%),\n    radial-gradient(1px  1px  at 56% 58%, rgba(255,255,255,.30) 0%,transparent 100%),\n    radial-gradient(1px  1px  at 82% 74%, rgba(255,255,255,.40) 0%,transparent 100%),\n    radial-gradient(1px  1px  at 94% 61%, rgba(255,255,255,.50) 0%,transparent 100%);\n}\n.cosmos::after {\n  content:''; position:absolute; inset:0;\n  background:\n    radial-gradient(650px 420px at 12%  6%, rgba(200,155,60,.06)   0%,transparent 70%),\n    radial-gradient(500px 500px at 85% 22%, rgba(14,138,122,.05)   0%,transparent 70%),\n    radial-gradient(400px 320px at 50% 88%, rgba(232,120,48,.04)   0%,transparent 70%);\n}\n\n/* ============================================================\n   LAYOUT\n============================================================ */\n.page { position:relative; z-index:1; }\n.wrap { max-width:var(--max); margin:0 auto; padding:0 22px; }\n\n/* ============================================================\n   STICKY NAV\n============================================================ */\n.nav {\n  position:fixed; top:0; left:0; right:0; z-index:200;\n  padding:14px 20px;\n  display:flex; align-items:center; justify-content:space-between; gap:12px;\n  background:rgba(7,8,14,.95);\n  backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);\n  border-bottom:1px solid rgba(200,155,60,.1);\n  transform:translateY(-100%);\n  transition:transform .32s cubic-bezier(.4,0,.2,1);\n}\n.nav.show { transform:translateY(0); }\n.nav-brand {\n  font-family:'Playfair Display',serif;\n  font-size:15px; font-weight:700; color:var(--white);\n  white-space:nowrap; flex-shrink:0;\n}\n.nav-cta {\n  font-family:'Syne',sans-serif;\n  font-size:12px; font-weight:800; letter-spacing:.07em; text-transform:uppercase;\n  padding:10px 20px; border-radius:7px;\n  background:var(--gold); color:var(--navy);\n  text-decoration:none; white-space:nowrap; flex-shrink:0;\n  transition:background .18s ease, transform .18s ease;\n}\n.nav-cta:hover { background:var(--gold-hi); transform:translateY(-1px); }\n\n/* ============================================================\n   HERO - FULL VIEWPORT, IMAGE-BACKED, MOBILE-FIRST\n============================================================ */\n.hero {\n  position:relative;\n  min-height:100svh;\n  display:flex; flex-direction:column; justify-content:flex-end;\n  padding-bottom:48px;\n  overflow:hidden;\n}\n\n/* HERO IMAGE ZONE - replaces with real image on launch */\n.hero-img {\n  position:absolute; inset:0; z-index:0;\n  background:\n    linear-gradient(180deg,\n      rgba(7,8,14,0)    0%,\n      rgba(7,8,14,.2)  38%,\n      rgba(7,8,14,.72) 65%,\n      rgba(7,8,14,.96) 100%),\n    url('hero-seven-fires.png') center 38% / cover no-repeat;\n  /* background-position: center 38% keeps the figure + fires visible\n     on both desktop (3:2 landscape) and mobile portrait viewports.\n     Adjust the % value: lower = shows more sky, higher = shows more ground. */\n}\n\n/* Image is live - no placeholder needed */\n\n.hero-content {\n  position:relative; z-index:1;\n  max-width:var(--max); margin:0 auto; width:100%;\n  padding:0 22px;\n}\n\n/* TRUST BAR - above headline, small, earned-authority */\n.trust-bar {\n  display:flex; align-items:center; gap:8px; flex-wrap:wrap;\n  margin-bottom:20px;\n  opacity:0; animation:fadeUp .6s ease .1s forwards;\n}\n.trust-pill {\n  display:inline-flex; align-items:center; gap:6px;\n  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);\n  border-radius:100px; padding:6px 12px;\n  font-size:11px; font-weight:700; letter-spacing:.04em; color:var(--silver);\n}\n.trust-pill .dot { width:6px; height:6px; border-radius:50%; background:var(--gold); }\n\n/* HEADLINE */\n.h1 {\n  font-family:'Playfair Display',serif;\n  font-size:clamp(44px,12vw,80px);\n  font-weight:900; line-height:1.0; letter-spacing:-.03em;\n  color:var(--white); margin-bottom:24px;\n  opacity:0; animation:fadeUp .8s ease .22s forwards;\n}\n.h1 .gold  { color:var(--gold); }\n.h1 .ital  { font-style:italic; }\n.h1 .ember { color:var(--ember); }\n\n/* SUBHEADLINE - what + who + how */\n.hero-sub {\n  font-family:'Lora',serif;\n  font-size:clamp(16px,3.5vw,19px);\n  font-weight:400; line-height:1.75; color:var(--silver);\n  max-width:540px; margin-bottom:32px;\n  opacity:0; animation:fadeUp .8s ease .36s forwards;\n}\n.hero-sub strong { color:var(--white); font-weight:500; }\n\n/* FREE OFFER BOX - crystal clear, single focus */\n.free-offer {\n  background:rgba(255,255,255,.04);\n  border:1.5px solid rgba(200,155,60,.28);\n  border-radius:var(--r);\n  padding:24px 22px 20px;\n  margin-bottom:6px;\n  opacity:0; animation:fadeUp .8s ease .5s forwards;\n  box-shadow:0 0 60px rgba(200,155,60,.08);\n}\n.free-offer-label {\n  font-size:10px; font-weight:800; letter-spacing:.28em; text-transform:uppercase;\n  color:var(--gold); margin-bottom:14px; display:block;\n}\n.free-give {\n  display:flex; flex-direction:column; gap:9px; margin-bottom:18px;\n}\n.fg-row {\n  display:flex; align-items:flex-start; gap:11px;\n  font-size:14px; color:var(--pearl); line-height:1.5;\n}\n.fg-check {\n  width:20px; height:20px; border-radius:50%; flex-shrink:0; margin-top:1px;\n  background:rgba(200,155,60,.12); border:1.5px solid rgba(200,155,60,.45);\n  display:flex; align-items:center; justify-content:center;\n  font-size:9px; font-weight:800; color:var(--gold);\n}\n.fg-row strong { color:var(--white); font-weight:700; }\n\n/* SUBSTACK EMBED - styled dark */\n.sb-shell {\n  border-radius:10px; overflow:hidden;\n  border:1px solid rgba(200,155,60,.2);\n  background:rgba(255,255,255,.02);\n}\n.sb-shell iframe {\n  display:block; width:100% !important;\n  filter:invert(1) hue-rotate(180deg) brightness(.86) saturate(1.2) contrast(.96);\n  border-radius:10px;\n}\n.form-micro {\n  font-size:11px; color:var(--mist); text-align:center;\n  margin-top:8px; line-height:1.6;\n}\n.form-micro strong { color:var(--silver); font-weight:600; }\n\n/* SCROLL NUDGE */\n.scroll-nudge {\n  display:flex; align-items:center; gap:10px; margin-top:28px;\n  opacity:0; animation:fadeUp .7s ease .9s forwards;\n}\n.sn-line { width:28px; height:1px; background:linear-gradient(90deg,var(--gold),transparent); }\n.sn-text { font-size:10px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--mist); }\n\n/* ============================================================\n   PROOF STRIP\n============================================================ */\n.proof-strip {\n  background:rgba(255,255,255,.025);\n  border-top:1px solid rgba(255,255,255,.05);\n  border-bottom:1px solid rgba(255,255,255,.05);\n  padding:24px 22px;\n}\n.proof-inner {\n  max-width:var(--max); margin:0 auto;\n  display:grid; grid-template-columns:repeat(4,1fr); gap:0;\n  text-align:center;\n}\n.proof-item { padding:0 8px; position:relative; }\n.proof-item + .proof-item::before {\n  content:''; position:absolute; left:0; top:50%; transform:translateY(-50%);\n  width:1px; height:36px; background:rgba(255,255,255,.08);\n}\n.proof-num {\n  font-family:'Playfair Display',serif;\n  font-size:clamp(24px,6vw,34px); font-weight:900; color:var(--gold);\n  display:block; line-height:1;\n}\n.proof-lbl {\n  font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;\n  color:var(--mist); margin-top:4px; display:block;\n}\n\n/* ============================================================\n   SECTIONS - shared\n============================================================ */\n.section { padding:80px 0; }\n.section-sm { padding:48px 0; }\n\n.eyebrow {\n  display:inline-flex; align-items:center; gap:8px; margin-bottom:16px;\n}\n.ey-bar { width:22px; height:2px; background:var(--gold); }\n.ey-txt {\n  font-size:10px; font-weight:800; letter-spacing:.26em; text-transform:uppercase;\n  color:var(--gold);\n}\n\n.sec-h2 {\n  font-family:'Playfair Display',serif;\n  font-size:clamp(30px,7vw,50px); font-weight:900;\n  line-height:1.08; letter-spacing:-.025em;\n  color:var(--white); margin-bottom:20px;\n}\n.sec-h2 .gold  { color:var(--gold); }\n.sec-h2 .ital  { font-style:italic; }\n.sec-h2 .ember { color:var(--ember); }\n\n.sec-body {\n  font-family:'Lora',serif;\n  font-size:clamp(15px,2.5vw,17px); color:var(--silver);\n  line-height:1.82; margin-bottom:24px; max-width:560px;\n}\n.sec-body strong { color:var(--white); font-weight:500; }\n\n/* ============================================================\n   IMAGE PLACEHOLDER SYSTEM\n============================================================ */\n.img-ph {\n  width:100%; border-radius:var(--r); overflow:hidden;\n  background:linear-gradient(135deg,rgba(24,28,48,.95),rgba(12,14,24,.95));\n  border:1px dashed rgba(200,155,60,.18);\n  display:flex; flex-direction:column; align-items:center; justify-content:center;\n  text-align:center; padding:36px 24px; gap:8px;\n  position:relative;\n}\n.img-ph::before {\n  content:''; position:absolute; inset:0;\n  background:radial-gradient(ellipse 60% 55% at 50% 50%,rgba(200,155,60,.04) 0%,transparent 70%);\n}\n.iph-emoji  { font-size:28px; opacity:.45; position:relative; z-index:1; }\n.iph-tag    { font-size:9px; font-weight:800; letter-spacing:.24em; text-transform:uppercase; color:rgba(200,155,60,.4); position:relative; z-index:1; }\n.iph-prompt { font-family:'Lora',serif; font-size:12px; font-style:italic; color:rgba(184,184,204,.35); max-width:440px; line-height:1.6; position:relative; z-index:1; }\n.iph-spec   { font-size:9px; letter-spacing:.12em; color:rgba(114,114,154,.35); position:relative; z-index:1; }\n\n/* ============================================================\n   THE 7 FIRES - GATED\n============================================================ */\n.fires-intro { margin-bottom:40px; }\n\n.fire-list { display:flex; flex-direction:column; gap:8px; margin-bottom:40px; }\n\n.fire-row {\n  display:grid; grid-template-columns:1fr 20px;\n  align-items:center; gap:12px;\n  border:1px solid rgba(255,255,255,.07); border-radius:11px;\n  padding:18px 16px 18px 20px;\n  cursor:pointer; background:rgba(255,255,255,.018);\n  transition:background .18s, border-color .18s, transform .18s;\n  position:relative; overflow:hidden;\n  touch-action:manipulation;\n  -webkit-tap-highlight-color:rgba(200,155,60,.12);\n  min-height:64px;\n}\n.fire-row::before {\n  content:''; position:absolute; left:0; top:0; bottom:0;\n  width:3px; border-radius:11px 0 0 11px;\n}\n.fire-row:hover,\n.fire-row:active {\n  border-color:rgba(255,255,255,.14);\n  background:rgba(255,255,255,.03);\n  transform:translateX(4px);\n}\n.fire-row:active { transform:scale(.99) translateX(2px); }\n.fr1::before { background:#E85030; }\n.fr2::before { background:var(--gold); }\n.fr3::before { background:var(--teal); }\n.fr4::before { background:#A07028; }\n.fr5::before { background:#C84020; }\n.fr6::before { background:#3D7A5A; }\n.fr7::before { background:#4A608A; }\n\n.fire-pain {\n  font-family:'Playfair Display',serif;\n  font-size:clamp(14px,3.5vw,16px); font-style:italic; font-weight:700;\n  color:var(--pearl); line-height:1.45; margin-bottom:4px;\n}\n.fire-sub {\n  font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;\n  color:var(--mist);\n}\n.fire-arr { font-size:14px; color:rgba(200,155,60,.3); transition:color .18s, transform .18s; }\n.fire-row:hover .fire-arr { color:var(--gold); transform:translateX(3px); }\n\n/* GATE */\n.gate {\n  border:1.5px solid rgba(200,155,60,.3); border-radius:18px;\n  padding:40px 28px;\n  background:linear-gradient(145deg,rgba(200,155,60,.08) 0%,rgba(14,138,122,.04) 100%);\n  text-align:center; position:relative; overflow:hidden;\n}\n.gate::before {\n  content:''; position:absolute; top:-80px; left:50%; transform:translateX(-50%);\n  width:260px; height:260px; border-radius:50%;\n  background:radial-gradient(circle,rgba(200,155,60,.12) 0%,transparent 65%);\n  pointer-events:none;\n}\n.gate-map { font-size:44px; margin-bottom:18px; display:block; filter:drop-shadow(0 0 18px rgba(200,155,60,.28)); }\n.gate-h {\n  font-family:'Playfair Display',serif;\n  font-size:clamp(22px,5.5vw,34px); font-weight:900;\n  color:var(--white); line-height:1.1; margin-bottom:14px;\n}\n.gate-h .gold { color:var(--gold); }\n.gate-h .ital { font-style:italic; }\n.gate-p {\n  font-family:'Lora',serif;\n  font-size:15px; color:var(--silver); line-height:1.72;\n  max-width:400px; margin:0 auto 28px;\n}\n.gate-lbl {\n  font-size:10px; font-weight:800; letter-spacing:.24em; text-transform:uppercase;\n  color:var(--gold); margin-bottom:12px; display:block;\n}\n.gate-wrap { max-width:420px; margin:0 auto; }\n.gate-fine { font-size:11px; color:var(--mist); margin-top:8px; }\n\n/* ============================================================\n   FREE OFFER ONLY (above fold discipline)\n   PAID TIER revealed after fires as upgrade, not choice\n============================================================ */\n.upgrade-reveal {\n  margin-top:14px;\n  border:1.5px solid rgba(200,155,60,.35); border-radius:var(--r);\n  padding:32px 26px; position:relative; overflow:hidden;\n  background:linear-gradient(145deg,rgba(200,155,60,.08) 0%,rgba(14,138,122,.04) 100%);\n}\n.ur-badge {\n  position:absolute; top:14px; right:14px;\n  font-size:8px; font-weight:800; letter-spacing:.2em; text-transform:uppercase;\n  padding:4px 10px; border-radius:4px; background:var(--gold); color:var(--navy);\n}\n.ur-name {\n  font-family:'Playfair Display',serif;\n  font-size:26px; font-weight:900; color:var(--white); margin-bottom:4px;\n}\n.ur-price {\n  font-size:13px; font-weight:700; letter-spacing:.07em; text-transform:uppercase;\n  color:var(--gold); margin-bottom:22px;\n}\n.ur-list { display:flex; flex-direction:column; gap:12px; }\n.ur-item { display:flex; align-items:flex-start; gap:12px; }\n.ur-dot { width:7px; height:7px; border-radius:50%; background:var(--gold); flex-shrink:0; margin-top:7px; }\n.ur-txt { font-size:14px; color:var(--pearl); line-height:1.55; }\n.ur-txt strong { color:var(--white); font-weight:700; }\n\n.upgrade-context {\n  font-family:'Lora',serif;\n  font-size:15px; color:var(--silver); line-height:1.72;\n  margin-bottom:22px; max-width:560px;\n}\n.upgrade-context strong { color:var(--white); font-weight:500; }\n\n/* ============================================================\n   TESTIMONIALS\n============================================================ */\n.testi-grid { display:grid; gap:12px; }\n\n.tcard {\n  background:var(--card); border:1px solid rgba(255,255,255,.07);\n  border-radius:var(--r); padding:26px 22px;\n  position:relative;\n}\n.tcard::before {\n  content:'\\201C';\n  position:absolute; top:14px; left:18px;\n  font-family:'Playfair Display',serif; font-size:48px; font-weight:900; line-height:1;\n  color:rgba(200,155,60,.18);\n}\n.tcard-q {\n  font-family:'Lora',serif;\n  font-size:14px; font-style:italic; color:var(--pearl);\n  line-height:1.68; padding-top:18px; margin-bottom:14px;\n}\n.tcard-foot { display:flex; align-items:center; gap:10px; }\n.tcard-av {\n  width:34px; height:34px; border-radius:50%; flex-shrink:0;\n  display:flex; align-items:center; justify-content:center;\n  font-size:13px; font-weight:800; color:var(--navy);\n}\n.tcard-name { font-size:13px; font-weight:700; color:var(--white); }\n.tcard-role { font-size:11px; color:var(--mist); }\n.tcard-tag {\n  margin-left:auto; flex-shrink:0;\n  font-size:9px; font-weight:800; letter-spacing:.14em; text-transform:uppercase;\n  padding:3px 9px; border-radius:4px;\n  background:rgba(200,155,60,.1); color:var(--gold);\n}\n\n/* ============================================================\n   ABOUT RICK\n============================================================ */\n.about-card {\n  border:1px solid rgba(255,255,255,.07); border-radius:var(--r);\n  padding:40px 32px; background:rgba(255,255,255,.018);\n}\n.about-q {\n  font-family:'Playfair Display',serif;\n  font-size:clamp(18px,3.5vw,23px); font-style:italic; font-weight:700;\n  color:var(--white); line-height:1.5;\n  border-left:4px solid var(--gold); padding-left:22px;\n  margin-bottom:22px;\n}\n.about-body {\n  font-family:'Lora',serif;\n  font-size:15px; color:var(--silver); line-height:1.8; margin-bottom:16px;\n}\n.about-body strong { color:var(--pearl); font-weight:500; }\n.about-sig {\n  font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;\n  color:var(--gold);\n}\n\n/* ============================================================\n   FINAL CTA\n============================================================ */\n.final { padding:88px 0 110px; text-align:center; }\n.final-h {\n  font-family:'Playfair Display',serif;\n  font-size:clamp(38px,10vw,68px); font-weight:900;\n  line-height:1.04; letter-spacing:-.03em;\n  color:var(--white); margin-bottom:16px;\n}\n.final-h .gold { color:var(--gold); }\n.final-h .ital { font-style:italic; }\n.final-p {\n  font-family:'Lora',serif;\n  font-size:clamp(15px,3vw,18px); color:var(--silver); line-height:1.75;\n  max-width:440px; margin:0 auto 40px;\n}\n.final-wrap { max-width:440px; margin:0 auto; }\n\n/* ============================================================\n   SECTION DIVIDER\n============================================================ */\n.divider {\n  display:flex; align-items:center; gap:14px;\n  max-width:var(--max); margin:0 auto; padding:0 22px 56px;\n}\n.div-line { flex:1; height:1px; background:linear-gradient(90deg,transparent,rgba(200,155,60,.18),transparent); }\n.div-word { font-size:9px; font-weight:800; letter-spacing:.24em; text-transform:uppercase; color:rgba(200,155,60,.38); white-space:nowrap; }\n\n/* ============================================================\n   FOOTER\n============================================================ */\nfooter {\n  border-top:1px solid rgba(255,255,255,.06); padding:36px 22px; text-align:center;\n}\n.ft-brand { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:rgba(237,232,220,.28); margin-bottom:4px; }\n.ft-sub { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(114,114,154,.3); margin-bottom:16px; }\n.ft-links { display:flex; justify-content:center; gap:24px; flex-wrap:wrap; }\n.ft-link { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(114,114,154,.38); text-decoration:none; transition:color .18s; }\n.ft-link:hover { color:var(--gold); }\n\n/* ============================================================\n   SCROLL REVEAL\n============================================================ */\n.sr { opacity:0; transform:translateY(22px); transition:opacity .68s ease, transform .68s ease; }\n.sr.in { opacity:1; transform:translateY(0); }\n\n/* ============================================================\n   ANIMATIONS\n============================================================ */\n@keyframes fadeUp {\n  from { opacity:0; transform:translateY(18px); }\n  to   { opacity:1; transform:translateY(0); }\n}\n\n/* ============================================================\n   RESPONSIVE\n============================================================ */\n@media (max-width:480px) {\n  .proof-inner { grid-template-columns:repeat(2,1fr); gap:16px 0; }\n  .proof-item + .proof-item::before { display:none; }\n  .proof-item:nth-child(3)::before { display:block; }\n  .about-card { padding:28px 20px; }\n  .gate { padding:32px 20px; }\n  .upgrade-reveal { padding:26px 20px; }\n  .tcard { padding:22px 18px; }\n  .tcard-tag { display:none; }\n  /* hero-img placeholder removed */\n}\n\n@media (min-width:640px) {\n  .testi-grid { grid-template-columns:1fr 1fr; }\n}\n\n::selection { background:rgba(200,155,60,.22); color:var(--white); }\n</style>\n</head>\n<body>\n\n<div class=\"cosmos\"></div>\n\n<!-- ============================================================\n     STICKY NAV\n============================================================ -->\n<nav class=\"nav\" id=\"nav\">\n  <span class=\"nav-brand\">Stopping the Collapse</span>\n  <a href=\"https://rickbroider.substack.com/subscribe\" target=\"_blank\" rel=\"noopener\" class=\"nav-cta\">Get Free Access</a>\n</nav>\n\n<div class=\"page\">\n\n<!-- ============================================================\n     HERO - FULL VIEWPORT, IMAGE-BACKED\n============================================================ -->\n<section class=\"hero\" id=\"heroTop\" aria-label=\"Hero\">\n\n  <div class=\"hero-img\" aria-hidden=\"true\"></div>\n\n  <div class=\"hero-content\">\n\n    <!-- TRUST BAR -->\n    <div class=\"trust-bar\">\n      <span class=\"trust-pill\">\n        <span class=\"dot\"></span>\n        33-chapter audiobook\n      </span>\n      <span class=\"trust-pill\">\n        <span class=\"dot\"></span>\n        Delivered to your podcast app\n      </span>\n      <span class=\"trust-pill\">\n        <span class=\"dot\"></span>\n        Free to start\n      </span>\n    </div>\n\n    <!-- HEADLINE -->\n    <h1 class=\"h1\">\n      Your project<br>\n      is <span class=\"gold ital\">failing</span><br>\n      right now.\n    </h1>\n\n    <!-- WHO THIS IS FOR + WHAT IT IS -->\n    <p class=\"hero-sub\">\n      Not because you lack commitment.<br>\n      <strong>Because the collapse pattern has a name you have not found yet.</strong><br><br>\n      <em>Stopping the Collapse</em> is a 33-chapter audiobook for founders of regenerative businesses, intentional communities, and New Earth organizations. It maps the seven structural patterns that end these projects and gives architecture to stop each one.\n    </p>\n\n    <!-- FREE OFFER ONLY - no paid tier above the fold -->\n    <div class=\"free-offer\">\n      <span class=\"free-offer-label\">Get the Navigation Legend, Free</span>\n      <div class=\"free-give\">\n        <div class=\"fg-row\">\n          <span class=\"fg-check\">\u2713</span>\n          <span><strong>The Navigation Legend PDF:</strong> maps all 7 collapse patterns to the exact chapters that address them. Find your fire in under 5 minutes.</span>\n        </div>\n        <div class=\"fg-row\">\n          <span class=\"fg-check\">\u2713</span>\n          <span><strong>3 full chapters:</strong> start with your pattern, not Chapter 1.</span>\n        </div>\n        <div class=\"fg-row\">\n          <span class=\"fg-check\">\u2713</span>\n          <span><strong>Weekly diagnosis essays:</strong> structural causes, not inspiration content.</span>\n        </div>\n      </div>\n      <div class=\"sb-shell\">\n        <iframe src=\"https://rickbroider.substack.com/embed\" width=\"100%\" height=\"180\" style=\"border:none;background:transparent\" frameborder=\"0\" scrolling=\"no\" title=\"Subscribe free\"></iframe>\n      </div>\n      <p class=\"form-micro\"><strong>No spam. Unsubscribe any time.</strong> Powered by Substack.</p>\n    </div>\n\n    <div class=\"scroll-nudge\">\n      <span class=\"sn-line\"></span>\n      <span class=\"sn-text\">The 7 fires are below</span>\n    </div>\n\n  </div>\n</section>\n\n<!-- ============================================================\n     PROOF STRIP\n============================================================ -->\n<div class=\"proof-strip sr\">\n  <div class=\"proof-inner\">\n    <div class=\"proof-item\">\n      <span class=\"proof-num\">7</span>\n      <span class=\"proof-lbl\">Collapse Patterns</span>\n    </div>\n    <div class=\"proof-item\">\n      <span class=\"proof-num\">33</span>\n      <span class=\"proof-lbl\">Chapters</span>\n    </div>\n    <div class=\"proof-item\">\n      <span class=\"proof-num\">1+</span>\n      <span class=\"proof-lbl\">Active in your project now</span>\n    </div>\n    <div class=\"proof-item\">\n      <span class=\"proof-num\">Free</span>\n      <span class=\"proof-lbl\">To start</span>\n    </div>\n  </div>\n</div>\n\n<!-- ============================================================\n     PROBLEM SECTION\n============================================================ -->\n<section class=\"section sr\" aria-label=\"Why projects fail\">\n<div class=\"wrap\">\n  <div class=\"eyebrow\"><span class=\"ey-bar\"></span><span class=\"ey-txt\">Why these projects fail</span></div>\n  <h2 class=\"sec-h2\">Good people.<br>Real commitment.<br><span class=\"gold ital\">Still collapsing.</span></h2>\n  <p class=\"sec-body\">\n    Regenerative businesses, intentional communities, and New Earth organizations do not fail because the founders stop caring. They fail because <strong>the architecture was never built to survive real humans.</strong>\n  </p>\n  <p class=\"sec-body\">\n    Conflict nobody names as structural. Decision-making structures everyone performs but nobody trusts. Financial dread that lives in the background of every meeting. Burnout treated as personal failure. A vision that quietly fractured six months ago and nobody has said it out loud yet.\n  </p>\n  <p class=\"sec-body\">\n    These are not character failures. <strong>They are patterns. They repeat because they are predictable. And predictable patterns have names, causes, and repair architectures.</strong>\n  </p>\n</div>\n</section>\n\n<!-- SECTION IMAGE -->\n<div class=\"wrap sr\" style=\"padding-bottom:72px;\">\n  <img src=\"cracked-earth-dusk.png\"\n       alt=\"Cracked earth at dusk, the fracture that happens before the fire is named\"\n       style=\"width:100%;border-radius:14px;display:block;object-fit:cover;max-height:420px;\"\n       loading=\"lazy\">\n</div>\n\n<!-- ============================================================\n     THE 7 FIRES - GATED\n============================================================ -->\n<section class=\"section sr\" id=\"fires\" style=\"padding-top:0;\" aria-label=\"The 7 collapse patterns\">\n<div class=\"wrap\">\n\n  <div class=\"fires-intro\">\n    <div class=\"eyebrow\"><span class=\"ey-bar\"></span><span class=\"ey-txt\">The collapse map</span></div>\n    <h2 class=\"sec-h2\">At least one of these<br>is <span class=\"gold ital\">active</span> in your project.</h2>\n    <p class=\"sec-body\">\n      Each line below is what a collapse pattern <strong>feels like from inside it.</strong> The name of the pattern, the chapters that address it, and the repair protocol are in the Navigation Legend. Free. 30 seconds.\n    </p>\n  </div>\n\n  <div class=\"fire-list\">\n\n    <div class=\"fire-row fr1\" onclick=\"scrollGate()\" role=\"button\" tabindex=\"0\" aria-label=\"Collapse pattern: repeating conflict\">\n      <div>\n        <p class=\"fire-pain\">\"The same argument keeps happening. Different costume every time.\"</p>\n        <span class=\"fire-sub\">Pattern name and chapters in the Legend</span>\n      </div>\n      <span class=\"fire-arr\" aria-hidden=\"true\">\u2192</span>\n    </div>\n\n    <div class=\"fire-row fr2\" onclick=\"scrollGate()\" role=\"button\" tabindex=\"0\" aria-label=\"Collapse pattern: vision drift\">\n      <div>\n        <p class=\"fire-pain\">\"We all used to know what we were building. I am not sure anymore.\"</p>\n        <span class=\"fire-sub\">Pattern name and chapters in the Legend</span>\n      </div>\n      <span class=\"fire-arr\" aria-hidden=\"true\">\u2192</span>\n    </div>\n\n    <div class=\"fire-row fr3\" onclick=\"scrollGate()\" role=\"button\" tabindex=\"0\" aria-label=\"Collapse pattern: power shadows\">\n      <div>\n        <p class=\"fire-pain\">\"Everyone has a voice. One person still ends every conversation.\"</p>\n        <span class=\"fire-sub\">Pattern name and chapters in the Legend</span>\n      </div>\n      <span class=\"fire-arr\" aria-hidden=\"true\">\u2192</span>\n    </div>\n\n    <div class=\"fire-row fr4\" onclick=\"scrollGate()\" role=\"button\" tabindex=\"0\" aria-label=\"Collapse pattern: financial fragility\">\n      <div>\n        <p class=\"fire-pain\">\"The money conversation creates a dread nobody will name out loud.\"</p>\n        <span class=\"fire-sub\">Pattern name and chapters in the Legend</span>\n      </div>\n      <span class=\"fire-arr\" aria-hidden=\"true\">\u2192</span>\n    </div>\n\n    <div class=\"fire-row fr5\" onclick=\"scrollGate()\" role=\"button\" tabindex=\"0\" aria-label=\"Collapse pattern: burnout\">\n      <div>\n        <p class=\"fire-pain\">\"I am running on obligation now. The aliveness left a while ago.\"</p>\n        <span class=\"fire-sub\">Pattern name and chapters in the Legend</span>\n      </div>\n      <span class=\"fire-arr\" aria-hidden=\"true\">\u2192</span>\n    </div>\n\n    <div class=\"fire-row fr6\" onclick=\"scrollGate()\" role=\"button\" tabindex=\"0\" aria-label=\"Collapse pattern: wrong fit people\">\n      <div>\n        <p class=\"fire-pain\">\"Someone in this space is draining what everyone else is building.\"</p>\n        <span class=\"fire-sub\">Pattern name and chapters in the Legend</span>\n      </div>\n      <span class=\"fire-arr\" aria-hidden=\"true\">\u2192</span>\n    </div>\n\n    <div class=\"fire-row fr7\" onclick=\"scrollGate()\" role=\"button\" tabindex=\"0\" aria-label=\"Collapse pattern: scale trap\">\n      <div>\n        <p class=\"fire-pain\">\"What held us together at 8 people is falling apart at 25.\"</p>\n        <span class=\"fire-sub\">Pattern name and chapters in the Legend</span>\n      </div>\n      <span class=\"fire-arr\" aria-hidden=\"true\">\u2192</span>\n    </div>\n\n  </div>\n\n  <!-- GATE FORM -->\n  <div class=\"gate\" id=\"gatePanel\">\n    <span class=\"gate-map\" aria-hidden=\"true\">\ud83d\uddfa</span>\n    <h3 class=\"gate-h\">\n      The Navigation Legend<br>\n      names every fire.<br>\n      <span class=\"gold ital\">It is free.</span>\n    </h3>\n    <p class=\"gate-p\">\n      One PDF. All seven patterns named, described, and mapped to the exact chapters that address them. Find your fire in under 5 minutes.\n    </p>\n    <span class=\"gate-lbl\">Get the Navigation Legend now</span>\n    <div class=\"gate-wrap\">\n      <div class=\"sb-shell\">\n        <iframe src=\"https://rickbroider.substack.com/embed\" width=\"100%\" height=\"180\" style=\"border:none;background:transparent\" frameborder=\"0\" scrolling=\"no\" title=\"Subscribe free\"></iframe>\n      </div>\n      <p class=\"gate-fine\">No spam. Unsubscribe any time.</p>\n    </div>\n  </div>\n\n</div>\n</section>\n\n<!-- DIVIDER IMAGE -->\n<div class=\"wrap sr\" style=\"padding:0 0 64px;\">\n  <img src=\"divider-light-band.png\"\n       alt=\"\"\n       aria-hidden=\"true\"\n       style=\"width:100%;border-radius:10px;display:block;object-fit:cover;max-height:160px;\"\n       loading=\"lazy\">\n</div>\n\n<!-- ============================================================\n     UPGRADE REVEAL - BUILDER PASS\n     (shown AFTER they've seen the fires, not as a simultaneous choice)\n============================================================ -->\n<div class=\"divider sr\">\n  <div class=\"div-line\"></div><span class=\"div-word\">Already inside? Go deeper.</span><div class=\"div-line\"></div>\n</div>\n\n<section class=\"section-sm sr\" style=\"padding-bottom:72px;\" aria-label=\"Builder Pass upgrade\">\n<div class=\"wrap\">\n\n  <p class=\"upgrade-context\">\n    The free tier gives you the map. The Builder Pass gives you <strong>the full audiobook, the implementation tools, and the weekly live cohort.</strong> Seven-day free trial. Cancel any time.\n  </p>\n\n  <div class=\"upgrade-reveal\">\n    <span class=\"ur-badge\">Builder Pass</span>\n    <div class=\"ur-name\">Full Access</div>\n    <div class=\"ur-price\">$7 / month &nbsp;\u00b7&nbsp; $70 / year &nbsp;\u00b7&nbsp; 7-day free trial</div>\n    <div class=\"ur-list\">\n      <div class=\"ur-item\"><span class=\"ur-dot\"></span><span class=\"ur-txt\"><strong>Full 33-chapter audiobook on private RSS.</strong> Appears in Apple Podcasts, Pocket Casts, Overcast, or Spotify exactly like any other show. Two new chapters every Monday and Friday.</span></div>\n      <div class=\"ur-item\"><span class=\"ur-dot\"></span><span class=\"ur-txt\"><strong>Builder Intel artifacts:</strong> deployable governance templates, conflict protocols, and decision frameworks mapped to each collapse pattern.</span></div>\n      <div class=\"ur-item\"><span class=\"ur-dot\"></span><span class=\"ur-txt\"><strong>Builder Chat every Sunday:</strong> bring your live situation. Get structural pattern diagnosis from Rick and the cohort in real time.</span></div>\n    </div>\n  </div>\n\n</div>\n</section>\n\n<!-- ============================================================\n     TESTIMONIALS - 8 ANONYMIZED, DIVERSE\n============================================================ -->\n<div class=\"divider sr\">\n  <div class=\"div-line\"></div><span class=\"div-word\">From builders who found their fire</span><div class=\"div-line\"></div>\n</div>\n\n<section class=\"section sr\" style=\"padding-top:0;\" aria-label=\"Testimonials\">\n<div class=\"wrap\">\n  <div class=\"eyebrow\"><span class=\"ey-bar\"></span><span class=\"ey-txt\">Real builders. Real patterns.</span></div>\n  <h2 class=\"sec-h2\" style=\"margin-bottom:32px;\">They were<br><span class=\"gold ital\">already inside it</span><br>when they found this.</h2>\n\n  <div class=\"testi-grid\">\n\n    <div class=\"tcard\">\n      <p class=\"tcard-q\">\"I had been naming the governance problem for two years. Everyone kept telling me it was a people problem. This work gave me the language to prove it was structural. That distinction alone changed everything. I stopped trying to fix individuals and started designing the container.\"</p>\n      <div class=\"tcard-foot\">\n        <div class=\"tcard-av\" style=\"background:rgba(14,138,122,.3);color:var(--teal);\">S</div>\n        <div><div class=\"tcard-name\">Sofia R.</div><div class=\"tcard-role\">Co-founder, regenerative land project, Europe</div></div>\n        <span class=\"tcard-tag\">Governance</span>\n      </div>\n    </div>\n\n    <div class=\"tcard\">\n      <p class=\"tcard-q\">\"We were six months from collapse and I did not have a name for what was happening. Chapter 18 was the first time I had seen our specific situation diagnosed accurately by someone who had clearly seen it before.\"</p>\n      <div class=\"tcard-foot\">\n        <div class=\"tcard-av\" style=\"background:rgba(200,155,60,.22);color:var(--gold);\">M</div>\n        <div><div class=\"tcard-name\">Marcus T.</div><div class=\"tcard-role\">Executive director, impact nonprofit, East Africa</div></div>\n        <span class=\"tcard-tag\">Conflict</span>\n      </div>\n    </div>\n\n    <div class=\"tcard\">\n      <p class=\"tcard-q\">\"I almost left my own community. I was completely depleted and thought it meant I had chosen the wrong path. The burnout chapter reframed that cleanly. It was not my path that was wrong. It was the pace architecture that was missing. I implemented one change. The weight shifted.\"</p>\n      <div class=\"tcard-foot\">\n        <div class=\"tcard-av\" style=\"background:rgba(212,84,26,.22);color:var(--ember);\">A</div>\n        <div><div class=\"tcard-name\">Anika W.</div><div class=\"tcard-role\">Founder, intentional community, Costa Rica</div></div>\n        <span class=\"tcard-tag\">Burnout</span>\n      </div>\n    </div>\n\n    <div class=\"tcard\">\n      <p class=\"tcard-q\">\"We had grown from 9 to 40 members in 14 months and were in freefall. Nothing that had worked before worked anymore. The scale trap framing was the first honest diagnosis anyone offered. It helped us see we had not failed. We had simply outgrown the structure we were built for.\"</p>\n      <div class=\"tcard-foot\">\n        <div class=\"tcard-av\" style=\"background:rgba(74,96,138,.3);color:#8898CC;\">J</div>\n        <div><div class=\"tcard-name\">James O.</div><div class=\"tcard-role\">Operations lead, decentralized housing network, US</div></div>\n        <span class=\"tcard-tag\">Scale</span>\n      </div>\n    </div>\n\n    <div class=\"tcard\">\n      <p class=\"tcard-q\">\"I am an AI product lead. The governance and consent chapters translated directly into how we were designing our review processes. It was the closest thing I had found to an ethical architecture that did not require you to slow everything to a halt.\"</p>\n      <div class=\"tcard-foot\">\n        <div class=\"tcard-av\" style=\"background:rgba(61,122,90,.3);color:#60B880;\">P</div>\n        <div><div class=\"tcard-name\">Priya N.</div><div class=\"tcard-role\">Product director, AI company, Singapore</div></div>\n        <span class=\"tcard-tag\">Governance</span>\n      </div>\n    </div>\n\n    <div class=\"tcard\">\n      <p class=\"tcard-q\">\"We had the wrong person in a core role for nearly a year. Everyone knew it. Nobody had the container or the language to address it without a crisis. The wrong-fit chapter gave us both. We reached a real resolution. No one left wounded.\"</p>\n      <div class=\"tcard-foot\">\n        <div class=\"tcard-av\" style=\"background:rgba(160,112,40,.22);color:var(--gold);\">D</div>\n        <div><div class=\"tcard-name\">Dara K.</div><div class=\"tcard-role\">Culture steward, retreat center collective, Portugal</div></div>\n        <span class=\"tcard-tag\">Wrong Fit</span>\n      </div>\n    </div>\n\n    <div class=\"tcard\">\n      <p class=\"tcard-q\">\"Our DAO had been in governance paralysis for eight months. We had read everything. None of it addressed the specific thing we were experiencing: a cultural permission structure that made certain voices structurally louder. This work named that. Directly.\"</p>\n      <div class=\"tcard-foot\">\n        <div class=\"tcard-av\" style=\"background:rgba(14,138,122,.22);color:var(--teal);\">L</div>\n        <div><div class=\"tcard-name\">Lena V.</div><div class=\"tcard-role\">Governance lead, Web3 DAO, Netherlands</div></div>\n        <span class=\"tcard-tag\">Power Shadows</span>\n      </div>\n    </div>\n\n    <div class=\"tcard\">\n      <p class=\"tcard-q\">\"I have been building in this space for eleven years. Most post-mortems locate the cause in a person. This is the first framework that consistently locates the cause in the system. That shift is not small. It is everything.\"</p>\n      <div class=\"tcard-foot\">\n        <div class=\"tcard-av\" style=\"background:rgba(200,155,60,.2);color:var(--gold);\">R</div>\n        <div><div class=\"tcard-name\">Rafael M.</div><div class=\"tcard-role\">Veteran facilitator and community builder, Brazil</div></div>\n        <span class=\"tcard-tag\">Vision Drift</span>\n      </div>\n    </div>\n\n  </div>\n</div>\n</section>\n\n<!-- ============================================================\n     ABOUT RICK BROIDER\n============================================================ -->\n<section class=\"section sr\" style=\"padding-bottom:80px;\" aria-label=\"About Rick Broider\">\n<div class=\"wrap\">\n  <div class=\"eyebrow\"><span class=\"ey-bar\"></span><span class=\"ey-txt\">The work behind this</span></div>\n  <h2 class=\"sec-h2\">Built from inside<br><span class=\"gold ital\">the collapse.</span></h2>\n\n  <div class=\"about-card\">\n\n    <!-- PORTRAIT + QUOTE ROW -->\n    <div style=\"display:flex;align-items:flex-start;gap:22px;margin-bottom:24px;flex-wrap:wrap;\">\n      <img src=\"rick-portrait-600.jpg\"\n           alt=\"Rick Broider\"\n           style=\"width:90px;height:90px;border-radius:50%;object-fit:cover;flex-shrink:0;\n                  border:2px solid rgba(200,155,60,.4);box-shadow:0 0 24px rgba(200,155,60,.15);\">\n      <div style=\"flex:1;min-width:200px;\">\n        <p class=\"about-q\" style=\"border-left:none;padding-left:0;font-size:clamp(16px,2.8vw,20px);\">\n          \"I did not write this to explain collapse from the outside. I wrote it because I had been inside enough of these situations to see the same patterns ending different projects in different places, and I needed the architecture to exist.\"\n        </p>\n      </div>\n    </div>\n\n    <p class=\"about-body\">\n      <strong>Rick Broider</strong> is a systems architect, strategist, and community builder working at the intersection of regenerative culture, conscious technology, and New Earth design. He is also known in some of those communities by his spiritual name, Omja Brhad. This work reflects both: the architect who needs blueprints that survive real humans, and the practitioner who understands why people build these projects in the first place.\n    </p>\n\n    <!-- BOOK MOCKUP -->\n    <div style=\"display:flex;align-items:flex-start;gap:24px;margin:24px 0;flex-wrap:wrap;\">\n      <img src=\"book-mockup-dark.png\"\n           alt=\"Bridging Earth and Kanaria, book by Rick Broider\"\n           style=\"width:160px;flex-shrink:0;border-radius:8px;\n                  box-shadow:0 8px 40px rgba(0,0,0,.5);display:block;\"\n           loading=\"lazy\">\n      <div style=\"flex:1;min-width:200px;\">\n        <p class=\"about-body\" style=\"margin-bottom:12px;\">\n          The audiobook <em>Bridging Earth and Kanaria: A New Earth Field Guide to Galactic Ethics, AI, and the Architecture of Harmony</em> maps the collapse architecture across 33 chapters. Seven structural patterns account for most of the ways these projects fail.\n          <strong>Each has a name, a cause, and a repair architecture.</strong>\n        </p>\n        <p class=\"about-body\">\n          The Navigation Legend is the free entry point. It tells you which pattern is active in your project and directs you to the exact chapters that address it.\n        </p>\n      </div>\n    </div>\n\n    <span class=\"about-sig\">Rick Broider &nbsp;\u00b7&nbsp; StopTheCollapse.com</span>\n  </div>\n</div>\n</section>\n\n<!-- ============================================================\n     FINAL CTA\n============================================================ -->\n<section class=\"final sr\" aria-label=\"Final call to action\">\n<div class=\"wrap\">\n  <h2 class=\"final-h\">\n    The pattern<br>\n    has a <span class=\"gold ital\">name.</span>\n  </h2>\n  <p class=\"final-p\">\n    The Navigation Legend maps it to the exact chapters in under 5 minutes. Free. No friction.\n  </p>\n  <div class=\"final-wrap\">\n    <span class=\"free-offer-label\">Get the Navigation Legend, Free</span>\n    <div class=\"sb-shell\">\n      <iframe src=\"https://rickbroider.substack.com/embed\" width=\"100%\" height=\"180\" style=\"border:none;background:transparent\" frameborder=\"0\" scrolling=\"no\" title=\"Subscribe free\"></iframe>\n    </div>\n    <p class=\"form-micro\">Powered by Substack. No spam. Unsubscribe any time.</p>\n  </div>\n</div>\n</section>\n\n<!-- FOOTER -->\n<footer>\n  <div class=\"ft-brand\">Stopping the Collapse</div>\n  <div class=\"ft-sub\">Rick Broider &nbsp;\u00b7&nbsp; StopTheCollapse.com</div>\n  <div class=\"ft-links\">\n    <a href=\"https://rickbroider.substack.com\" target=\"_blank\" rel=\"noopener\" class=\"ft-link\">Substack</a>\n    <a href=\"privacy.html\" class=\"ft-link\">Privacy</a>\n    <a href=\"about.html\" class=\"ft-link\">About Rick</a>\n  </div>\n</footer>\n\n</div><!-- /page -->\n\n<script>\n// \u2500\u2500 NAV: appear after hero scrolls out \u2500\u2500\nconst nav  = document.getElementById('nav');\nconst hero = document.getElementById('heroTop');\nnew IntersectionObserver(\n  ([e]) => nav.classList.toggle('show', !e.isIntersecting),\n  { threshold: 0.05 }\n).observe(hero);\n\n// \u2500\u2500 FIRE ROW: keyboard support + scroll to gate \u2500\u2500\nfunction scrollGate() {\n  document.getElementById('gatePanel').scrollIntoView({ behavior:'smooth', block:'center' });\n}\ndocument.querySelectorAll('.fire-row').forEach(row => {\n  row.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') scrollGate(); });\n});\n\n// \u2500\u2500 SCROLL REVEAL \u2500\u2500\nconst srObs = new IntersectionObserver((entries) => {\n  entries.forEach(e => {\n    if (e.isIntersecting) { e.target.classList.add('in'); srObs.unobserve(e.target); }\n  });\n}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });\ndocument.querySelectorAll('.sr').forEach(el => srObs.observe(el));\n</script>\n\n</body>\n</html>\n";
+files["about.html"] = "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<meta name=\"theme-color\" content=\"#07080E\">\n<title>About Rick Broider \u2014 Stopping the Collapse</title>\n<meta name=\"description\" content=\"Rick Broider is a systems architect and community builder working at the intersection of regenerative culture, conscious technology, and New Earth design.\">\n<link rel=\"canonical\" href=\"https://iwasready.com/about.html\">\n<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n<link href=\"https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Syne:wght@500;600;700;800&family=Lora:ital,wght@0,400;1,400;1,500&display=swap\" rel=\"stylesheet\">\n<style>\n:root {\n  --navy:#07080E; --surface:#0E1022; --card:#111526;\n  --gold:#C89B3C; --gold-hi:#F0C050; --teal:#0E8A7A; --ember:#E87830;\n  --white:#FFFFFF; --pearl:#EDE8DC; --silver:#C0C0D0; --mist:#7878A0; --r:14px;\n}\n*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}\nhtml{scroll-behavior:smooth;}\nbody{\n  background:var(--navy); color:var(--pearl);\n  font-family:'Syne',sans-serif; font-weight:500;\n  line-height:1.7; overflow-x:hidden;\n  -webkit-font-smoothing:antialiased;\n}\n.cosmos{\n  position:fixed;inset:0;z-index:0;\n  background:radial-gradient(ellipse 140% 65% at 50% -8%,#16203C 0%,var(--navy) 58%);\n}\n.cosmos::before{\n  content:'';position:absolute;inset:0;\n  background:\n    radial-gradient(1.5px 1.5px at 12% 8%,rgba(255,255,255,.6) 0%,transparent 100%),\n    radial-gradient(1px 1px at 35% 15%,rgba(255,255,255,.45) 0%,transparent 100%),\n    radial-gradient(1px 1px at 72% 9%,rgba(255,255,255,.55) 0%,transparent 100%),\n    radial-gradient(1.5px 1.5px at 88% 22%,rgba(255,255,255,.4) 0%,transparent 100%),\n    radial-gradient(1px 1px at 55% 38%,rgba(255,255,255,.35) 0%,transparent 100%);\n}\n.page{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:80px 28px 120px;}\n.back{\n  display:inline-flex;align-items:center;gap:8px;\n  font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;\n  color:var(--gold);text-decoration:none;margin-bottom:48px;\n  transition:opacity .18s;\n}\n.back:hover{opacity:.7;}\n.back::before{content:'\u2190';}\n\n/* HERO ROW */\n.bio-hero{\n  display:flex;align-items:flex-start;gap:28px;\n  margin-bottom:40px;flex-wrap:wrap;\n}\n.bio-portrait{\n  width:120px;height:120px;border-radius:50%;\n  object-fit:cover;flex-shrink:0;\n  border:2px solid rgba(200,155,60,.4);\n  box-shadow:0 0 40px rgba(200,155,60,.18);\n}\n.bio-intro{flex:1;min-width:200px;}\n.bio-name{\n  font-family:'Playfair Display',serif;\n  font-size:clamp(28px,6vw,42px);font-weight:900;\n  line-height:1.05;letter-spacing:-.025em;\n  color:var(--white);margin-bottom:6px;\n}\n.bio-title{\n  font-size:12px;font-weight:700;letter-spacing:.16em;\n  text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:block;\n}\n.bio-tagline{\n  font-family:'Lora',serif;font-size:16px;\n  font-style:italic;color:var(--silver);line-height:1.65;\n}\n\n/* PULL QUOTE */\n.pull-quote{\n  border-left:3px solid var(--gold);\n  padding:20px 24px;margin:36px 0;\n  background:rgba(200,155,60,.04);border-radius:0 var(--r) var(--r) 0;\n}\n.pull-quote p{\n  font-family:'Playfair Display',serif;\n  font-size:clamp(17px,3.5vw,21px);font-style:italic;font-weight:700;\n  color:var(--pearl);line-height:1.55;margin:0;\n}\n\n/* BODY */\np{\n  font-family:'Lora',serif;font-size:16px;\n  color:var(--silver);line-height:1.85;margin-bottom:20px;\n}\np strong{color:var(--pearl);font-weight:500;}\n\nh2{\n  font-family:'Playfair Display',serif;\n  font-size:clamp(22px,4vw,30px);font-weight:900;\n  color:var(--white);margin:48px 0 16px;letter-spacing:-.02em;\n}\n\n/* BOOK SECTION */\n.book-row{\n  display:flex;align-items:flex-start;gap:28px;\n  margin:36px 0;flex-wrap:wrap;\n}\n.book-cover{\n  width:150px;flex-shrink:0;border-radius:8px;\n  box-shadow:0 12px 48px rgba(0,0,0,.6);display:block;\n}\n.book-info{flex:1;min-width:200px;}\n.book-title{\n  font-family:'Playfair Display',serif;\n  font-size:clamp(16px,3vw,20px);font-weight:900;\n  color:var(--white);line-height:1.3;margin-bottom:10px;\n}\n.book-subtitle{\n  font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;\n  color:var(--gold);margin-bottom:14px;display:block;\n}\n\n/* PILLARS */\n.pillars{\n  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));\n  gap:12px;margin:24px 0 36px;\n}\n.pillar{\n  background:rgba(255,255,255,.025);\n  border:1px solid rgba(255,255,255,.07);border-radius:var(--r);\n  padding:16px 18px;\n}\n.pillar-label{\n  font-size:11px;font-weight:800;letter-spacing:.14em;\n  text-transform:uppercase;color:var(--gold);margin-bottom:4px;display:block;\n}\n.pillar-desc{\n  font-family:'Lora',serif;font-size:13px;\n  color:var(--mist);line-height:1.55;margin:0;\n}\n\n/* CTA */\n.about-cta{\n  background:rgba(200,155,60,.06);\n  border:1.5px solid rgba(200,155,60,.25);\n  border-radius:var(--r);padding:32px 28px;\n  margin-top:48px;text-align:center;\n}\n.about-cta h3{\n  font-family:'Playfair Display',serif;\n  font-size:clamp(20px,4vw,26px);font-weight:900;\n  color:var(--white);margin-bottom:10px;\n}\n.about-cta p{\n  font-family:'Lora',serif;font-size:15px;\n  color:var(--silver);margin-bottom:22px;text-align:center;\n}\n.cta-btn{\n  display:inline-block;\n  background:linear-gradient(135deg,var(--gold),#A87828);\n  color:var(--navy);font-size:13px;font-weight:800;\n  letter-spacing:.1em;text-transform:uppercase;\n  padding:14px 32px;border-radius:100px;\n  text-decoration:none;transition:opacity .18s,transform .18s;\n}\n.cta-btn:hover{opacity:.88;transform:translateY(-1px);}\n\n.divider{\n  width:100%;height:1px;\n  background:linear-gradient(90deg,transparent,rgba(200,155,60,.2),transparent);\n  margin:40px 0;\n}\nfooter{\n  margin-top:60px;padding-top:28px;\n  border-top:1px solid rgba(255,255,255,.06);\n  text-align:center;\n}\n.ft-brand{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:rgba(237,232,220,.3);margin-bottom:4px;}\n.ft-links{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-top:12px;}\n.ft-link{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(114,114,154,.4);text-decoration:none;transition:color .18s;}\n.ft-link:hover{color:var(--gold);}\n@media(max-width:480px){\n  .bio-hero{flex-direction:column;align-items:center;text-align:center;}\n  .bio-portrait{width:100px;height:100px;}\n  .book-row{flex-direction:column;align-items:center;}\n  .book-cover{width:130px;}\n  .book-info{text-align:center;}\n}\n</style>\n</head>\n<body>\n<div class=\"cosmos\"></div>\n<div class=\"page\">\n\n  <a href=\"index.html\" class=\"back\">Back to home</a>\n\n  <div class=\"bio-hero\">\n    <img src=\"rick-portrait-600.jpg\" alt=\"Rick Broider\" class=\"bio-portrait\">\n    <div class=\"bio-intro\">\n      <div class=\"bio-name\">Rick Broider</div>\n      <span class=\"bio-title\">Systems Architect \u00b7 Community Builder \u00b7 Author</span>\n      <p class=\"bio-tagline\">Working at the intersection of regenerative culture, conscious technology, and organizational design.</p>\n    </div>\n  </div>\n\n  <div class=\"pull-quote\">\n    <p>\"I did not write this to explain collapse from the outside. I wrote it because I had been inside enough of these situations to see the same patterns ending different projects in different places, and I needed the architecture to exist.\"</p>\n  </div>\n\n  <p>Rick has spent years working inside regenerative communities, intentional organizations, and New Earth projects across multiple continents. He is also known in some of those communities by his spiritual name, <strong>Omja Brhad</strong>. This work reflects both: the systems architect who needs frameworks that survive real humans, and the practitioner who understands why people build these projects in the first place.</p>\n\n  <p>He is based in Costa Rica, where he works with founders, builders, and community leaders navigating the specific challenges that come with building something that is meant to matter.</p>\n\n  <h2>What he has observed</h2>\n\n  <p>After years of working inside these spaces, one pattern became undeniable: <strong>the same seven structural dynamics account for most of the ways regenerative projects collapse</strong>. Not bad intentions. Not lack of effort. Structural patterns that, once named, become workable.</p>\n\n  <p>That observation became the framework behind <em>Bridging Earth and Kanaria</em> and the Navigation Legend.</p>\n\n  <div class=\"pillars\">\n    <div class=\"pillar\">\n      <span class=\"pillar-label\">Conflict</span>\n      <p class=\"pillar-desc\">The same argument in different costumes.</p>\n    </div>\n    <div class=\"pillar\">\n      <span class=\"pillar-label\">Vision Drift</span>\n      <p class=\"pillar-desc\">Shared purpose quietly becoming personal assumptions.</p>\n    </div>\n    <div class=\"pillar\">\n      <span class=\"pillar-label\">Governance</span>\n      <p class=\"pillar-desc\">One person still ending every conversation.</p>\n    </div>\n    <div class=\"pillar\">\n      <span class=\"pillar-label\">Financial Fragility</span>\n      <p class=\"pillar-desc\">The money conversation no one will name out loud.</p>\n    </div>\n    <div class=\"pillar\">\n      <span class=\"pillar-label\">Burnout</span>\n      <p class=\"pillar-desc\">Running on obligation. The aliveness already gone.</p>\n    </div>\n    <div class=\"pillar\">\n      <span class=\"pillar-label\">Wrong Fit</span>\n      <p class=\"pillar-desc\">Someone draining what everyone else is building.</p>\n    </div>\n  </div>\n\n  <div class=\"divider\"></div>\n\n  <h2>The book</h2>\n\n  <div class=\"book-row\">\n    <img src=\"book-mockup-dark.png\" alt=\"Bridging Earth and Kanaria, book by Rick Broider\" class=\"book-cover\" loading=\"lazy\">\n    <div class=\"book-info\">\n      <span class=\"book-subtitle\">Now available as audiobook prerelease</span>\n      <div class=\"book-title\">Bridging Earth and Kanaria: A New Earth Field Guide to Galactic Ethics, AI, and the Architecture of Harmony</div>\n      <p style=\"font-family:'Lora',serif;font-size:14px;color:var(--mist);line-height:1.7;margin-top:12px;\">\n        33 chapters. 7 collapse patterns. A repair architecture for each one. Delivered as a private podcast to your preferred app.\n      </p>\n    </div>\n  </div>\n\n  <p>The book holds two registers at once. The practical register names the structural patterns that end projects and gives repair architectures that work in the real world. The deeper register connects those patterns to a larger systems intelligence, the Kanaria framework, that asks what it looks like to build organizations worthy of the moment we are in.</p>\n\n  <p>Neither layer requires you to accept the other to find it useful. Builders who want the operational toolkit get it. Builders who want the full cosmology get that too.</p>\n\n  <div class=\"about-cta\">\n    <h3>Start with the Navigation Legend</h3>\n    <p>Free. Identifies your active collapse pattern and maps it to the chapters that address it. Takes under 5 minutes.</p>\n    <a href=\"index.html\" class=\"cta-btn\">Get the Navigation Legend</a>\n  </div>\n\n  <footer>\n    <div class=\"ft-brand\">Stopping the Collapse</div>\n    <div class=\"ft-links\">\n      <a href=\"index.html\" class=\"ft-link\">Home</a>\n      <a href=\"https://rickbroider.substack.com\" target=\"_blank\" rel=\"noopener\" class=\"ft-link\">Substack</a>\n      <a href=\"privacy.html\" class=\"ft-link\">Privacy</a>\n    </div>\n  </footer>\n\n</div>\n</body>\n</html>\n";
+files["privacy.html"] = "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<meta name=\"theme-color\" content=\"#07080E\">\n<title>Privacy Policy \u2014 Stopping the Collapse</title>\n<meta name=\"description\" content=\"Privacy policy for IWasReady.com and Stopping the Collapse by Rick Broider.\">\n<link rel=\"canonical\" href=\"https://iwasready.com/privacy.html\">\n<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n<link href=\"https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900&family=Syne:wght@500;600;700;800&family=Lora:ital,wght@0,400;1,400&display=swap\" rel=\"stylesheet\">\n<style>\n:root {\n  --navy:#07080E; --gold:#C89B3C; --white:#FFFFFF;\n  --pearl:#EDE8DC; --silver:#C0C0D0; --mist:#7878A0; --r:14px;\n}\n*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}\nhtml{scroll-behavior:smooth;}\nbody{\n  background:var(--navy); color:var(--pearl);\n  font-family:'Syne',sans-serif; font-weight:500;\n  line-height:1.7; overflow-x:hidden;\n  -webkit-font-smoothing:antialiased;\n}\n.cosmos{\n  position:fixed;inset:0;z-index:0;\n  background:radial-gradient(ellipse 140% 65% at 50% -8%,#16203C 0%,var(--navy) 58%);\n}\n.page{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:80px 28px 120px;}\n.back{\n  display:inline-flex;align-items:center;gap:8px;\n  font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;\n  color:var(--gold);text-decoration:none;margin-bottom:48px;\n  transition:opacity .18s;\n}\n.back:hover{opacity:.7;}\n.back::before{content:'\u2190';}\nh1{\n  font-family:'Playfair Display',serif;\n  font-size:clamp(32px,7vw,52px);font-weight:900;line-height:1.08;\n  letter-spacing:-.025em;color:var(--white);margin-bottom:12px;\n}\n.updated{\n  font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;\n  color:var(--mist);margin-bottom:48px;display:block;\n}\nh2{\n  font-family:'Playfair Display',serif;\n  font-size:22px;font-weight:700;color:var(--white);\n  margin:40px 0 14px;\n}\np{\n  font-family:'Lora',serif;\n  font-size:16px;color:var(--silver);line-height:1.8;margin-bottom:16px;\n}\np strong{color:var(--pearl);font-weight:500;}\na{color:var(--gold);text-decoration:none;}\na:hover{text-decoration:underline;}\nul{\n  font-family:'Lora',serif;\n  font-size:16px;color:var(--silver);line-height:1.8;\n  padding-left:22px;margin-bottom:16px;\n}\nli{margin-bottom:6px;}\n.divider{\n  width:100%;height:1px;\n  background:linear-gradient(90deg,transparent,rgba(200,155,60,.2),transparent);\n  margin:40px 0;\n}\nfooter{\n  margin-top:60px;padding-top:28px;\n  border-top:1px solid rgba(255,255,255,.06);\n  text-align:center;\n}\n.ft-brand{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:rgba(237,232,220,.3);margin-bottom:4px;}\n.ft-links{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-top:12px;}\n.ft-link{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(114,114,154,.4);text-decoration:none;transition:color .18s;}\n.ft-link:hover{color:var(--gold);}\n</style>\n</head>\n<body>\n<div class=\"cosmos\"></div>\n<div class=\"page\">\n\n  <a href=\"index.html\" class=\"back\">Back to home</a>\n\n  <h1>Privacy Policy</h1>\n  <span class=\"updated\">Last updated: March 2026</span>\n\n  <p>This policy describes how <strong>IWasReady.com</strong> and <strong>StopTheCollapse.com</strong> (operated by Rick Broider) collect, use, and protect information when you visit this site or subscribe to the Stopping the Collapse publication.</p>\n\n  <div class=\"divider\"></div>\n\n  <h2>What we collect</h2>\n  <p>When you subscribe through the Substack embed on this site, your email address and any name you provide are collected and stored by <strong>Substack, Inc.</strong> This site itself does not independently store subscriber data.</p>\n  <p>Standard server logs may collect your IP address, browser type, referring page, and pages visited. This is standard web hosting behavior and is not used to identify individuals.</p>\n\n  <h2>How it is used</h2>\n  <ul>\n    <li>Your email is used to deliver the Navigation Legend PDF, free chapters, and weekly essays you subscribed for.</li>\n    <li>Paid subscribers receive audiobook access and Builder Pass content via Substack.</li>\n    <li>Your information is never sold to third parties.</li>\n    <li>Your information is never used for advertising targeting.</li>\n  </ul>\n\n  <h2>Substack's role</h2>\n  <p>Email delivery, subscriber management, and payment processing for paid tiers are handled by Substack. Their privacy policy governs how they handle your data: <a href=\"https://substack.com/privacy\" target=\"_blank\" rel=\"noopener\">substack.com/privacy</a></p>\n\n  <h2>Cookies</h2>\n  <p>This site does not use tracking cookies or analytics scripts. The Substack embed may set cookies in accordance with Substack's own policies when you interact with it.</p>\n\n  <h2>Your rights</h2>\n  <p>You can unsubscribe from the Stopping the Collapse publication at any time using the unsubscribe link in any email. To request deletion of your data from Substack, follow their account deletion process at <a href=\"https://substack.com\" target=\"_blank\" rel=\"noopener\">substack.com</a>.</p>\n  <p>For questions about this policy, contact Rick directly through the Substack publication.</p>\n\n  <h2>Changes to this policy</h2>\n  <p>If this policy changes materially, subscribers will be notified via the publication. The date above reflects the most recent revision.</p>\n\n  <footer>\n    <div class=\"ft-brand\">Stopping the Collapse</div>\n    <div class=\"ft-links\">\n      <a href=\"index.html\" class=\"ft-link\">Home</a>\n      <a href=\"https://rickbroider.substack.com\" target=\"_blank\" rel=\"noopener\" class=\"ft-link\">Substack</a>\n      <a href=\"about.html\" class=\"ft-link\">About Rick</a>\n    </div>\n  </footer>\n\n</div>\n</body>\n</html>\n";
+
+function initEditor() {
+  if (!files['index.html']) {
+    files['index.html'] = '<!-- index.html not found. Place editor.html in the same folder as your site files. -->';
+    files['about.html'] = '<!-- about.html not found -->';
+    files['privacy.html'] = '<!-- privacy.html not found -->';
+  }
+  loadFile('index.html');
+  updateStats();
+}
+
+function loadFile(name) {
+  currentFile = name;
+  document.getElementById('codeArea').value = files[name] || '';
+  document.getElementById('editorPath').textContent = name;
+  document.getElementById('sbFile').textContent = name;
+  updateStats();
+  refreshPreview();
+
+  // Update sidebar
+  document.querySelectorAll('.sb-file').forEach(f => {
+    f.classList.toggle('active', f.textContent.trim().startsWith(name.replace('.html','')));
+  });
+  // Update tabs
+  document.querySelectorAll('.tb-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.file === name);
+  });
+  document.getElementById('sbUnsaved').style.display = unsaved[name] ? 'block' : 'none';
+  logChange('INFO', `Opened ${name}`);
+}
+
+function switchTab(el) {
+  loadFile(el.dataset.file);
+}
+function switchFile(name) { loadFile(name); }
+
+function onCodeChange() {
+  files[currentFile] = document.getElementById('codeArea').value;
+  unsaved[currentFile] = true;
+  document.getElementById('sbUnsaved').style.display = 'block';
+  updateStats();
+}
+
+function updateStats() {
+  const val = document.getElementById('codeArea').value;
+  document.getElementById('sbLines').textContent = val.split('\n').length;
+  document.getElementById('sbChars').textContent = val.length.toLocaleString();
+}
+
+// ── PANES ──
+function switchPane(name, el) {
+  document.querySelectorAll('.pane-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('pane-' + name).classList.add('active');
+  if (name === 'preview') refreshPreview();
+}
+
+function refreshPreview() {
+  const frame = document.getElementById('previewFrame');
+  const content = files[currentFile] || '';
+  try {
+    const blob = new Blob([content], {type:'text/html'});
+    frame.src = URL.createObjectURL(blob);
+  } catch(e) {}
+}
+
+function openPreview() {
+  switchPane('preview', document.querySelectorAll('.pane-tab')[1]);
+}
+
+// ── SAVE FILE (download) ──
+function saveFile() {
+  const content = files[currentFile];
+  const blob = new Blob([content], {type:'text/html'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = currentFile;
+  a.click();
+  unsaved[currentFile] = false;
+  document.getElementById('sbUnsaved').style.display = 'none';
+  logChange('SAVE', `Downloaded ${currentFile}`);
+  toast('✓', `${currentFile} downloaded`);
+}
+
+// ── COPY ──
+function copyToClipboard() {
+  navigator.clipboard.writeText(files[currentFile]).then(() => {
+    toast('⎘', 'HTML copied to clipboard');
+  });
+}
+
+// ── FIND & REPLACE ──
+function openFindReplace() { document.getElementById('frModal').classList.add('open'); document.getElementById('frFind').focus(); }
+function closeFindReplace() { document.getElementById('frModal').classList.remove('open'); }
+function doFindReplace() {
+  const find = document.getElementById('frFind').value;
+  const replace = document.getElementById('frReplace').value;
+  if (!find) return;
+  const count = (files[currentFile].match(new RegExp(find.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g')) || []).length;
+  files[currentFile] = files[currentFile].split(find).join(replace);
+  document.getElementById('codeArea').value = files[currentFile];
+  closeFindReplace();
+  toast('⌕', `Replaced ${count} instance${count !== 1 ? 's' : ''}`);
+  logChange('EDIT', `Find & replace: "${find}" → "${replace}" (${count} replacements)`);
+  unsaved[currentFile] = true;
+  document.getElementById('sbUnsaved').style.display = 'block';
+}
+
+// ── FORMAT HTML ──
+function formatHTML() {
+  let html = document.getElementById('codeArea').value;
+  // Simple indent formatter
+  let depth = 0;
+  const lines = html.replace(/>\s*</g,'>\n<').split('\n');
+  const out = lines.map(line => {
+    line = line.trim();
+    if (!line) return '';
+    if (line.match(/^<\//)) depth = Math.max(0, depth - 1);
+    const indent = '  '.repeat(depth);
+    if (line.match(/^<[^/!][^>]*[^/]>$/) && !line.match(/^<(br|hr|img|input|meta|link)/i)) depth++;
+    return indent + line;
+  });
+  const formatted = out.filter(l => l !== '').join('\n');
+  files[currentFile] = formatted;
+  document.getElementById('codeArea').value = formatted;
+  toast('⟨/⟩', 'HTML formatted');
+}
+
+// ── WORD COUNT ──
+function showWordCount() {
+  const text = files[currentFile].replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
+  const words = text.split(' ').filter(w => w.length > 0).length;
+  toast('≡', `~${words.toLocaleString()} words in HTML`);
+}
+
+// ── EXEC COMMAND (rich-text helpers, applied to textarea via manual insertion) ──
+function execCmd(cmd, val) {
+  const ta = document.getElementById('codeArea');
+  const start = ta.selectionStart;
+  const end = ta.selectionEnd;
+  const selected = ta.value.substring(start, end);
+  let wrapped = selected;
+  if (cmd === 'bold') wrapped = `<strong>${selected}</strong>`;
+  else if (cmd === 'italic') wrapped = `<em>${selected}</em>`;
+  else if (cmd === 'underline') wrapped = `<u>${selected}</u>`;
+  else if (cmd === 'formatBlock' && val) wrapped = `<${val}>${selected}</${val}>`;
+  const newVal = ta.value.substring(0,start) + wrapped + ta.value.substring(end);
+  ta.value = newVal;
+  files[currentFile] = newVal;
+  ta.focus();
+  ta.setSelectionRange(start, start + wrapped.length);
+  onCodeChange();
+}
+
+// ── LOG ──
+function logChange(type, msg) {
+  const log = document.getElementById('changeLog');
+  const now = new Date().toLocaleTimeString();
+  const item = document.createElement('div');
+  item.className = 'change-item';
+  const cls = type === 'SAVE' ? 'ct-save' : 'ct-note';
+  item.innerHTML = `<span class="change-type ${cls}">${type}</span><div><div class="change-msg">${msg}</div><div class="change-time">${now}</div></div>`;
+  log.insertBefore(item, log.firstChild);
+}
+
+// ── TOAST ──
+function toast(icon, msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toastIcon').textContent = icon;
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ── KEYBOARD SHORTCUTS ──
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+    e.preventDefault();
+    saveFile();
+  }
+  if ((e.ctrlKey || e.metaKey) && e.key === 'h') {
+    e.preventDefault();
+    openFindReplace();
+  }
+});
+
+// Close modals on overlay click
+document.getElementById('frModal').addEventListener('click', function(e) {
+  if (e.target === this) closeFindReplace();
+});
+
+// ── INIT ──
+initEditor();
+</script>
+
+</body>
+</html>

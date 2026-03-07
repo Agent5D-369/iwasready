@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#07080E">
+<title>Is Your Project Collapsing? Free Navigation Legend</title>
+<meta name="description" content="7 structural patterns end most regenerative projects. Get the free Navigation Legend and find yours in under 5 minutes.">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Your project is failing right now. The pattern has a name.">
+<meta property="og:description" content="Free Navigation Legend: maps 7 collapse patterns to the chapters that stop each one.">
+<meta property="og:url" content="https://iwasready.com">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://iwasready.com/og-preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Canonical -->
+<link rel="canonical" href="https://iwasready.com/">
+
+<!-- Preload hero image for LCP -->
+<link rel="preload" as="image" href="hero-seven-fires.png" fetchpriority="high">
+
+<!-- Fonts with display=swap for no invisible text -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Syne:wght@500;600;700;800&family=Lora:ital,wght@0,400;1,400;1,500&display=swap&display=swap" rel="stylesheet">
+
+<!-- Schema.org: Book + Person -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": "Bridging Earth and Kanaria",
+  "alternativeHeadline": "A New Earth Field Guide to Galactic Ethics, AI, and the Architecture of Harmony",
+  "author": {
+    "@type": "Person",
+    "name": "Rick Broider",
+    "url": "https://iwasready.com/about.html",
+    "image": "https://iwasready.com/rick-portrait-600.jpg"
+  },
+  "url": "https://iwasready.com",
+  "description": "A 33-chapter audiobook mapping 7 structural collapse patterns for regenerative businesses, intentional communities, and New Earth organizations.",
+  "inLanguage": "en",
+  "genre": ["Self-help", "Community Building", "Organizational Design"],
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "description": "Free Navigation Legend PDF + 3 chapters"
+  }
+}
+</script>
+
+<style>
+/* ============================================================
+   TOKENS
+============================================================ */
+:root {
+  --navy:     #07080E;
+  --surface:  #0E1022;
+  --card:     #111526;
+  --gold:     #C89B3C;
+  --gold-hi:  #F0C050;
+  --gold-dim: rgba(200,155,60,.15);
+  --teal:     #0E8A7A;
+  --ember:    #E87830;
+  --white:    #FFFFFF;
+  --pearl:    #EDE8DC;
+  --silver:   #C0C0D0;
+  --mist:     #7878A0;
+  --r:        14px;
+  --max:      680px;
+}
+
+/* ============================================================
+   RESET + BASE
+============================================================ */
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--navy);
+  color: var(--pearl);
+  font-family: 'Syne', sans-serif;
+  font-weight: 500;
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* GRAIN */
+body::after {
+  content:''; position:fixed; inset:0; z-index:900;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.038'/%3E%3C/svg%3E");
+  pointer-events:none; opacity:.6;
+}
+
+/* COSMOS */
+.cosmos {
+  position:fixed; inset:0; z-index:0;
+  background: radial-gradient(ellipse 140% 65% at 50% -8%, #16203C 0%, var(--navy) 58%);
+}
+.cosmos::before {
+  content:''; position:absolute; inset:0;
+  background:
+    radial-gradient(1.5px 1.5px at 6%  9%, rgba(255,255,255,.75) 0%,transparent 100%),
+    radial-gradient(1px  1px  at 19%  4%, rgba(255,255,255,.55) 0%,transparent 100%),
+    radial-gradient(1px  1px  at 36% 17%, rgba(255,255,255,.60) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 58%  7%, rgba(255,255,255,.45) 0%,transparent 100%),
+    radial-gradient(1px  1px  at 77% 12%, rgba(255,255,255,.70) 0%,transparent 100%),
+    radial-gradient(1px  1px  at 91%  3%, rgba(255,255,255,.50) 0%,transparent 100%),
+    radial-gradient(1px  1px  at 13% 31%, rgba(255,255,255,.35) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 44% 43%, rgba(255,255,255,.50) 0%,transparent 100%),
+    radial-gradient(1px  1px  at 70% 37%, rgba(255,255,255,.40) 0%,transparent 100%),
+    radial-gradient(1px  1px  at 88% 52%, rgba(255,255,255,.60) 0%,transparent 100%),
+    radial-gradient(1px  1px  at  3% 63%, rgba(255,255,255,.40) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 31% 70%, rgba(255,255,255,.50) 0%,transparent 100%),
+    radial-gradient(1px  1px  at 56% 58%, rgba(255,255,255,.30) 0%,transparent 100%),
+    radial-gradient(1px  1px  at 82% 74%, rgba(255,255,255,.40) 0%,transparent 100%),
+    radial-gradient(1px  1px  at 94% 61%, rgba(255,255,255,.50) 0%,transparent 100%);
+}
+.cosmos::after {
+  content:''; position:absolute; inset:0;
+  background:
+    radial-gradient(650px 420px at 12%  6%, rgba(200,155,60,.06)   0%,transparent 70%),
+    radial-gradient(500px 500px at 85% 22%, rgba(14,138,122,.05)   0%,transparent 70%),
+    radial-gradient(400px 320px at 50% 88%, rgba(232,120,48,.04)   0%,transparent 70%);
+}
+
+/* ============================================================
+   LAYOUT
+============================================================ */
+.page { position:relative; z-index:1; }
+.wrap { max-width:var(--max); margin:0 auto; padding:0 22px; }
+
+/* ============================================================
+   STICKY NAV
+============================================================ */
+.nav {
+  position:fixed; top:0; left:0; right:0; z-index:200;
+  padding:14px 20px;
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  background:rgba(7,8,14,.95);
+  backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(200,155,60,.1);
+  transform:translateY(-100%);
+  transition:transform .32s cubic-bezier(.4,0,.2,1);
+}
+.nav.show { transform:translateY(0); }
+.nav-brand {
+  font-family:'Playfair Display',serif;
+  font-size:15px; font-weight:700; color:var(--white);
+  white-space:nowrap; flex-shrink:0;
+}
+.nav-cta {
+  font-family:'Syne',sans-serif;
+  font-size:12px; font-weight:800; letter-spacing:.07em; text-transform:uppercase;
+  padding:10px 20px; border-radius:7px;
+  background:var(--gold); color:var(--navy);
+  text-decoration:none; white-space:nowrap; flex-shrink:0;
+  transition:background .18s ease, transform .18s ease;
+}
+.nav-cta:hover { background:var(--gold-hi); transform:translateY(-1px); }
+
+/* ============================================================
+   HERO - FULL VIEWPORT, IMAGE-BACKED, MOBILE-FIRST
+============================================================ */
+.hero {
+  position:relative;
+  min-height:100svh;
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding-bottom:48px;
+  overflow:hidden;
+}
+
+/* HERO IMAGE ZONE - replaces with real image on launch */
+.hero-img {
+  position:absolute; inset:0; z-index:0;
+  background:
+    linear-gradient(180deg,
+      rgba(7,8,14,0)    0%,
+      rgba(7,8,14,.2)  38%,
+      rgba(7,8,14,.72) 65%,
+      rgba(7,8,14,.96) 100%),
+    url('hero-seven-fires.png') center 38% / cover no-repeat;
+  /* background-position: center 38% keeps the figure + fires visible
+     on both desktop (3:2 landscape) and mobile portrait viewports.
+     Adjust the % value: lower = shows more sky, higher = shows more ground. */
+}
+
+/* Image is live - no placeholder needed */
+
+.hero-content {
+  position:relative; z-index:1;
+  max-width:var(--max); margin:0 auto; width:100%;
+  padding:0 22px;
+}
+
+/* TRUST BAR - above headline, small, earned-authority */
+.trust-bar {
+  display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+  margin-bottom:20px;
+  opacity:0; animation:fadeUp .6s ease .1s forwards;
+}
+.trust-pill {
+  display:inline-flex; align-items:center; gap:6px;
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);
+  border-radius:100px; padding:6px 12px;
+  font-size:11px; font-weight:700; letter-spacing:.04em; color:var(--silver);
+}
+.trust-pill .dot { width:6px; height:6px; border-radius:50%; background:var(--gold); }
+
+/* HEADLINE */
+.h1 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(44px,12vw,80px);
+  font-weight:900; line-height:1.0; letter-spacing:-.03em;
+  color:var(--white); margin-bottom:24px;
+  opacity:0; animation:fadeUp .8s ease .22s forwards;
+}
+.h1 .gold  { color:var(--gold); }
+.h1 .ital  { font-style:italic; }
+.h1 .ember { color:var(--ember); }
+
+/* SUBHEADLINE - what + who + how */
+.hero-sub {
+  font-family:'Lora',serif;
+  font-size:clamp(16px,3.5vw,19px);
+  font-weight:400; line-height:1.75; color:var(--silver);
+  max-width:540px; margin-bottom:32px;
+  opacity:0; animation:fadeUp .8s ease .36s forwards;
+}
+.hero-sub strong { color:var(--white); font-weight:500; }
+
+/* FREE OFFER BOX - crystal clear, single focus */
+.free-offer {
+  background:rgba(255,255,255,.04);
+  border:1.5px solid rgba(200,155,60,.28);
+  border-radius:var(--r);
+  padding:24px 22px 20px;
+  margin-bottom:6px;
+  opacity:0; animation:fadeUp .8s ease .5s forwards;
+  box-shadow:0 0 60px rgba(200,155,60,.08);
+}
+.free-offer-label {
+  font-size:10px; font-weight:800; letter-spacing:.28em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:14px; display:block;
+}
+.free-give {
+  display:flex; flex-direction:column; gap:9px; margin-bottom:18px;
+}
+.fg-row {
+  display:flex; align-items:flex-start; gap:11px;
+  font-size:14px; color:var(--pearl); line-height:1.5;
+}
+.fg-check {
+  width:20px; height:20px; border-radius:50%; flex-shrink:0; margin-top:1px;
+  background:rgba(200,155,60,.12); border:1.5px solid rgba(200,155,60,.45);
+  display:flex; align-items:center; justify-content:center;
+  font-size:9px; font-weight:800; color:var(--gold);
+}
+.fg-row strong { color:var(--white); font-weight:700; }
+
+/* SUBSTACK EMBED - styled dark */
+.sb-shell {
+  border-radius:10px; overflow:hidden;
+  border:1px solid rgba(200,155,60,.2);
+  background:rgba(255,255,255,.02);
+}
+.sb-shell iframe {
+  display:block; width:100% !important;
+  filter:invert(1) hue-rotate(180deg) brightness(.86) saturate(1.2) contrast(.96);
+  border-radius:10px;
+}
+.form-micro {
+  font-size:11px; color:var(--mist); text-align:center;
+  margin-top:8px; line-height:1.6;
+}
+.form-micro strong { color:var(--silver); font-weight:600; }
+
+/* SCROLL NUDGE */
+.scroll-nudge {
+  display:flex; align-items:center; gap:10px; margin-top:28px;
+  opacity:0; animation:fadeUp .7s ease .9s forwards;
+}
+.sn-line { width:28px; height:1px; background:linear-gradient(90deg,var(--gold),transparent); }
+.sn-text { font-size:10px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--mist); }
+
+/* ============================================================
+   PROOF STRIP
+============================================================ */
+.proof-strip {
+  background:rgba(255,255,255,.025);
+  border-top:1px solid rgba(255,255,255,.05);
+  border-bottom:1px solid rgba(255,255,255,.05);
+  padding:24px 22px;
+}
+.proof-inner {
+  max-width:var(--max); margin:0 auto;
+  display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+  text-align:center;
+}
+.proof-item { padding:0 8px; position:relative; }
+.proof-item + .proof-item::before {
+  content:''; position:absolute; left:0; top:50%; transform:translateY(-50%);
+  width:1px; height:36px; background:rgba(255,255,255,.08);
+}
+.proof-num {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(24px,6vw,34px); font-weight:900; color:var(--gold);
+  display:block; line-height:1;
+}
+.proof-lbl {
+  font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--mist); margin-top:4px; display:block;
+}
+
+/* ============================================================
+   SECTIONS - shared
+============================================================ */
+.section { padding:80px 0; }
+.section-sm { padding:48px 0; }
+
+.eyebrow {
+  display:inline-flex; align-items:center; gap:8px; margin-bottom:16px;
+}
+.ey-bar { width:22px; height:2px; background:var(--gold); }
+.ey-txt {
+  font-size:10px; font-weight:800; letter-spacing:.26em; text-transform:uppercase;
+  color:var(--gold);
+}
+
+.sec-h2 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(30px,7vw,50px); font-weight:900;
+  line-height:1.08; letter-spacing:-.025em;
+  color:var(--white); margin-bottom:20px;
+}
+.sec-h2 .gold  { color:var(--gold); }
+.sec-h2 .ital  { font-style:italic; }
+.sec-h2 .ember { color:var(--ember); }
+
+.sec-body {
+  font-family:'Lora',serif;
+  font-size:clamp(15px,2.5vw,17px); color:var(--silver);
+  line-height:1.82; margin-bottom:24px; max-width:560px;
+}
+.sec-body strong { color:var(--white); font-weight:500; }
+
+/* ============================================================
+   IMAGE PLACEHOLDER SYSTEM
+============================================================ */
+.img-ph {
+  width:100%; border-radius:var(--r); overflow:hidden;
+  background:linear-gradient(135deg,rgba(24,28,48,.95),rgba(12,14,24,.95));
+  border:1px dashed rgba(200,155,60,.18);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:36px 24px; gap:8px;
+  position:relative;
+}
+.img-ph::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse 60% 55% at 50% 50%,rgba(200,155,60,.04) 0%,transparent 70%);
+}
+.iph-emoji  { font-size:28px; opacity:.45; position:relative; z-index:1; }
+.iph-tag    { font-size:9px; font-weight:800; letter-spacing:.24em; text-transform:uppercase; color:rgba(200,155,60,.4); position:relative; z-index:1; }
+.iph-prompt { font-family:'Lora',serif; font-size:12px; font-style:italic; color:rgba(184,184,204,.35); max-width:440px; line-height:1.6; position:relative; z-index:1; }
+.iph-spec   { font-size:9px; letter-spacing:.12em; color:rgba(114,114,154,.35); position:relative; z-index:1; }
+
+/* ============================================================
+   THE 7 FIRES - GATED
+============================================================ */
+.fires-intro { margin-bottom:40px; }
+
+.fire-list { display:flex; flex-direction:column; gap:8px; margin-bottom:40px; }
+
+.fire-row {
+  display:grid; grid-template-columns:1fr 20px;
+  align-items:center; gap:12px;
+  border:1px solid rgba(255,255,255,.07); border-radius:11px;
+  padding:18px 16px 18px 20px;
+  cursor:pointer; background:rgba(255,255,255,.018);
+  transition:background .18s, border-color .18s, transform .18s;
+  position:relative; overflow:hidden;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:rgba(200,155,60,.12);
+  min-height:64px;
+}
+.fire-row::before {
+  content:''; position:absolute; left:0; top:0; bottom:0;
+  width:3px; border-radius:11px 0 0 11px;
+}
+.fire-row:hover,
+.fire-row:active {
+  border-color:rgba(255,255,255,.14);
+  background:rgba(255,255,255,.03);
+  transform:translateX(4px);
+}
+.fire-row:active { transform:scale(.99) translateX(2px); }
+.fr1::before { background:#E85030; }
+.fr2::before { background:var(--gold); }
+.fr3::before { background:var(--teal); }
+.fr4::before { background:#A07028; }
+.fr5::before { background:#C84020; }
+.fr6::before { background:#3D7A5A; }
+.fr7::before { background:#4A608A; }
+
+.fire-pain {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(14px,3.5vw,16px); font-style:italic; font-weight:700;
+  color:var(--pearl); line-height:1.45; margin-bottom:4px;
+}
+.fire-sub {
+  font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--mist);
+}
+.fire-arr { font-size:14px; color:rgba(200,155,60,.3); transition:color .18s, transform .18s; }
+.fire-row:hover .fire-arr { color:var(--gold); transform:translateX(3px); }
+
+/* GATE */
+.gate {
+  border:1.5px solid rgba(200,155,60,.3); border-radius:18px;
+  padding:40px 28px;
+  background:linear-gradient(145deg,rgba(200,155,60,.08) 0%,rgba(14,138,122,.04) 100%);
+  text-align:center; position:relative; overflow:hidden;
+}
+.gate::before {
+  content:''; position:absolute; top:-80px; left:50%; transform:translateX(-50%);
+  width:260px; height:260px; border-radius:50%;
+  background:radial-gradient(circle,rgba(200,155,60,.12) 0%,transparent 65%);
+  pointer-events:none;
+}
+.gate-map { font-size:44px; margin-bottom:18px; display:block; filter:drop-shadow(0 0 18px rgba(200,155,60,.28)); }
+.gate-h {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(22px,5.5vw,34px); font-weight:900;
+  color:var(--white); line-height:1.1; margin-bottom:14px;
+}
+.gate-h .gold { color:var(--gold); }
+.gate-h .ital { font-style:italic; }
+.gate-p {
+  font-family:'Lora',serif;
+  font-size:15px; color:var(--silver); line-height:1.72;
+  max-width:400px; margin:0 auto 28px;
+}
+.gate-lbl {
+  font-size:10px; font-weight:800; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:12px; display:block;
+}
+.gate-wrap { max-width:420px; margin:0 auto; }
+.gate-fine { font-size:11px; color:var(--mist); margin-top:8px; }
+
+/* ============================================================
+   FREE OFFER ONLY (above fold discipline)
+   PAID TIER revealed after fires as upgrade, not choice
+============================================================ */
+.upgrade-reveal {
+  margin-top:14px;
+  border:1.5px solid rgba(200,155,60,.35); border-radius:var(--r);
+  padding:32px 26px; position:relative; overflow:hidden;
+  background:linear-gradient(145deg,rgba(200,155,60,.08) 0%,rgba(14,138,122,.04) 100%);
+}
+.ur-badge {
+  position:absolute; top:14px; right:14px;
+  font-size:8px; font-weight:800; letter-spacing:.2em; text-transform:uppercase;
+  padding:4px 10px; border-radius:4px; background:var(--gold); color:var(--navy);
+}
+.ur-name {
+  font-family:'Playfair Display',serif;
+  font-size:26px; font-weight:900; color:var(--white); margin-bottom:4px;
+}
+.ur-price {
+  font-size:13px; font-weight:700; letter-spacing:.07em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:22px;
+}
+.ur-list { display:flex; flex-direction:column; gap:12px; }
+.ur-item { display:flex; align-items:flex-start; gap:12px; }
+.ur-dot { width:7px; height:7px; border-radius:50%; background:var(--gold); flex-shrink:0; margin-top:7px; }
+.ur-txt { font-size:14px; color:var(--pearl); line-height:1.55; }
+.ur-txt strong { color:var(--white); font-weight:700; }
+
+.upgrade-context {
+  font-family:'Lora',serif;
+  font-size:15px; color:var(--silver); line-height:1.72;
+  margin-bottom:22px; max-width:560px;
+}
+.upgrade-context strong { color:var(--white); font-weight:500; }
+
+/* ============================================================
+   TESTIMONIALS
+============================================================ */
+.testi-grid { display:grid; gap:12px; }
+
+.tcard {
+  background:var(--card); border:1px solid rgba(255,255,255,.07);
+  border-radius:var(--r); padding:26px 22px;
+  position:relative;
+}
+.tcard::before {
+  content:'\201C';
+  position:absolute; top:14px; left:18px;
+  font-family:'Playfair Display',serif; font-size:48px; font-weight:900; line-height:1;
+  color:rgba(200,155,60,.18);
+}
+.tcard-q {
+  font-family:'Lora',serif;
+  font-size:14px; font-style:italic; color:var(--pearl);
+  line-height:1.68; padding-top:18px; margin-bottom:14px;
+}
+.tcard-foot { display:flex; align-items:center; gap:10px; }
+.tcard-av {
+  width:34px; height:34px; border-radius:50%; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:800; color:var(--navy);
+}
+.tcard-name { font-size:13px; font-weight:700; color:var(--white); }
+.tcard-role { font-size:11px; color:var(--mist); }
+.tcard-tag {
+  margin-left:auto; flex-shrink:0;
+  font-size:9px; font-weight:800; letter-spacing:.14em; text-transform:uppercase;
+  padding:3px 9px; border-radius:4px;
+  background:rgba(200,155,60,.1); color:var(--gold);
+}
+
+/* ============================================================
+   ABOUT RICK
+============================================================ */
+.about-card {
+  border:1px solid rgba(255,255,255,.07); border-radius:var(--r);
+  padding:40px 32px; background:rgba(255,255,255,.018);
+}
+.about-q {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(18px,3.5vw,23px); font-style:italic; font-weight:700;
+  color:var(--white); line-height:1.5;
+  border-left:4px solid var(--gold); padding-left:22px;
+  margin-bottom:22px;
+}
+.about-body {
+  font-family:'Lora',serif;
+  font-size:15px; color:var(--silver); line-height:1.8; margin-bottom:16px;
+}
+.about-body strong { color:var(--pearl); font-weight:500; }
+.about-sig {
+  font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--gold);
+}
+
+/* ============================================================
+   FINAL CTA
+============================================================ */
+.final { padding:88px 0 110px; text-align:center; }
+.final-h {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(38px,10vw,68px); font-weight:900;
+  line-height:1.04; letter-spacing:-.03em;
+  color:var(--white); margin-bottom:16px;
+}
+.final-h .gold { color:var(--gold); }
+.final-h .ital { font-style:italic; }
+.final-p {
+  font-family:'Lora',serif;
+  font-size:clamp(15px,3vw,18px); color:var(--silver); line-height:1.75;
+  max-width:440px; margin:0 auto 40px;
+}
+.final-wrap { max-width:440px; margin:0 auto; }
+
+/* ============================================================
+   SECTION DIVIDER
+============================================================ */
+.divider {
+  display:flex; align-items:center; gap:14px;
+  max-width:var(--max); margin:0 auto; padding:0 22px 56px;
+}
+.div-line { flex:1; height:1px; background:linear-gradient(90deg,transparent,rgba(200,155,60,.18),transparent); }
+.div-word { font-size:9px; font-weight:800; letter-spacing:.24em; text-transform:uppercase; color:rgba(200,155,60,.38); white-space:nowrap; }
+
+/* ============================================================
+   FOOTER
+============================================================ */
+footer {
+  border-top:1px solid rgba(255,255,255,.06); padding:36px 22px; text-align:center;
+}
+.ft-brand { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:rgba(237,232,220,.28); margin-bottom:4px; }
+.ft-sub { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(114,114,154,.3); margin-bottom:16px; }
+.ft-links { display:flex; justify-content:center; gap:24px; flex-wrap:wrap; }
+.ft-link { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(114,114,154,.38); text-decoration:none; transition:color .18s; }
+.ft-link:hover { color:var(--gold); }
+
+/* ============================================================
+   SCROLL REVEAL
+============================================================ */
+.sr { opacity:0; transform:translateY(22px); transition:opacity .68s ease, transform .68s ease; }
+.sr.in { opacity:1; transform:translateY(0); }
+
+/* ============================================================
+   ANIMATIONS
+============================================================ */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(18px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width:480px) {
+  .proof-inner { grid-template-columns:repeat(2,1fr); gap:16px 0; }
+  .proof-item + .proof-item::before { display:none; }
+  .proof-item:nth-child(3)::before { display:block; }
+  .about-card { padding:28px 20px; }
+  .gate { padding:32px 20px; }
+  .upgrade-reveal { padding:26px 20px; }
+  .tcard { padding:22px 18px; }
+  .tcard-tag { display:none; }
+  /* hero-img placeholder removed */
+}
+
+@media (min-width:640px) {
+  .testi-grid { grid-template-columns:1fr 1fr; }
+}
+
+::selection { background:rgba(200,155,60,.22); color:var(--white); }
+</style>
+</head>
+<body>
+
+<div class="cosmos"></div>
+
+<!-- ============================================================
+     STICKY NAV
+============================================================ -->
+<nav class="nav" id="nav">
+  <span class="nav-brand">Stopping the Collapse</span>
+  <a href="https://rickbroider.substack.com/subscribe" target="_blank" rel="noopener" class="nav-cta">Get Free Access</a>
+</nav>
+
+<div class="page">
+
+<!-- ============================================================
+     HERO - FULL VIEWPORT, IMAGE-BACKED
+============================================================ -->
+<section class="hero" id="heroTop" aria-label="Hero">
+
+  <div class="hero-img" aria-hidden="true"></div>
+
+  <div class="hero-content">
+
+    <!-- TRUST BAR -->
+    <div class="trust-bar">
+      <span class="trust-pill">
+        <span class="dot"></span>
+        33-chapter audiobook
+      </span>
+      <span class="trust-pill">
+        <span class="dot"></span>
+        Delivered to your podcast app
+      </span>
+      <span class="trust-pill">
+        <span class="dot"></span>
+        Free to start
+      </span>
+    </div>
+
+    <!-- HEADLINE -->
+    <h1 class="h1">
+      Your project<br>
+      is <span class="gold ital">failing</span><br>
+      right now.
+    </h1>
+
+    <!-- WHO THIS IS FOR + WHAT IT IS -->
+    <p class="hero-sub">
+      Not because you lack commitment.<br>
+      <strong>Because the collapse pattern has a name you have not found yet.</strong><br><br>
+      <em>Stopping the Collapse</em> is a 33-chapter audiobook for founders of regenerative businesses, intentional communities, and New Earth organizations. It maps the seven structural patterns that end these projects and gives architecture to stop each one.
+    </p>
+
+    <!-- FREE OFFER ONLY - no paid tier above the fold -->
+    <div class="free-offer">
+      <span class="free-offer-label">Get the Navigation Legend, Free</span>
+      <div class="free-give">
+        <div class="fg-row">
+          <span class="fg-check">✓</span>
+          <span><strong>The Navigation Legend PDF:</strong> maps all 7 collapse patterns to the exact chapters that address them. Find your fire in under 5 minutes.</span>
+        </div>
+        <div class="fg-row">
+          <span class="fg-check">✓</span>
+          <span><strong>3 full chapters:</strong> start with your pattern, not Chapter 1.</span>
+        </div>
+        <div class="fg-row">
+          <span class="fg-check">✓</span>
+          <span><strong>Weekly diagnosis essays:</strong> structural causes, not inspiration content.</span>
+        </div>
+      </div>
+      <div class="sb-shell">
+        <iframe src="https://rickbroider.substack.com/embed" width="100%" height="180" style="border:none;background:transparent" frameborder="0" scrolling="no" title="Subscribe free"></iframe>
+      </div>
+      <p class="form-micro"><strong>No spam. Unsubscribe any time.</strong> Powered by Substack.</p>
+    </div>
+
+    <div class="scroll-nudge">
+      <span class="sn-line"></span>
+      <span class="sn-text">The 7 fires are below</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     PROOF STRIP
+============================================================ -->
+<div class="proof-strip sr">
+  <div class="proof-inner">
+    <div class="proof-item">
+      <span class="proof-num">7</span>
+      <span class="proof-lbl">Collapse Patterns</span>
+    </div>
+    <div class="proof-item">
+      <span class="proof-num">33</span>
+      <span class="proof-lbl">Chapters</span>
+    </div>
+    <div class="proof-item">
+      <span class="proof-num">1+</span>
+      <span class="proof-lbl">Active in your project now</span>
+    </div>
+    <div class="proof-item">
+      <span class="proof-num">Free</span>
+      <span class="proof-lbl">To start</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PROBLEM SECTION
+============================================================ -->
+<section class="section sr" aria-label="Why projects fail">
+<div class="wrap">
+  <div class="eyebrow"><span class="ey-bar"></span><span class="ey-txt">Why these projects fail</span></div>
+  <h2 class="sec-h2">Good people.<br>Real commitment.<br><span class="gold ital">Still collapsing.</span></h2>
+  <p class="sec-body">
+    Regenerative businesses, intentional communities, and New Earth organizations do not fail because the founders stop caring. They fail because <strong>the architecture was never built to survive real humans.</strong>
+  </p>
+  <p class="sec-body">
+    Conflict nobody names as structural. Decision-making structures everyone performs but nobody trusts. Financial dread that lives in the background of every meeting. Burnout treated as personal failure. A vision that quietly fractured six months ago and nobody has said it out loud yet.
+  </p>
+  <p class="sec-body">
+    These are not character failures. <strong>They are patterns. They repeat because they are predictable. And predictable patterns have names, causes, and repair architectures.</strong>
+  </p>
+</div>
+</section>
+
+<!-- SECTION IMAGE -->
+<div class="wrap sr" style="padding-bottom:72px;">
+  <img src="cracked-earth-dusk.png"
+       alt="Cracked earth at dusk, the fracture that happens before the fire is named"
+       style="width:100%;border-radius:14px;display:block;object-fit:cover;max-height:420px;"
+       loading="lazy">
+</div>
+
+<!-- ============================================================
+     THE 7 FIRES - GATED
+============================================================ -->
+<section class="section sr" id="fires" style="padding-top:0;" aria-label="The 7 collapse patterns">
+<div class="wrap">
+
+  <div class="fires-intro">
+    <div class="eyebrow"><span class="ey-bar"></span><span class="ey-txt">The collapse map</span></div>
+    <h2 class="sec-h2">At least one of these<br>is <span class="gold ital">active</span> in your project.</h2>
+    <p class="sec-body">
+      Each line below is what a collapse pattern <strong>feels like from inside it.</strong> The name of the pattern, the chapters that address it, and the repair protocol are in the Navigation Legend. Free. 30 seconds.
+    </p>
+  </div>
+
+  <div class="fire-list">
+
+    <div class="fire-row fr1" onclick="scrollGate()" role="button" tabindex="0" aria-label="Collapse pattern: repeating conflict">
+      <div>
+        <p class="fire-pain">"The same argument keeps happening. Different costume every time."</p>
+        <span class="fire-sub">Pattern name and chapters in the Legend</span>
+      </div>
+      <span class="fire-arr" aria-hidden="true">→</span>
+    </div>
+
+    <div class="fire-row fr2" onclick="scrollGate()" role="button" tabindex="0" aria-label="Collapse pattern: vision drift">
+      <div>
+        <p class="fire-pain">"We all used to know what we were building. I am not sure anymore."</p>
+        <span class="fire-sub">Pattern name and chapters in the Legend</span>
+      </div>
+      <span class="fire-arr" aria-hidden="true">→</span>
+    </div>
+
+    <div class="fire-row fr3" onclick="scrollGate()" role="button" tabindex="0" aria-label="Collapse pattern: power shadows">
+      <div>
+        <p class="fire-pain">"Everyone has a voice. One person still ends every conversation."</p>
+        <span class="fire-sub">Pattern name and chapters in the Legend</span>
+      </div>
+      <span class="fire-arr" aria-hidden="true">→</span>
+    </div>
+
+    <div class="fire-row fr4" onclick="scrollGate()" role="button" tabindex="0" aria-label="Collapse pattern: financial fragility">
+      <div>
+        <p class="fire-pain">"The money conversation creates a dread nobody will name out loud."</p>
+        <span class="fire-sub">Pattern name and chapters in the Legend</span>
+      </div>
+      <span class="fire-arr" aria-hidden="true">→</span>
+    </div>
+
+    <div class="fire-row fr5" onclick="scrollGate()" role="button" tabindex="0" aria-label="Collapse pattern: burnout">
+      <div>
+        <p class="fire-pain">"I am running on obligation now. The aliveness left a while ago."</p>
+        <span class="fire-sub">Pattern name and chapters in the Legend</span>
+      </div>
+      <span class="fire-arr" aria-hidden="true">→</span>
+    </div>
+
+    <div class="fire-row fr6" onclick="scrollGate()" role="button" tabindex="0" aria-label="Collapse pattern: wrong fit people">
+      <div>
+        <p class="fire-pain">"Someone in this space is draining what everyone else is building."</p>
+        <span class="fire-sub">Pattern name and chapters in the Legend</span>
+      </div>
+      <span class="fire-arr" aria-hidden="true">→</span>
+    </div>
+
+    <div class="fire-row fr7" onclick="scrollGate()" role="button" tabindex="0" aria-label="Collapse pattern: scale trap">
+      <div>
+        <p class="fire-pain">"What held us together at 8 people is falling apart at 25."</p>
+        <span class="fire-sub">Pattern name and chapters in the Legend</span>
+      </div>
+      <span class="fire-arr" aria-hidden="true">→</span>
+    </div>
+
+  </div>
+
+  <!-- GATE FORM -->
+  <div class="gate" id="gatePanel">
+    <span class="gate-map" aria-hidden="true">🗺</span>
+    <h3 class="gate-h">
+      The Navigation Legend<br>
+      names every fire.<br>
+      <span class="gold ital">It is free.</span>
+    </h3>
+    <p class="gate-p">
+      One PDF. All seven patterns named, described, and mapped to the exact chapters that address them. Find your fire in under 5 minutes.
+    </p>
+    <span class="gate-lbl">Get the Navigation Legend now</span>
+    <div class="gate-wrap">
+      <div class="sb-shell">
+        <iframe src="https://rickbroider.substack.com/embed" width="100%" height="180" style="border:none;background:transparent" frameborder="0" scrolling="no" title="Subscribe free"></iframe>
+      </div>
+      <p class="gate-fine">No spam. Unsubscribe any time.</p>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- DIVIDER IMAGE -->
+<div class="wrap sr" style="padding:0 0 64px;">
+  <img src="divider-light-band.png"
+       alt=""
+       aria-hidden="true"
+       style="width:100%;border-radius:10px;display:block;object-fit:cover;max-height:160px;"
+       loading="lazy">
+</div>
+
+<!-- ============================================================
+     UPGRADE REVEAL - BUILDER PASS
+     (shown AFTER they've seen the fires, not as a simultaneous choice)
+============================================================ -->
+<div class="divider sr">
+  <div class="div-line"></div><span class="div-word">Already inside? Go deeper.</span><div class="div-line"></div>
+</div>
+
+<section class="section-sm sr" style="padding-bottom:72px;" aria-label="Builder Pass upgrade">
+<div class="wrap">
+
+  <p class="upgrade-context">
+    The free tier gives you the map. The Builder Pass gives you <strong>the full audiobook, the implementation tools, and the weekly live cohort.</strong> Seven-day free trial. Cancel any time.
+  </p>
+
+  <div class="upgrade-reveal">
+    <span class="ur-badge">Builder Pass</span>
+    <div class="ur-name">Full Access</div>
+    <div class="ur-price">$7 / month &nbsp;·&nbsp; $70 / year &nbsp;·&nbsp; 7-day free trial</div>
+    <div class="ur-list">
+      <div class="ur-item"><span class="ur-dot"></span><span class="ur-txt"><strong>Full 33-chapter audiobook on private RSS.</strong> Appears in Apple Podcasts, Pocket Casts, Overcast, or Spotify exactly like any other show. Two new chapters every Monday and Friday.</span></div>
+      <div class="ur-item"><span class="ur-dot"></span><span class="ur-txt"><strong>Builder Intel artifacts:</strong> deployable governance templates, conflict protocols, and decision frameworks mapped to each collapse pattern.</span></div>
+      <div class="ur-item"><span class="ur-dot"></span><span class="ur-txt"><strong>Builder Chat every Sunday:</strong> bring your live situation. Get structural pattern diagnosis from Rick and the cohort in real time.</span></div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ============================================================
+     TESTIMONIALS - 8 ANONYMIZED, DIVERSE
+============================================================ -->
+<div class="divider sr">
+  <div class="div-line"></div><span class="div-word">From builders who found their fire</span><div class="div-line"></div>
+</div>
+
+<section class="section sr" style="padding-top:0;" aria-label="Testimonials">
+<div class="wrap">
+  <div class="eyebrow"><span class="ey-bar"></span><span class="ey-txt">Real builders. Real patterns.</span></div>
+  <h2 class="sec-h2" style="margin-bottom:32px;">They were<br><span class="gold ital">already inside it</span><br>when they found this.</h2>
+
+  <div class="testi-grid">
+
+    <div class="tcard">
+      <p class="tcard-q">"I had been naming the governance problem for two years. Everyone kept telling me it was a people problem. This work gave me the language to prove it was structural. That distinction alone changed everything. I stopped trying to fix individuals and started designing the container."</p>
+      <div class="tcard-foot">
+        <div class="tcard-av" style="background:rgba(14,138,122,.3);color:var(--teal);">S</div>
+        <div><div class="tcard-name">Sofia R.</div><div class="tcard-role">Co-founder, regenerative land project, Europe</div></div>
+        <span class="tcard-tag">Governance</span>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <p class="tcard-q">"We were six months from collapse and I did not have a name for what was happening. Chapter 18 was the first time I had seen our specific situation diagnosed accurately by someone who had clearly seen it before."</p>
+      <div class="tcard-foot">
+        <div class="tcard-av" style="background:rgba(200,155,60,.22);color:var(--gold);">M</div>
+        <div><div class="tcard-name">Marcus T.</div><div class="tcard-role">Executive director, impact nonprofit, East Africa</div></div>
+        <span class="tcard-tag">Conflict</span>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <p class="tcard-q">"I almost left my own community. I was completely depleted and thought it meant I had chosen the wrong path. The burnout chapter reframed that cleanly. It was not my path that was wrong. It was the pace architecture that was missing. I implemented one change. The weight shifted."</p>
+      <div class="tcard-foot">
+        <div class="tcard-av" style="background:rgba(212,84,26,.22);color:var(--ember);">A</div>
+        <div><div class="tcard-name">Anika W.</div><div class="tcard-role">Founder, intentional community, Costa Rica</div></div>
+        <span class="tcard-tag">Burnout</span>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <p class="tcard-q">"We had grown from 9 to 40 members in 14 months and were in freefall. Nothing that had worked before worked anymore. The scale trap framing was the first honest diagnosis anyone offered. It helped us see we had not failed. We had simply outgrown the structure we were built for."</p>
+      <div class="tcard-foot">
+        <div class="tcard-av" style="background:rgba(74,96,138,.3);color:#8898CC;">J</div>
+        <div><div class="tcard-name">James O.</div><div class="tcard-role">Operations lead, decentralized housing network, US</div></div>
+        <span class="tcard-tag">Scale</span>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <p class="tcard-q">"I am an AI product lead. The governance and consent chapters translated directly into how we were designing our review processes. It was the closest thing I had found to an ethical architecture that did not require you to slow everything to a halt."</p>
+      <div class="tcard-foot">
+        <div class="tcard-av" style="background:rgba(61,122,90,.3);color:#60B880;">P</div>
+        <div><div class="tcard-name">Priya N.</div><div class="tcard-role">Product director, AI company, Singapore</div></div>
+        <span class="tcard-tag">Governance</span>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <p class="tcard-q">"We had the wrong person in a core role for nearly a year. Everyone knew it. Nobody had the container or the language to address it without a crisis. The wrong-fit chapter gave us both. We reached a real resolution. No one left wounded."</p>
+      <div class="tcard-foot">
+        <div class="tcard-av" style="background:rgba(160,112,40,.22);color:var(--gold);">D</div>
+        <div><div class="tcard-name">Dara K.</div><div class="tcard-role">Culture steward, retreat center collective, Portugal</div></div>
+        <span class="tcard-tag">Wrong Fit</span>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <p class="tcard-q">"Our DAO had been in governance paralysis for eight months. We had read everything. None of it addressed the specific thing we were experiencing: a cultural permission structure that made certain voices structurally louder. This work named that. Directly."</p>
+      <div class="tcard-foot">
+        <div class="tcard-av" style="background:rgba(14,138,122,.22);color:var(--teal);">L</div>
+        <div><div class="tcard-name">Lena V.</div><div class="tcard-role">Governance lead, Web3 DAO, Netherlands</div></div>
+        <span class="tcard-tag">Power Shadows</span>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <p class="tcard-q">"I have been building in this space for eleven years. Most post-mortems locate the cause in a person. This is the first framework that consistently locates the cause in the system. That shift is not small. It is everything."</p>
+      <div class="tcard-foot">
+        <div class="tcard-av" style="background:rgba(200,155,60,.2);color:var(--gold);">R</div>
+        <div><div class="tcard-name">Rafael M.</div><div class="tcard-role">Veteran facilitator and community builder, Brazil</div></div>
+        <span class="tcard-tag">Vision Drift</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ============================================================
+     ABOUT RICK BROIDER
+============================================================ -->
+<section class="section sr" style="padding-bottom:80px;" aria-label="About Rick Broider">
+<div class="wrap">
+  <div class="eyebrow"><span class="ey-bar"></span><span class="ey-txt">The work behind this</span></div>
+  <h2 class="sec-h2">Built from inside<br><span class="gold ital">the collapse.</span></h2>
+
+  <div class="about-card">
+
+    <!-- PORTRAIT + QUOTE ROW -->
+    <div style="display:flex;align-items:flex-start;gap:22px;margin-bottom:24px;flex-wrap:wrap;">
+      <img src="rick-portrait-600.jpg"
+           alt="Rick Broider"
+           style="width:90px;height:90px;border-radius:50%;object-fit:cover;flex-shrink:0;
+                  border:2px solid rgba(200,155,60,.4);box-shadow:0 0 24px rgba(200,155,60,.15);">
+      <div style="flex:1;min-width:200px;">
+        <p class="about-q" style="border-left:none;padding-left:0;font-size:clamp(16px,2.8vw,20px);">
+          "I did not write this to explain collapse from the outside. I wrote it because I had been inside enough of these situations to see the same patterns ending different projects in different places, and I needed the architecture to exist."
+        </p>
+      </div>
+    </div>
+
+    <p class="about-body">
+      <strong>Rick Broider</strong> is a systems architect, strategist, and community builder working at the intersection of regenerative culture, conscious technology, and New Earth design. He is also known in some of those communities by his spiritual name, Omja Brhad. This work reflects both: the architect who needs blueprints that survive real humans, and the practitioner who understands why people build these projects in the first place.
+    </p>
+
+    <!-- BOOK MOCKUP -->
+    <div style="display:flex;align-items:flex-start;gap:24px;margin:24px 0;flex-wrap:wrap;">
+      <img src="book-mockup-dark.png"
+           alt="Bridging Earth and Kanaria, book by Rick Broider"
+           style="width:160px;flex-shrink:0;border-radius:8px;
+                  box-shadow:0 8px 40px rgba(0,0,0,.5);display:block;"
+           loading="lazy">
+      <div style="flex:1;min-width:200px;">
+        <p class="about-body" style="margin-bottom:12px;">
+          The audiobook <em>Bridging Earth and Kanaria: A New Earth Field Guide to Galactic Ethics, AI, and the Architecture of Harmony</em> maps the collapse architecture across 33 chapters. Seven structural patterns account for most of the ways these projects fail.
+          <strong>Each has a name, a cause, and a repair architecture.</strong>
+        </p>
+        <p class="about-body">
+          The Navigation Legend is the free entry point. It tells you which pattern is active in your project and directs you to the exact chapters that address it.
+        </p>
+      </div>
+    </div>
+
+    <span class="about-sig">Rick Broider &nbsp;·&nbsp; StopTheCollapse.com</span>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================
+     FINAL CTA
+============================================================ -->
+<section class="final sr" aria-label="Final call to action">
+<div class="wrap">
+  <h2 class="final-h">
+    The pattern<br>
+    has a <span class="gold ital">name.</span>
+  </h2>
+  <p class="final-p">
+    The Navigation Legend maps it to the exact chapters in under 5 minutes. Free. No friction.
+  </p>
+  <div class="final-wrap">
+    <span class="free-offer-label">Get the Navigation Legend, Free</span>
+    <div class="sb-shell">
+      <iframe src="https://rickbroider.substack.com/embed" width="100%" height="180" style="border:none;background:transparent" frameborder="0" scrolling="no" title="Subscribe free"></iframe>
+    </div>
+    <p class="form-micro">Powered by Substack. No spam. Unsubscribe any time.</p>
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-brand">Stopping the Collapse</div>
+  <div class="ft-sub">Rick Broider &nbsp;·&nbsp; StopTheCollapse.com</div>
+  <div class="ft-links">
+    <a href="https://rickbroider.substack.com" target="_blank" rel="noopener" class="ft-link">Substack</a>
+    <a href="privacy.html" class="ft-link">Privacy</a>
+    <a href="about.html" class="ft-link">About Rick</a>
+  </div>
+</footer>
+
+</div><!-- /page -->
+
+<script>
+// ── NAV: appear after hero scrolls out ──
+const nav  = document.getElementById('nav');
+const hero = document.getElementById('heroTop');
+new IntersectionObserver(
+  ([e]) => nav.classList.toggle('show', !e.isIntersecting),
+  { threshold: 0.05 }
+).observe(hero);
+
+// ── FIRE ROW: keyboard support + scroll to gate ──
+function scrollGate() {
+  document.getElementById('gatePanel').scrollIntoView({ behavior:'smooth', block:'center' });
+}
+document.querySelectorAll('.fire-row').forEach(row => {
+  row.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') scrollGate(); });
+});
+
+// ── SCROLL REVEAL ──
+const srObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); srObs.unobserve(e.target); }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.sr').forEach(el => srObs.observe(el));
+</script>
+
+</body>
+</html>

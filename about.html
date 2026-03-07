@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07080E">
+<title>About Rick Broider, Stopping the Collapse</title>
+<meta name="description" content="Rick Broider is a systems architect and community builder working at the intersection of regenerative culture, conscious technology, and New Earth design.">
+<link rel="canonical" href="https://iwasready.com/about.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Syne:wght@500;600;700;800&family=Lora:ital,wght@0,400;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#07080E; --surface:#0E1022; --card:#111526;
+  --gold:#C89B3C; --gold-hi:#F0C050; --teal:#0E8A7A; --ember:#E87830;
+  --white:#FFFFFF; --pearl:#EDE8DC; --silver:#C0C0D0; --mist:#7878A0; --r:14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--navy); color:var(--pearl);
+  font-family:'Syne',sans-serif; font-weight:500;
+  line-height:1.7; overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+.cosmos{
+  position:fixed;inset:0;z-index:0;
+  background:radial-gradient(ellipse 140% 65% at 50% -8%,#16203C 0%,var(--navy) 58%);
+}
+.cosmos::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(1.5px 1.5px at 12% 8%,rgba(255,255,255,.6) 0%,transparent 100%),
+    radial-gradient(1px 1px at 35% 15%,rgba(255,255,255,.45) 0%,transparent 100%),
+    radial-gradient(1px 1px at 72% 9%,rgba(255,255,255,.55) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 88% 22%,rgba(255,255,255,.4) 0%,transparent 100%),
+    radial-gradient(1px 1px at 55% 38%,rgba(255,255,255,.35) 0%,transparent 100%);
+}
+.page{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:80px 28px 120px;}
+.back{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold);text-decoration:none;margin-bottom:48px;
+  transition:opacity .18s;
+}
+.back:hover{opacity:.7;}
+.back::before{content:'←';}
+
+/* HERO ROW */
+.bio-hero{
+  display:flex;align-items:flex-start;gap:28px;
+  margin-bottom:40px;flex-wrap:wrap;
+}
+.bio-portrait{
+  width:120px;height:120px;border-radius:50%;
+  object-fit:cover;flex-shrink:0;
+  border:2px solid rgba(200,155,60,.4);
+  box-shadow:0 0 40px rgba(200,155,60,.18);
+}
+.bio-intro{flex:1;min-width:200px;}
+.bio-name{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(28px,6vw,42px);font-weight:900;
+  line-height:1.05;letter-spacing:-.025em;
+  color:var(--white);margin-bottom:6px;
+}
+.bio-title{
+  font-size:12px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:block;
+}
+.bio-tagline{
+  font-family:'Lora',serif;font-size:16px;
+  font-style:italic;color:var(--silver);line-height:1.65;
+}
+
+/* PULL QUOTE */
+.pull-quote{
+  border-left:3px solid var(--gold);
+  padding:20px 24px;margin:36px 0;
+  background:rgba(200,155,60,.04);border-radius:0 var(--r) var(--r) 0;
+}
+.pull-quote p{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(17px,3.5vw,21px);font-style:italic;font-weight:700;
+  color:var(--pearl);line-height:1.55;margin:0;
+}
+
+/* BODY */
+p{
+  font-family:'Lora',serif;font-size:16px;
+  color:var(--silver);line-height:1.85;margin-bottom:20px;
+}
+p strong{color:var(--pearl);font-weight:500;}
+
+h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(22px,4vw,30px);font-weight:900;
+  color:var(--white);margin:48px 0 16px;letter-spacing:-.02em;
+}
+
+/* BOOK SECTION */
+.book-row{
+  display:flex;align-items:flex-start;gap:28px;
+  margin:36px 0;flex-wrap:wrap;
+}
+.book-cover{
+  width:150px;flex-shrink:0;border-radius:8px;
+  box-shadow:0 12px 48px rgba(0,0,0,.6);display:block;
+}
+.book-info{flex:1;min-width:200px;}
+.book-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(16px,3vw,20px);font-weight:900;
+  color:var(--white);line-height:1.3;margin-bottom:10px;
+}
+.book-subtitle{
+  font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:14px;display:block;
+}
+
+/* PILLARS */
+.pillars{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:12px;margin:24px 0 36px;
+}
+.pillar{
+  background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.07);border-radius:var(--r);
+  padding:16px 18px;
+}
+.pillar-label{
+  font-size:11px;font-weight:800;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:4px;display:block;
+}
+.pillar-desc{
+  font-family:'Lora',serif;font-size:13px;
+  color:var(--mist);line-height:1.55;margin:0;
+}
+
+/* CTA */
+.about-cta{
+  background:rgba(200,155,60,.06);
+  border:1.5px solid rgba(200,155,60,.25);
+  border-radius:var(--r);padding:32px 28px;
+  margin-top:48px;text-align:center;
+}
+.about-cta h3{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(20px,4vw,26px);font-weight:900;
+  color:var(--white);margin-bottom:10px;
+}
+.about-cta p{
+  font-family:'Lora',serif;font-size:15px;
+  color:var(--silver);margin-bottom:22px;text-align:center;
+}
+.cta-btn{
+  display:inline-block;
+  background:linear-gradient(135deg,var(--gold),#A87828);
+  color:var(--navy);font-size:13px;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:14px 32px;border-radius:100px;
+  text-decoration:none;transition:opacity .18s,transform .18s;
+}
+.cta-btn:hover{opacity:.88;transform:translateY(-1px);}
+
+.divider{
+  width:100%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(200,155,60,.2),transparent);
+  margin:40px 0;
+}
+footer{
+  margin-top:60px;padding-top:28px;
+  border-top:1px solid rgba(255,255,255,.06);
+  text-align:center;
+}
+.ft-brand{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:rgba(237,232,220,.3);margin-bottom:4px;}
+.ft-links{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-top:12px;}
+.ft-link{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(114,114,154,.4);text-decoration:none;transition:color .18s;}
+.ft-link:hover{color:var(--gold);}
+@media(max-width:480px){
+  .bio-hero{flex-direction:column;align-items:center;text-align:center;}
+  .bio-portrait{width:100px;height:100px;}
+  .book-row{flex-direction:column;align-items:center;}
+  .book-cover{width:130px;}
+  .book-info{text-align:center;}
+}
+</style>
+</head>
+<body>
+<div class="cosmos"></div>
+<div class="page">
+
+  <a href="index.html" class="back">Back to home</a>
+
+  <div class="bio-hero">
+    <img src="rick-portrait-600.jpg" alt="Rick Broider" class="bio-portrait">
+    <div class="bio-intro">
+      <div class="bio-name">Rick Broider</div>
+      <span class="bio-title">Systems Architect · Community Builder · Author</span>
+      <p class="bio-tagline">Working at the intersection of regenerative culture, conscious technology, and organizational design.</p>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    <p>"I did not write this to explain collapse from the outside. I wrote it because I had been inside enough of these situations to see the same patterns ending different projects in different places, and I needed the architecture to exist."</p>
+  </div>
+
+  <p>Rick has spent years working inside regenerative communities, intentional organizations, and New Earth projects across multiple continents. He is also known in some of those communities by his spiritual name, <strong>Omja Brhad</strong>. This work reflects both: the systems architect who needs frameworks that survive real humans, and the practitioner who understands why people build these projects in the first place.</p>
+
+  <p>He is based in Costa Rica, where he works with founders, builders, and community leaders navigating the specific challenges that come with building something that is meant to matter.</p>
+
+  <h2>What he has observed</h2>
+
+  <p>After years of working inside these spaces, one pattern became undeniable: <strong>the same seven structural dynamics account for most of the ways regenerative projects collapse</strong>. Not bad intentions. Not lack of effort. Structural patterns that, once named, become workable.</p>
+
+  <p>That observation became the framework behind <em>Bridging Earth and Kanaria</em> and the Navigation Legend.</p>
+
+  <div class="pillars">
+    <div class="pillar">
+      <span class="pillar-label">Conflict</span>
+      <p class="pillar-desc">The same argument in different costumes.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-label">Vision Drift</span>
+      <p class="pillar-desc">Shared purpose quietly becoming personal assumptions.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-label">Governance</span>
+      <p class="pillar-desc">One person still ending every conversation.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-label">Financial Fragility</span>
+      <p class="pillar-desc">The money conversation no one will name out loud.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-label">Burnout</span>
+      <p class="pillar-desc">Running on obligation. The aliveness already gone.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-label">Wrong Fit</span>
+      <p class="pillar-desc">Someone draining what everyone else is building.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>The book</h2>
+
+  <div class="book-row">
+    <img src="book-mockup-dark.png" alt="Bridging Earth and Kanaria, book by Rick Broider" class="book-cover" loading="lazy">
+    <div class="book-info">
+      <span class="book-subtitle">Now available as audiobook prerelease</span>
+      <div class="book-title">Bridging Earth and Kanaria: A New Earth Field Guide to Galactic Ethics, AI, and the Architecture of Harmony</div>
+      <p style="font-family:'Lora',serif;font-size:14px;color:var(--mist);line-height:1.7;margin-top:12px;">
+        33 chapters. 7 collapse patterns. A repair architecture for each one. Delivered as a private podcast to your preferred app.
+      </p>
+    </div>
+  </div>
+
+  <p>The book holds two registers at once. The practical register names the structural patterns that end projects and gives repair architectures that work in the real world. The deeper register connects those patterns to a larger systems intelligence, the Kanaria framework, that asks what it looks like to build organizations worthy of the moment we are in.</p>
+
+  <p>Neither layer requires you to accept the other to find it useful. Builders who want the operational toolkit get it. Builders who want the full cosmology get that too.</p>
+
+  <div class="about-cta">
+    <h3>Start with the Navigation Legend</h3>
+    <p>Free. Identifies your active collapse pattern and maps it to the chapters that address it. Takes under 5 minutes.</p>
+    <a href="index.html" class="cta-btn">Get the Navigation Legend</a>
+  </div>
+
+  <footer>
+    <div class="ft-brand">Stopping the Collapse</div>
+    <div class="ft-links">
+      <a href="index.html" class="ft-link">Home</a>
+      <a href="https://rickbroider.substack.com" target="_blank" rel="noopener" class="ft-link">Substack</a>
+      <a href="privacy.html" class="ft-link">Privacy</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
