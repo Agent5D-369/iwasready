@@ -43,6 +43,12 @@
 <meta property="og:image" content="https://iwasready.com/og-preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Stopping the Collapse  -  7 structural patterns that end regenerative projects. Free Navigation Legend by Rick Broider.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Your project is failing right now. The pattern has a name.">
+<meta name="twitter:description" content="Free Navigation Legend: maps 7 collapse patterns to the exact chapters that stop each one. Bridging Earth and Kanaria audiobook by Rick Broider.">
+<meta name="twitter:image" content="https://iwasready.com/og-preview.png">
+<meta name="twitter:image:alt" content="Stopping the Collapse  -  free field guide for regenerative founders">
 
 <!-- Canonical -->
 <link rel="canonical" href="https://iwasready.com/">
@@ -145,7 +151,8 @@
         }
       ]
     }
-  ]
+  ],
+  "webpage": {"@type":"WebPage","@id":"https://iwasready.com/#webpage","url":"https://iwasready.com/","name":"Stopping the Collapse - 7 Structural Patterns That End Regenerative Projects","description":"Free Navigation Legend maps 7 collapse patterns to the chapters that stop each one. Audiobook by Rick Broider.","inLanguage":"en-US","primaryImageOfPage":{"@type":"ImageObject","url":"https://iwasready.com/og-preview.png","width":1200,"height":630}}
 }
 </script>
 
@@ -292,7 +299,7 @@ body::after {
 
 .hero-content {
   position:relative; z-index:1;
-  max-width:680px; margin:0 auto; width:100%;
+  max-width:min(680px, 90vw); margin:0 auto; width:100%;
   padding:0 clamp(20px,5vw,48px);
   box-sizing:border-box;
 }
@@ -375,6 +382,12 @@ body::after {
   filter:invert(1) hue-rotate(180deg) brightness(.86) saturate(1.2) contrast(.96);
   border-radius:10px;
 }
+
+.form-guarantee {
+  font-size:12px; font-style:italic;
+  color:rgba(192,192,208,.5); margin-top:8px; text-align:center; line-height:1.5;
+}
+
 .form-micro {
   font-size:13px; color:var(--mist); text-align:center;
   margin-top:8px; line-height:1.6;
@@ -414,7 +427,7 @@ body::after {
   display:block; line-height:1;
 }
 .proof-lbl {
-  font-size:13px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  font-size:14px; letter-spacing:.08em; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
   color:var(--mist); margin-top:4px; display:block;
 }
 
@@ -508,13 +521,17 @@ body::after {
 .fr6::before { background:#3D7A5A; }
 .fr7::before { background:#4A608A; }
 
+.fire-name {
+  font-size:11px; font-weight:800; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--gold); margin:0 0 5px; opacity:.85;
+}
 .fire-pain {
   font-family:'Playfair Display',serif;
   font-size:clamp(16px,3vw,18px); font-style:italic; font-weight:700;
   color:var(--pearl); line-height:1.5; margin-bottom:6px;
 }
 .fire-sub {
-  font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  font-size:13px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
   color:var(--mist);
 }
 .fire-arr { font-size:14px; color:rgba(200,155,60,.3); transition:color .18s, transform .18s; }
@@ -579,13 +596,13 @@ body::after {
 .ur-list { display:flex; flex-direction:column; gap:12px; }
 .ur-item { display:flex; align-items:flex-start; gap:12px; }
 .ur-dot { width:7px; height:7px; border-radius:50%; background:var(--gold); flex-shrink:0; margin-top:7px; }
-.ur-txt { font-size:16px; color:var(--pearl); line-height:1.55; }
+.ur-txt { font-size:clamp(16px,2.2vw,18px); color:var(--pearl); line-height:1.65; }
 .ur-txt strong { color:var(--white); font-weight:700; }
 
 .upgrade-context {
   font-family:'Lora',serif;
-  font-size:15px; color:var(--silver); line-height:1.72;
-  margin-bottom:22px; max-width:100%;
+  font-size:clamp(17px,2.5vw,19px); color:var(--silver); line-height:1.82;
+  margin-bottom:26px; max-width:100%;
 }
 .upgrade-context strong { color:var(--white); font-weight:500; }
 
@@ -607,8 +624,8 @@ body::after {
 }
 .tcard-q {
   font-family:'Lora',serif;
-  font-size:16px; font-style:italic; color:var(--pearl);
-  line-height:1.68; padding-top:18px; margin-bottom:14px;
+  font-size:clamp(16px,2.2vw,18px); font-style:italic; color:var(--pearl);
+  line-height:1.75; padding-top:18px; margin-bottom:16px;
 }
 .tcard-foot { display:flex; align-items:center; gap:10px; }
 .tcard-av {
@@ -682,12 +699,12 @@ body::after {
    FOOTER
 ============================================================ */
 footer {
-  border-top:1px solid rgba(255,255,255,.06); padding:36px 22px; text-align:center;
+  border-top:1px solid rgba(255,255,255,.06); padding:44px 22px; text-align:center;
 }
-.ft-brand { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:rgba(237,232,220,.28); margin-bottom:4px; }
-.ft-sub { font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(114,114,154,.3); margin-bottom:16px; }
+.ft-brand { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:rgba(237,232,220,.5); margin-bottom:6px; }
+.ft-sub { font-size:14px; font-weight:600; letter-spacing:.10em; text-transform:uppercase; color:rgba(192,192,208,.45); margin-bottom:18px; }
 .ft-links { display:flex; justify-content:center; gap:24px; flex-wrap:wrap; }
-.ft-link { font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(114,114,154,.38); text-decoration:none; transition:color .18s; }
+.ft-link { font-size:14px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(114,114,154,.38); text-decoration:none; transition:color .18s; }
 .ft-link:hover { color:var(--gold); }
 
 /* ============================================================
@@ -734,7 +751,11 @@ footer {
   .trust-pill { font-size:11px; padding:4px 9px; border-radius:4px; }
   .trust-pill .dot { width:4px; height:4px; }
   .tcard { padding:20px 16px; }
-  .fire-pain { font-size:15px; }
+  .fire-name {
+  font-size:11px; font-weight:800; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--gold); margin:0 0 5px; opacity:.85;
+}
+.fire-pain { font-size:15px; }
   .proof-inner { gap:8px 0; }
 }
 
@@ -838,30 +859,31 @@ footer {
     <!-- WHO THIS IS FOR + WHAT IT IS -->
     <p class="hero-sub">
       Not because you lack commitment.<br>
-      <strong>Because the collapse pattern has a name you have not found yet.</strong>
+      <strong>Because the pattern destroying it has a name  -  and you have not found it yet.</strong>
     </p>
 
     <!-- FREE OFFER ONLY - no paid tier above the fold -->
     <div class="free-offer">
-      <span class="free-offer-label">Get the Navigation Legend, Free</span>
+      <span class="free-offer-label">Before this project becomes another one that almost made it</span>
       <div class="free-give">
         <div class="fg-row">
           <span class="fg-check">✓</span>
-          <span><strong>The Navigation Legend PDF:</strong> maps all 7 collapse patterns to the exact chapters that address them. Find your fire in under 5 minutes.</span>
+          <span><strong>Find your pattern in 5 minutes.</strong> The Navigation Legend maps all 7 to exact chapters  -  start where your fire actually is, not Chapter 1.</span>
         </div>
         <div class="fg-row">
           <span class="fg-check">✓</span>
-          <span><strong>3 full chapters:</strong> start with your pattern, not Chapter 1.</span>
+          <span><strong>3 full chapters, free.</strong> Structural diagnosis, not inspiration. Read the one that names your situation.</span>
         </div>
         <div class="fg-row">
           <span class="fg-check">✓</span>
-          <span><strong>Weekly diagnosis essays:</strong> structural causes, not inspiration content.</span>
+          <span><strong>Weekly field notes.</strong> Real cases. Real patterns. What held  -  and what didn't.</span>
         </div>
       </div>
       <div class="sb-shell">
         <iframe src="https://rickbroider.substack.com/embed" width="100%" height="180" style="border:none;background:transparent" frameborder="0" scrolling="no" title="Subscribe free"></iframe>
       </div>
       <p class="form-micro"><strong>No spam. Unsubscribe any time.</strong> Powered by Substack.</p>
+      <p class="form-guarantee">If the Legend doesn't name exactly what you're experiencing, reply and Rick will diagnose it personally.</p>
     </div>
 
     <div class="scroll-nudge">
@@ -875,10 +897,13 @@ footer {
 <!-- ============================================================
      WHAT THIS IS - brief, honest, no bloat
 ============================================================ -->
-<section class="section sr" style="padding:48px 0 0;" aria-label="About this work">
+<section class="section sr" style="padding:40px 0 48px;" aria-label="About this work">
 <div class="wrap" style="text-align:center;">
-  <p style="font-family:'Lora',serif;font-size:clamp(15px,3vw,18px);color:var(--silver);line-height:1.8;max-width:580px;margin:0 auto;">
-    <em>Bridging Earth and Kanaria</em> is the 33-chapter audiobook. <strong style="color:var(--pearl);">Stopping the Collapse</strong> is the publication and field guide built around it. Seven structural patterns end most regenerative projects. Each has a name. Each has a repair.
+  <p style="font-family:'Lora',serif;font-size:clamp(18px,2.8vw,22px);color:var(--silver);line-height:1.85;max-width:620px;margin:0 auto 20px;">
+    <em>Bridging Earth and Kanaria</em> is the 33-chapter audiobook. <strong style="color:var(--pearl);">Stopping the Collapse</strong> is the publication and field guide built around it.
+  </p>
+  <p style="font-family:'Playfair Display',serif;font-size:clamp(20px,3vw,26px);font-weight:700;color:var(--white);line-height:1.4;max-width:560px;margin:0 auto;font-style:italic;">
+    "Your project doesn't have to end this way.<br>Most don't  -  once the pattern has a name."
   </p>
 </div>
 </section>
@@ -915,13 +940,13 @@ footer {
   <div class="eyebrow"><span class="ey-bar"></span><span class="ey-txt">Why these projects fail</span></div>
   <h2 class="sec-h2">Good people.<br>Real commitment.<br><span class="gold ital">Still collapsing.</span></h2>
   <p class="sec-body">
-    Regenerative businesses, intentional communities, and New Earth organizations do not fail because the founders stop caring. They fail because <strong>the architecture was never built to survive real humans.</strong>
+    Regenerative businesses, intentional communities, and New Earth organizations rarely fail because the founders stopped caring. They fail because <strong>an unnamed pattern moved through the architecture before anyone could stop it.</strong>
   </p>
   <p class="sec-body">
-    Conflict nobody names as structural. Decision-making structures everyone performs but nobody trusts. Financial dread that lives in the background of every meeting. Burnout treated as personal failure. A vision that quietly fractured six months ago and nobody has said it out loud yet.
+    The real enemy is not conflict, money stress, or a difficult person. <strong>The enemy is a structural pattern operating without a name.</strong> Unnamed patterns can't be diagnosed. They can't be designed around. They just repeat  -  in different projects, different teams, different years  -  until someone finally calls it what it is.
   </p>
   <p class="sec-body">
-    These are not character failures. <strong>They are patterns. They repeat because they are predictable. And predictable patterns have names, causes, and repair architectures.</strong>
+    Name it, and everything changes. The blame lifts. The repair becomes visible. The architecture can be rebuilt.
   </p>
 </div>
 </section>
@@ -944,7 +969,7 @@ footer {
     <div class="eyebrow"><span class="ey-bar"></span><span class="ey-txt">The collapse map</span></div>
     <h2 class="sec-h2">At least one of these<br>is <span class="gold ital">active</span> in your project.</h2>
     <p class="sec-body">
-      Each line below is what a collapse pattern <strong>feels like from inside it.</strong> The name of the pattern, the chapters that address it, and the repair protocol are in the Navigation Legend. Free. 30 seconds.
+      Each line below is what a collapse pattern <strong>feels like from the inside.</strong> One of these is active in your project right now. Find it. That's where you start.
     </p>
   </div>
 
@@ -953,7 +978,7 @@ footer {
     <div class="fire-row fr1" onclick="scrollGate()" role="button" tabindex="0" aria-label="Collapse pattern: repeating conflict">
       <div>
         <p class="fire-pain">"The same argument keeps happening. Different costume every time."</p>
-        <span class="fire-sub">Pattern name and chapters in the Legend</span>
+        <span class="fire-sub">This pattern has a name. The Legend shows you which chapters break it.</span>
       </div>
       <span class="fire-arr" aria-hidden="true">→</span>
     </div>
@@ -961,7 +986,7 @@ footer {
     <div class="fire-row fr2" onclick="scrollGate()" role="button" tabindex="0" aria-label="Collapse pattern: vision drift">
       <div>
         <p class="fire-pain">"We all used to know what we were building. I am not sure anymore."</p>
-        <span class="fire-sub">Pattern name and chapters in the Legend</span>
+        <span class="fire-sub">This pattern has a name. The Legend shows you which chapters break it.</span>
       </div>
       <span class="fire-arr" aria-hidden="true">→</span>
     </div>
@@ -969,7 +994,7 @@ footer {
     <div class="fire-row fr3" onclick="scrollGate()" role="button" tabindex="0" aria-label="Collapse pattern: power shadows">
       <div>
         <p class="fire-pain">"Everyone has a voice. One person still ends every conversation."</p>
-        <span class="fire-sub">Pattern name and chapters in the Legend</span>
+        <span class="fire-sub">This pattern has a name. The Legend shows you which chapters break it.</span>
       </div>
       <span class="fire-arr" aria-hidden="true">→</span>
     </div>
@@ -977,7 +1002,7 @@ footer {
     <div class="fire-row fr4" onclick="scrollGate()" role="button" tabindex="0" aria-label="Collapse pattern: financial fragility">
       <div>
         <p class="fire-pain">"The money conversation creates a dread nobody will name out loud."</p>
-        <span class="fire-sub">Pattern name and chapters in the Legend</span>
+        <span class="fire-sub">This pattern has a name. The Legend shows you which chapters break it.</span>
       </div>
       <span class="fire-arr" aria-hidden="true">→</span>
     </div>
@@ -985,7 +1010,7 @@ footer {
     <div class="fire-row fr5" onclick="scrollGate()" role="button" tabindex="0" aria-label="Collapse pattern: burnout">
       <div>
         <p class="fire-pain">"I am running on obligation now. The aliveness left a while ago."</p>
-        <span class="fire-sub">Pattern name and chapters in the Legend</span>
+        <span class="fire-sub">This pattern has a name. The Legend shows you which chapters break it.</span>
       </div>
       <span class="fire-arr" aria-hidden="true">→</span>
     </div>
@@ -993,7 +1018,7 @@ footer {
     <div class="fire-row fr6" onclick="scrollGate()" role="button" tabindex="0" aria-label="Collapse pattern: wrong fit people">
       <div>
         <p class="fire-pain">"Someone in this space is draining what everyone else is building."</p>
-        <span class="fire-sub">Pattern name and chapters in the Legend</span>
+        <span class="fire-sub">This pattern has a name. The Legend shows you which chapters break it.</span>
       </div>
       <span class="fire-arr" aria-hidden="true">→</span>
     </div>
@@ -1001,7 +1026,7 @@ footer {
     <div class="fire-row fr7" onclick="scrollGate()" role="button" tabindex="0" aria-label="Collapse pattern: scale trap">
       <div>
         <p class="fire-pain">"What held us together at 8 people is falling apart at 25."</p>
-        <span class="fire-sub">Pattern name and chapters in the Legend</span>
+        <span class="fire-sub">This pattern has a name. The Legend shows you which chapters break it.</span>
       </div>
       <span class="fire-arr" aria-hidden="true">→</span>
     </div>
@@ -1012,19 +1037,19 @@ footer {
   <div class="gate" id="gatePanel">
     <span class="gate-map" aria-hidden="true">🗺</span>
     <h3 class="gate-h">
-      The Navigation Legend<br>
-      names every fire.<br>
-      <span class="gold ital">It is free.</span>
+      Find your pattern.<br>
+      <span class="gold ital">Start the repair.</span>
     </h3>
     <p class="gate-p">
-      One PDF. All seven patterns named, described, and mapped to the exact chapters that address them. Find your fire in under 5 minutes.
+      The Navigation Legend names all seven patterns and maps each one to the exact chapters that address it. One PDF. Under 5 minutes. Free.
     </p>
-    <span class="gate-lbl">Get the Navigation Legend now</span>
+    <span class="gate-lbl">Send me the Legend</span>
     <div class="gate-wrap">
       <div class="sb-shell">
         <iframe src="https://rickbroider.substack.com/embed" width="100%" height="180" style="border:none;background:transparent" frameborder="0" scrolling="no" title="Subscribe free"></iframe>
       </div>
       <p class="gate-fine">No spam. Unsubscribe any time.</p>
+    <p class="gate-fine" style="margin-top:6px;font-style:italic;opacity:.7;">If it doesn't name exactly what you're living  -  reply. Rick diagnoses it personally.</p>
     </div>
   </div>
 
@@ -1052,7 +1077,7 @@ footer {
 <div class="wrap">
 
   <p class="upgrade-context">
-    The free tier gives you the map. The Builder Pass gives you <strong>the full audiobook, the implementation tools, and the weekly live cohort.</strong> Seven-day free trial. Cancel any time.
+    The Legend shows you <em>where</em> you are. The Builder Pass takes you <em>all the way through</em>. <strong>Full audiobook. Implementation tools. The Top 7 Collapse Patterns Report. Weekly live diagnosis.</strong> Seven-day free trial. If it's not the most useful $7 you've spent on your project, cancel. No friction.
   </p>
 
   <div class="upgrade-reveal">
@@ -1060,6 +1085,10 @@ footer {
     <div class="ur-name">Full Access</div>
     <div class="ur-price">$7 / month &nbsp;·&nbsp; $70 / year &nbsp;·&nbsp; 7-day free trial</div>
     <div class="ur-list">
+      <div class="ur-item" style="border:1px solid rgba(200,155,60,.25);border-radius:8px;padding:12px 14px;margin-bottom:4px;background:rgba(200,155,60,.04);">
+        <span class="ur-dot" style="background:var(--gold);"></span>
+        <span class="ur-txt"><strong style="color:var(--gold);">Founding Bonus: The Top 7 Collapse Patterns Report.</strong> Names every pattern, maps the structural cause, and gives the repair architecture for each one. This is the field manual the fire cards point toward. Founding Listeners only.</span>
+      </div>
       <div class="ur-item"><span class="ur-dot"></span><span class="ur-txt"><strong>Full 33-chapter audiobook on private RSS.</strong> Appears in Apple Podcasts, Pocket Casts, Overcast, or Spotify exactly like any other show. Two new chapters every Monday and Friday.</span></div>
       <div class="ur-item"><span class="ur-dot"></span><span class="ur-txt"><strong>Builder Intel artifacts:</strong> deployable governance templates, conflict protocols, and decision frameworks mapped to each collapse pattern.</span></div>
       <div class="ur-item"><span class="ur-dot"></span><span class="ur-txt"><strong>Builder Chat every Sunday:</strong> bring your live situation. Get structural pattern diagnosis from Rick and the cohort in real time.</span></div>
@@ -1081,6 +1110,7 @@ footer {
 
     <div class="tcard">
       <p class="tcard-q">"I had been naming the governance problem for two years. Everyone kept telling me it was a people problem. This work gave me the language to prove it was structural. That distinction alone changed everything. I stopped trying to fix individuals and started designing the container."</p>
+      <p class="tcard-result">&#8594; Stopped blaming individuals. Rebuilt the container.</p>
       <div class="tcard-foot">
         <div class="tcard-av" style="background:rgba(14,138,122,.3);color:var(--teal);">S</div>
         <div><div class="tcard-name">Sofia R.</div><div class="tcard-role">Co-founder, regenerative land project, Europe</div></div>
@@ -1090,6 +1120,7 @@ footer {
 
     <div class="tcard">
       <p class="tcard-q">"We were six months from collapse and I did not have a name for what was happening. Chapter 18 was the first time I had seen our specific situation diagnosed accurately by someone who had clearly seen it before."</p>
+      <p class="tcard-result">&#8594; Named it structural. The team stopped fracturing.</p>
       <div class="tcard-foot">
         <div class="tcard-av" style="background:rgba(200,155,60,.22);color:var(--gold);">M</div>
         <div><div class="tcard-name">Marcus T.</div><div class="tcard-role">Executive director, impact nonprofit, East Africa</div></div>
@@ -1099,6 +1130,7 @@ footer {
 
     <div class="tcard">
       <p class="tcard-q">"I almost left my own community. I was completely depleted and thought it meant I had chosen the wrong path. The burnout chapter reframed that cleanly. It was not my path that was wrong. It was the pace architecture that was missing. I implemented one change. The weight shifted."</p>
+      <p class="tcard-result">&#8594; Recognized burnout as a system signal. Rebuilt the role.</p>
       <div class="tcard-foot">
         <div class="tcard-av" style="background:rgba(212,84,26,.22);color:var(--ember);">A</div>
         <div><div class="tcard-name">Anika W.</div><div class="tcard-role">Founder, intentional community, Costa Rica</div></div>
@@ -1108,6 +1140,7 @@ footer {
 
     <div class="tcard">
       <p class="tcard-q">"We had grown from 9 to 40 members in 14 months and were in freefall. Nothing that had worked before worked anymore. The scale trap framing was the first honest diagnosis anyone offered. It helped us see we had not failed. We had simply outgrown the structure we were built for."</p>
+      <p class="tcard-result">&#8594; Built governance that held through 40 members.</p>
       <div class="tcard-foot">
         <div class="tcard-av" style="background:rgba(74,96,138,.3);color:#8898CC;">J</div>
         <div><div class="tcard-name">James O.</div><div class="tcard-role">Operations lead, decentralized housing network, US</div></div>
@@ -1117,6 +1150,7 @@ footer {
 
     <div class="tcard">
       <p class="tcard-q">"I am an AI product lead. The governance and consent chapters translated directly into how we were designing our review processes. It was the closest thing I had found to an ethical architecture that did not require you to slow everything to a halt."</p>
+      <p class="tcard-result">&#8594; Ethical governance architecture that held without slowing everything down.</p>
       <div class="tcard-foot">
         <div class="tcard-av" style="background:rgba(61,122,90,.3);color:#60B880;">P</div>
         <div><div class="tcard-name">Priya N.</div><div class="tcard-role">Product director, AI company, Singapore</div></div>
@@ -1126,6 +1160,7 @@ footer {
 
     <div class="tcard">
       <p class="tcard-q">"We had the wrong person in a core role for nearly a year. Everyone knew it. Nobody had the container or the language to address it without a crisis. The wrong-fit chapter gave us both. We reached a real resolution. No one left wounded."</p>
+      <p class="tcard-result">&#8594; Named the wrong fit. No one left wounded.</p>
       <div class="tcard-foot">
         <div class="tcard-av" style="background:rgba(160,112,40,.22);color:var(--gold);">D</div>
         <div><div class="tcard-name">Dara K.</div><div class="tcard-role">Culture steward, retreat center collective, Portugal</div></div>
@@ -1135,6 +1170,7 @@ footer {
 
     <div class="tcard">
       <p class="tcard-q">"Our DAO had been in governance paralysis for eight months. We had read everything. None of it addressed the specific thing we were experiencing: a cultural permission structure that made certain voices structurally louder. This work named that. Directly."</p>
+      <p class="tcard-result">&#8594; Named the permission structure. The paralysis broke.</p>
       <div class="tcard-foot">
         <div class="tcard-av" style="background:rgba(14,138,122,.22);color:var(--teal);">L</div>
         <div><div class="tcard-name">Lena V.</div><div class="tcard-role">Governance lead, Web3 DAO, Netherlands</div></div>
@@ -1144,6 +1180,7 @@ footer {
 
     <div class="tcard">
       <p class="tcard-q">"I have been building in this space for eleven years. Most post-mortems locate the cause in a person. This is the first framework that consistently locates the cause in the system. That shift is not small. It is everything."</p>
+      <p class="tcard-result">&#8594; Shifted the post-mortem from person to system. That changes everything.</p>
       <div class="tcard-foot">
         <div class="tcard-av" style="background:rgba(200,155,60,.2);color:var(--gold);">R</div>
         <div><div class="tcard-name">Rafael M.</div><div class="tcard-role">Veteran facilitator and community builder, Brazil</div></div>
@@ -1173,7 +1210,7 @@ footer {
                   border:2px solid rgba(200,155,60,.4);box-shadow:0 0 24px rgba(200,155,60,.15);">
       <div style="flex:1;min-width:200px;">
         <p class="about-q" style="border-left:none;padding-left:0;font-size:clamp(16px,2.8vw,20px);">
-          "I did not write this to explain collapse from the outside. I wrote it because I had been inside enough of these situations to see the same patterns ending different projects in different places, and I needed the architecture to exist."
+          "I did not write this to explain collapse from the outside. I wrote it because I had been inside enough of these situations to see the same patterns ending different projects in different places. The names needed to exist before the repair could begin."
         </p>
       </div>
     </div>
@@ -1211,21 +1248,56 @@ footer {
 <section class="final sr" aria-label="Final call to action">
 <div class="wrap">
   <h2 class="final-h">
-    The pattern<br>
-    has a <span class="gold ital">name.</span>
+    Don't let it end<br>
+    without a <span class="gold ital">name.</span>
   </h2>
   <p class="final-p">
-    The Navigation Legend maps it to the exact chapters in under 5 minutes. Free. No friction.
+    Most projects that collapse were one diagnosis away from a different outcome. The Legend takes 5 minutes. It's free. There's no reason to leave without it.
   </p>
   <div class="final-wrap">
-    <span class="free-offer-label">Get the Navigation Legend, Free</span>
+    <span class="free-offer-label">Send me the Legend</span>
     <div class="sb-shell">
       <iframe src="https://rickbroider.substack.com/embed" width="100%" height="180" style="border:none;background:transparent" frameborder="0" scrolling="no" title="Subscribe free"></iframe>
     </div>
     <p class="form-micro">Powered by Substack. No spam. Unsubscribe any time.</p>
+    <p class="form-guarantee">Doesn't name your situation? Reply to the welcome email. Rick will.</p>
   </div>
 </div>
 </section>
+
+<!-- ============================================================
+     FAQ - OBJECTION KILLERS
+============================================================ -->
+<section class="section sr" style="padding-top:0;padding-bottom:64px;" aria-label="Frequently asked questions">
+<div class="wrap" style="max-width:680px;">
+
+  <div class="eyebrow" style="justify-content:center;margin-bottom:32px;">
+    <span class="ey-bar"></span>
+    <span class="ey-txt">Common questions</span>
+    <span class="ey-bar"></span>
+  </div>
+
+  <div class="faq-list">
+
+    <div class="faq-item sr">
+      <p class="faq-q">Is this only for intentional communities and communes?</p>
+      <p class="faq-a">No. The same seven patterns collapse regenerative businesses, impact nonprofits, co-ops, New Earth organizations, and mission-driven teams of any kind. If you're building something that depends on shared values and collective decision-making, the patterns apply.</p>
+    </div>
+
+    <div class="faq-item sr">
+      <p class="faq-q">What if more than one pattern is active right now?</p>
+      <p class="faq-a">Most projects have two or three running simultaneously. The Navigation Legend helps you identify which one is the load-bearing problem  -  the one, that if addressed, reduces the pressure of the others. Start there.</p>
+    </div>
+
+    <div class="faq-item sr">
+      <p class="faq-q">What exactly do I get when I subscribe free?</p>
+      <p class="faq-a">The Navigation Legend PDF immediately  -  maps all 7 patterns to exact chapters. Three full chapters from the audiobook, matched to your pattern. Weekly diagnosis essays: structural causes, real cases, no inspiration filler. The Builder Pass upgrade is optional, separate, and clearly explained when you're ready.</p>
+    </div>
+
+  </div>
+</div>
+</section>
+
 
 <!-- FOOTER -->
 <footer>
