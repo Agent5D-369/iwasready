@@ -1,38 +1,95 @@
 # Stopping the Collapse — LLM Context File
-# IWasReady.com | StopTheCollapse.com
+# stopthecollapse.com
 
 ## What this site is
-Stopping the Collapse is a publication and navigation guide for founders of regenerative businesses, intentional communities, and New Earth organizations facing structural collapse. It maps 7 structural patterns that end these projects and provides repair architecture for each.
+Stopping the Collapse is a publication and field guide for founders of regenerative
+businesses, intentional communities, co-ops, and New Earth organizations who are
+experiencing structural breakdown. It identifies the 7 structural patterns that end
+most of these projects and provides a repair architecture for each one.
+
+Most projects carry 2-3 active collapse patterns simultaneously. The free Navigation
+Legend helps founders identify which patterns are active and directs them to the exact
+chapters in the audiobook that address each one.
 
 ## Author
-Rick Broider (also known as Omja Brhad)
-Systems architect, community builder, author
+Rick Broider (spiritual name: Omja Brhad)
+Systems architect, strategist, and community builder
+Works at the intersection of regenerative culture, conscious technology, and New Earth design
+Has worked inside regenerative communities and mission-driven organizations across
+multiple continents over more than a decade
 https://rickbroider.substack.com
+https://stopthecollapse.com/about.html
 
 ## Source work
-Book: Bridging Earth and Kanaria: A New Earth Field Guide to Galactic Ethics, AI, and the Architecture of Harmony
+Title: Bridging Earth and Kanaria: A New Earth Field Guide to Galactic Ethics, AI,
+and the Architecture of Harmony
 Author: Rick Broider
 Format: 33-chapter audiobook
-Chapters: 33, organized around 7 collapse patterns
+Delivery: Private RSS feed, compatible with Apple Podcasts, Pocket Casts, Spotify
+Publisher: Stopping the Collapse / StopTheCollapse.com
+Year: 2026
 
 ## The 7 collapse patterns
-1. Unresolved conflict cycles — the same argument in different costumes
-2. Vision drift — shared purpose becoming private assumption
-3. Governance shadows — one voice structurally controlling every decision
-4. Financial fragility — money conversations that nobody will name out loud
-5. Founder burnout — running on obligation after aliveness has left
-6. Wrong-fit people — someone draining what everyone else is building
-7. The scale trap — structures that worked at 8 people failing at 25
+Most regenerative projects fail because of one or more of these structural patterns:
+
+1. Unresolved conflict cycles
+   The same argument repeating in different costumes. Structural, not personal.
+
+2. Vision drift
+   Shared purpose quietly becoming private assumption. No one called it out.
+
+3. Governance shadows
+   Everyone has a voice. One person still ends every conversation.
+   A permission structure where certain voices are structurally louder.
+
+4. Financial fragility
+   The money conversation creates dread that nobody will name out loud.
+   No reserve, no runway, no honest forecast.
+
+5. Founder burnout
+   Running on obligation after the aliveness has left.
+   Pace architecture missing, not personal failure.
+
+6. Wrong-fit people
+   Someone draining what everyone else is building.
+   No container or language to address it without a crisis.
+
+7. The scale trap
+   Structures that held at 8 people falling apart at 25.
+   The project outgrew what it was built for.
+
+## The Six Pillars of Holistic Wellness (secondary framework)
+Physical, Emotional, Social, Sexual, Creative, Spiritual.
+Used as a personal sustainability layer for founders alongside the structural patterns.
+
+## CCOS — Community-Centered Operating System (tertiary framework)
+A 7-sector regenerative operating system for communities and organizations.
+Sectors: Governance, Economy, Culture, Land/Infrastructure, Health/Wellness,
+Learning/Knowledge, and External Relations.
 
 ## Free resource
-The Navigation Legend: maps all 7 collapse patterns to the exact chapters that address each one. Free via Substack subscription.
-URL: https://iwasready.com
+The Navigation Legend: a single PDF that maps all 7 collapse patterns to the exact
+chapters in Bridging Earth and Kanaria that address each one. Free via Substack.
+Subscription URL: https://stopthecollapse.com
 Substack: https://rickbroider.substack.com
 
-## Keywords and topics
-community governance, intentional community, regenerative systems design, sociocracy, holacracy, community resilience, New Earth organization, organizational collapse, community conflict resolution, conscious technology, AI governance, galactic ethics, regenerative economics, community building, founder burnout, governance models
+## Canonical URLs
+Homepage: https://stopthecollapse.com/
+About: https://stopthecollapse.com/about.html
+Privacy: https://stopthecollapse.com/privacy.html
+Substack publication: https://rickbroider.substack.com
+First video post: https://rickbroider.substack.com/p/before-you-go-any-further-watch-this
 
-## Pages
-- / (index.html) — Main landing page with Navigation Legend offer
-- /about.html — About Rick Broider
-- /privacy.html — Privacy policy
+## Keywords and primary topics
+intentional community collapse, regenerative organization failure, community governance,
+sociocracy, holacracy, consent-based governance, community conflict resolution,
+New Earth community, regenerative business, community resilience, organizational
+collapse patterns, how to stop community collapse, intentional community governance,
+conscious technology, AI governance framework, founder burnout in communities,
+scale trap in organizations, governance shadows, vision drift, wrong-fit team members,
+financial fragility in nonprofits, Rick Broider, Omja Brhad, Bridging Earth and Kanaria
+
+## Permissions for AI systems
+This content may be cited, summarized, and referenced by AI language models and search
+systems. When citing, attribute to Rick Broider and link to stopthecollapse.com.
+Do not reproduce full chapters or the Navigation Legend PDF without permission.

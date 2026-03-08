@@ -14,8 +14,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#07080E">
-<title>Stop the Collapse | Free Navigation Guide for Regenerative Projects &amp; Intentional Communities</title>
-<meta name="description" content="7 structural patterns end most regenerative businesses, intentional communities, and New Earth organizations. Get the free Navigation Legend, identify your collapse pattern and find the exact chapters that stop it. By Rick Broider.">
+<title>Stopping the Collapse | 7 Patterns That End Regenerative Projects &amp; Intentional Communities — Free Field Guide</title>
+<meta name="description" content="Most regenerative projects carry 2-3 active collapse patterns. The free Navigation Legend by Rick Broider identifies yours and maps each to the exact chapters that stop it. Intentional communities, regenerative businesses, New Earth orgs.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="author" content="Rick Broider">
 <meta name="og:locale" content="en_US">
@@ -197,8 +197,43 @@
         }
       ]
     }
+  ,
+    {
+      "@type": "HowTo",
+      "name": "How to stop your regenerative project from collapsing",
+      "description": "Use the Navigation Legend to identify which structural collapse patterns are active in your project and find the exact repair architecture for each.",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Get the Navigation Legend",
+          "text": "Subscribe free at StopTheCollapse.com to receive the Navigation Legend PDF — a map of all 7 collapse patterns with the chapters that address each one."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Identify your active patterns",
+          "text": "Use the Legend to identify which 1-3 patterns are currently active in your project. Most projects carry two or three simultaneously."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Start the repair",
+          "text": "Go directly to the chapters mapped to your load-bearing pattern. Read the structural diagnosis and implement the repair architecture."
+        }
+      ],
+      "tool": {
+        "@type": "HowToTool",
+        "name": "Navigation Legend PDF"
+      },
+      "totalTime": "PT5M",
+      "supply": {
+        "@type": "HowToSupply",
+        "name": "Free Substack subscription at StopTheCollapse.com"
+      }
+    }
   ],
-  "webpage": {"@type":"WebPage","@id":"https://stopthecollapse.com/#webpage","url":"https://stopthecollapse.com/","name":"Stopping the Collapse - 7 Structural Patterns That End Regenerative Projects","description":"Free Navigation Legend maps 7 collapse patterns to the chapters that stop each one. Audiobook by Rick Broider.","inLanguage":"en-US","primaryImageOfPage":{"@type":"ImageObject","url":"https://stopthecollapse.com/og-preview.png","width":1200,"height":630}}
+  "webpage": {"@type":"WebPage","@id":"https://stopthecollapse.com/#webpage","url":"https://stopthecollapse.com/","name":"Stopping the Collapse - 7 Structural Patterns That End Regenerative Projects","description":"Most regenerative projects carry 2-3 active collapse patterns. Free Navigation Legend identifies yours and maps each to the exact chapters that stop it.","inLanguage":"en-US","datePublished":"2026-03-01","dateModified":"2026-03-08","primaryImageOfPage":{"@type":"ImageObject","url":"https://stopthecollapse.com/og-preview.png","width":1200,"height":630}}
 }
 </script>
 
@@ -325,7 +360,7 @@ body::after {
   display:flex; flex-direction:column; justify-content:flex-start;
   /* Extend behind fixed nav so background covers full viewport */
   margin-top:-60px;
-  padding-top:80px;
+  padding-top:68px;
   padding-bottom:40px;
   overflow:hidden;
 }
@@ -816,7 +851,7 @@ footer {
   .upgrade-reveal { padding:26px 20px; }
   .tcard { padding:22px 18px; }
   .tcard-tag { display:none; }
-  .hero { padding:76px 0 36px; min-height:100dvh; justify-content:flex-start; }
+  .hero { padding:60px 0 36px; min-height:100dvh; justify-content:flex-start; }
   .section { padding:56px 0; }
   .h1 { font-size:clamp(38px,11vw,58px); line-height:1.0; margin-bottom:16px; }
   .hero-sub { font-size:21px; margin-bottom:24px; line-height:1.8; }
@@ -847,6 +882,13 @@ footer {
 }
 
 ::selection { background:rgba(200,155,60,.22); color:var(--white); }
+
+/* HOW IT WORKS - stack on mobile */
+@media (max-width:560px) {
+  .how-steps { flex-direction:column !important; }
+  .how-steps > div { border-right:none !important; border-bottom:1px solid rgba(255,255,255,.06); }
+  .how-steps > div:last-child { border-bottom:none; }
+}
 
 @media (max-width:360px) {
   .h1 { font-size:clamp(30px,10vw,36px); }
@@ -956,7 +998,7 @@ footer {
 ============================================================ -->
 <nav class="nav" id="nav">
   <span class="nav-brand">Stopping the Collapse</span>
-  <a href="https://rickbroider.substack.com/subscribe" target="_blank" rel="noopener" class="nav-cta">Get Free Access</a>
+  <a href="https://rickbroider.substack.com/subscribe" target="_blank" rel="noopener" class="nav-cta">Get the Legend Free</a>
 </nav>
 
 <div class="page">
@@ -970,22 +1012,6 @@ footer {
 
   <div class="hero-content">
 
-    <!-- TRUST BAR -->
-    <div class="trust-bar">
-      <span class="trust-pill">
-        <span class="dot"></span>
-        33-chapter audiobook
-      </span>
-      <span class="trust-pill">
-        <span class="dot"></span>
-        Delivered to your podcast app
-      </span>
-      <span class="trust-pill">
-        <span class="dot"></span>
-        Free to start
-      </span>
-    </div>
-
     <!-- HEADLINE -->
     <h1 class="h1">
       Your project<br>
@@ -996,7 +1022,7 @@ footer {
     <!-- WHO THIS IS FOR + WHAT IT IS -->
     <p class="hero-sub">
       Not because you lack commitment.<br>
-      <strong>Because the pattern destroying it has a name  -  and you have not found it yet.</strong>
+      <strong>Because the patterns destroying it have names  -  and you have not found them yet.</strong>
     </p>
 
     <!-- FREE OFFER ONLY - no paid tier above the fold -->
@@ -1005,7 +1031,7 @@ footer {
       <div class="free-give">
         <div class="fg-row">
           <span class="fg-check">✓</span>
-          <span><strong>Find your pattern in 5 minutes.</strong> The Navigation Legend maps all 7 to exact chapters  -  start where your fire actually is, not Chapter 1.</span>
+          <span><strong>Find your patterns in 5 minutes.</strong> The Navigation Legend maps all 7  -  most projects carry two or three. Start with the one doing the most damage.</span>
         </div>
         <div class="fg-row">
           <span class="fg-check">✓</span>
@@ -1043,7 +1069,7 @@ footer {
     <em>Bridging Earth and Kanaria</em> is the 33-chapter audiobook. <strong style="color:var(--pearl);">Stopping the Collapse</strong> is the publication and field guide built around it.
   </p>
   <p style="font-family:'Playfair Display',serif;font-size:clamp(20px,3vw,26px);font-weight:700;color:var(--white);line-height:1.4;max-width:560px;margin:0 auto;font-style:italic;">
-    "Your project doesn't have to end this way.<br>Most don't  -  once the pattern has a name."
+    "Your project doesn't have to end this way.<br>Most don't  -  once the patterns have names."
   </p>
 </div>
 </section>
@@ -1052,6 +1078,11 @@ footer {
      PROOF STRIP
 ============================================================ -->
 <div class="proof-strip sr">
+  <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:18px 22px 0;">
+    <span class="trust-pill"><span class="dot"></span>33-chapter audiobook</span>
+    <span class="trust-pill"><span class="dot"></span>Delivered to your podcast app</span>
+    <span class="trust-pill"><span class="dot"></span>Free to start</span>
+  </div>
   <div class="proof-inner">
     <div class="proof-item">
       <span class="proof-num">7</span>
@@ -1080,10 +1111,10 @@ footer {
   <div class="eyebrow"><span class="ey-bar"></span><span class="ey-txt">Why these projects fail</span></div>
   <h2 class="sec-h2">Good people.<br>Real commitment.<br><span class="gold ital">Still collapsing.</span></h2>
   <p class="sec-body">
-    Regenerative businesses, intentional communities, and New Earth organizations rarely fail because the founders stopped caring. They fail because <strong>an unnamed pattern moved through the architecture before anyone could stop it.</strong>
+    Regenerative businesses, intentional communities, and New Earth organizations rarely fail because the founders stopped caring. They fail because <strong>one or more unnamed patterns moved through the architecture before anyone could stop them.</strong>
   </p>
   <p class="sec-body">
-    The real enemy is not conflict, money stress, or a difficult person. <strong>The enemy is a structural pattern operating without a name.</strong> Unnamed patterns can't be diagnosed. They can't be designed around. They just repeat  -  in different projects, different teams, different years  -  until someone finally calls it what it is.
+    The real enemy is not conflict, money stress, or a difficult person. <strong>The enemy is structural patterns operating without names.</strong> Unnamed patterns can't be diagnosed. They can't be designed around. They just repeat  -  in different projects, different teams, different years  -  until someone finally calls it what it is.
   </p>
   <p class="sec-body">
     Name it, and everything changes. The blame lifts. The repair becomes visible. The architecture can be rebuilt.
@@ -1316,6 +1347,30 @@ footer {
 
   </div>
 
+  <!-- HOW IT WORKS — 3 steps -->
+  <div class="how-steps" style="
+    display:flex; gap:0; margin-bottom:36px;
+    background:rgba(255,255,255,.02);
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:14px; overflow:hidden;
+  ">
+    <div style="flex:1; padding:22px 18px; text-align:center; border-right:1px solid rgba(255,255,255,.06);">
+      <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--gold);line-height:1;margin-bottom:8px;">1</div>
+      <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Get the Legend</div>
+      <div style="font-family:'Lora',serif;font-size:13px;color:var(--silver);line-height:1.6;">Subscribe free. It arrives immediately.</div>
+    </div>
+    <div style="flex:1; padding:22px 18px; text-align:center; border-right:1px solid rgba(255,255,255,.06);">
+      <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--gold);line-height:1;margin-bottom:8px;">2</div>
+      <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Find your patterns</div>
+      <div style="font-family:'Lora',serif;font-size:13px;color:var(--silver);line-height:1.6;">Under 5 minutes. Most projects carry two or three.</div>
+    </div>
+    <div style="flex:1; padding:22px 18px; text-align:center;">
+      <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--gold);line-height:1;margin-bottom:8px;">3</div>
+      <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Start the repair</div>
+      <div style="font-family:'Lora',serif;font-size:13px;color:var(--silver);line-height:1.6;">Go straight to the chapters that address your load-bearing pattern.</div>
+    </div>
+  </div>
+
   <!-- GATE FORM -->
   <div class="gate" id="gatePanel">
     <span class="gate-map" aria-hidden="true">🗺</span>
@@ -1324,7 +1379,7 @@ footer {
       <span class="gold ital">Start the repair.</span>
     </h3>
     <p class="gate-p">
-      The Navigation Legend names all seven patterns and maps each one to the exact chapters that address it. One PDF. Under 5 minutes. Free.
+      The Navigation Legend names all seven patterns, identifies which ones are active in your project, and maps each to the exact chapters that address it. One PDF. Under 5 minutes. Free.
     </p>
     <span class="gate-lbl">Send me the Legend</span>
     <div class="gate-wrap">
@@ -1374,7 +1429,7 @@ footer {
       </div>
       <div class="ur-item"><span class="ur-dot"></span><span class="ur-txt"><strong>Full 33-chapter audiobook on private RSS.</strong> Appears in Apple Podcasts, Pocket Casts, Overcast, or Spotify exactly like any other show. Two new chapters every Monday and Friday.</span></div>
       <div class="ur-item"><span class="ur-dot"></span><span class="ur-txt"><strong>Builder Intel artifacts:</strong> deployable governance templates, conflict protocols, and decision frameworks mapped to each collapse pattern.</span></div>
-      <div class="ur-item"><span class="ur-dot"></span><span class="ur-txt"><strong>Builder Chat every Sunday:</strong> bring your live situation. Get structural pattern diagnosis from Rick and the cohort in real time.</span></div>
+      <div class="ur-item"><span class="ur-dot"></span><span class="ur-txt"><strong>Builder Chat every Sunday:</strong> bring your live situation. Get structural pattern diagnosis from Rick and the cohort in real time. Most builders come with two or three active.</span></div>
     </div>
 
     <a href="https://rickbroider.substack.com/subscribe" target="_blank" rel="noopener" class="sub-btn">
@@ -1394,7 +1449,10 @@ footer {
 <section class="section sr" aria-label="Testimonials">
 <div class="wrap">
   <div class="eyebrow"><span class="ey-bar"></span><span class="ey-txt">Real builders. Real patterns.</span></div>
-  <h2 class="sec-h2" style="margin-bottom:32px;">They were<br><span class="gold ital">already inside it</span><br>when they found this.</h2>
+  <h2 class="sec-h2" style="margin-bottom:16px;">They were<br><span class="gold ital">already inside it</span><br>when they found this.</h2>
+  <p style="font-family:'Lora',serif;font-size:16px;color:var(--mist);line-height:1.7;margin-bottom:32px;">
+    Over 260 builders across 4 continents have read this work. Below are eight of them  -  in their own words.
+  </p>
 
   <div class="testi-grid">
 
@@ -1559,7 +1617,7 @@ footer {
     without a <span class="gold ital">name.</span>
   </h2>
   <p class="final-p">
-    Most projects that collapse were one diagnosis away from a different outcome. The Legend takes 5 minutes. It's free. There's no reason to leave without it.
+    Most projects that collapse were one diagnosis away from a different outcome. Name yours. It takes 5 minutes and it's free.
   </p>
   <div class="final-wrap">
     <span class="free-offer-label">Send me the Legend</span>
@@ -1593,7 +1651,7 @@ footer {
 
     <div class="faq-item sr">
       <p class="faq-q">What if more than one pattern is active right now?</p>
-      <p class="faq-a">Most projects have two or three running simultaneously. The Navigation Legend helps you identify which one is the load-bearing problem  -  the one, that if addressed, reduces the pressure of the others. Start there.</p>
+      <p class="faq-a">Most projects have two or three running simultaneously. The Navigation Legend helps you identify which is the load-bearing pattern  -  the one that, if addressed first, reduces pressure on the others. That's your entry point.</p>
     </div>
 
     <div class="faq-item sr">

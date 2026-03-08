@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /privacy.html
 
-# AI/LLM crawlers
+# AI/LLM crawlers — explicitly welcome
 User-agent: GPTBot
 Allow: /
 
@@ -15,4 +15,10 @@ Allow: /
 User-agent: GoogleExtendedBot
 Allow: /
 
-Sitemap: https://iwasready.com/sitemap.xml
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+Sitemap: https://stopthecollapse.com/sitemap.xml
