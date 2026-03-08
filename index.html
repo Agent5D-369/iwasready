@@ -808,6 +808,60 @@ footer {
   .trust-bar { flex-direction:row; flex-wrap:wrap; gap:5px; }
   .trust-pill { flex-shrink:0; font-size:10px; padding:3px 8px; }
 }
+
+/* ── FAQ ─────────────────────────────────────────────── */
+.faq-list { display:flex; flex-direction:column; }
+.faq-item {
+  border-top:1px solid rgba(255,255,255,.07);
+  padding:28px 0 24px;
+}
+.faq-item:last-child { border-bottom:1px solid rgba(255,255,255,.07); }
+.faq-q {
+  font-family:'Syne',sans-serif;
+  font-size:clamp(15px,2.2vw,18px); font-weight:800;
+  color:var(--gold); letter-spacing:.02em;
+  margin:0 0 10px; line-height:1.4;
+  display:flex; align-items:flex-start; gap:10px;
+}
+.faq-q::before {
+  content:'Q';
+  font-size:11px; font-weight:800; letter-spacing:.1em;
+  color:rgba(200,155,60,.5); background:rgba(200,155,60,.08);
+  border:1px solid rgba(200,155,60,.2); border-radius:4px;
+  padding:2px 6px; margin-top:3px; flex-shrink:0;
+}
+.faq-a {
+  font-family:'Lora',serif;
+  font-size:clamp(15px,2.2vw,17px); color:var(--silver);
+  line-height:1.85; margin:0; padding-left:28px;
+}
+
+/* ── TCARD RESULT ─────────────────────────────────────── */
+.tcard-result {
+  font-family:'Syne',sans-serif;
+  font-size:13px; font-weight:700; color:var(--gold);
+  letter-spacing:.04em; margin-top:12px; padding-top:12px;
+  border-top:1px solid rgba(200,155,60,.15);
+}
+
+/* ── SUBSCRIBE BUTTON ─────────────────────────────────── */
+.sub-btn {
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  background:var(--gold); color:#07080E;
+  font-family:'Syne',sans-serif; font-size:15px; font-weight:800;
+  letter-spacing:.04em; text-transform:uppercase;
+  padding:16px 32px; border-radius:6px;
+  text-decoration:none; cursor:pointer;
+  transition:background .18s, transform .12s;
+  margin-top:20px; width:100%; box-sizing:border-box;
+}
+.sub-btn:hover { background:var(--gold-hi); transform:translateY(-1px); }
+.sub-btn .sub-arr { font-size:18px; }
+.sub-btn-note {
+  font-size:12px; color:rgba(192,192,208,.45);
+  text-align:center; margin-top:10px; font-style:italic;
+}
+
 </style>
 </head>
 <body>
@@ -1093,6 +1147,13 @@ footer {
       <div class="ur-item"><span class="ur-dot"></span><span class="ur-txt"><strong>Builder Intel artifacts:</strong> deployable governance templates, conflict protocols, and decision frameworks mapped to each collapse pattern.</span></div>
       <div class="ur-item"><span class="ur-dot"></span><span class="ur-txt"><strong>Builder Chat every Sunday:</strong> bring your live situation. Get structural pattern diagnosis from Rick and the cohort in real time.</span></div>
     </div>
+
+    <a href="https://rickbroider.substack.com/subscribe" target="_blank" rel="noopener" class="sub-btn">
+      <span>Start My 7-Day Free Trial</span>
+      <span class="sub-arr">&#8594;</span>
+    </a>
+    <p class="sub-btn-note">Cancel any time. No questions asked.</p>
+
   </div>
 
 </div>
@@ -1294,6 +1355,16 @@ footer {
       <p class="faq-a">The Navigation Legend PDF immediately  -  maps all 7 patterns to exact chapters. Three full chapters from the audiobook, matched to your pattern. Weekly diagnosis essays: structural causes, real cases, no inspiration filler. The Builder Pass upgrade is optional, separate, and clearly explained when you're ready.</p>
     </div>
 
+    <div class="faq-item sr">
+      <p class="faq-q">The title mentions "Kanaria" and galactic ethics. What is that?</p>
+      <p class="faq-a">Bridging Earth and Kanaria is the full title of the audiobook. The Kanaria layer explores the cosmological and ethical frameworks that inform the architecture, for readers who want that depth. The collapse patterns and repair protocols work completely on their own. You do not need the galactic lens to use the field guide. Most readers start with the patterns and find the broader framework later, when they are ready for it.</p>
+    </div>
+
+    <div class="faq-item sr">
+      <p class="faq-q">Are these patterns validated, or is this one person's theory?</p>
+      <p class="faq-a">Rick has worked directly inside regenerative communities, mission-driven organizations, and intentional living projects across multiple continents over more than a decade. The patterns are documented structural observations from real projects, many of which collapsed or nearly did. The testimonials on this page are from builders who recognized their own situation in the diagnosis.</p>
+    </div>
+
   </div>
 </div>
 </section>
@@ -1303,6 +1374,15 @@ footer {
 <footer>
   <div class="ft-brand">Stopping the Collapse</div>
   <div class="ft-sub">Rick Broider &nbsp;·&nbsp; StopTheCollapse.com</div>
+  <a href="https://rickbroider.substack.com/subscribe" target="_blank" rel="noopener"
+     style="display:inline-block;margin:12px auto 20px;font-family:'Syne',sans-serif;
+            font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+            color:var(--gold);text-decoration:none;border:1px solid rgba(200,155,60,.3);
+            padding:8px 20px;border-radius:4px;transition:border-color .18s;"
+     onmouseover="this.style.borderColor='rgba(200,155,60,.7)'"
+     onmouseout="this.style.borderColor='rgba(200,155,60,.3)'">
+    Send me the Legend &#8594;
+  </a>
   <div class="ft-links">
     <a href="https://rickbroider.substack.com" target="_blank" rel="noopener" class="ft-link">Substack</a>
     <a href="privacy.html" class="ft-link">Privacy</a>
