@@ -392,11 +392,10 @@ body::after {
   position:relative;
   min-height:100svh;
   min-height:100dvh;
-  display:flex; flex-direction:column; justify-content:center; align-items:stretch;
   margin-top:-60px;
-  padding-top:72px;
-  padding-bottom:48px;
   overflow:hidden;
+  /* Center content vertically using padding instead of flex */
+  display:block;
 }
 /* HERO IMAGE ZONE */
 .hero-img {
@@ -420,23 +419,27 @@ body::after {
       url('hero-seven-fires.png') center top / cover no-repeat;
   }
 }
-/* CONTENT WRAPPER - full width, two columns on desktop */
+/* CONTENT WRAPPER - true full-width two-column grid */
 .hero-content {
   position:relative; z-index:1;
+  /* Full bleed edge to edge */
   width:100%;
   box-sizing:border-box;
-  padding:0 clamp(24px,5vw,80px);
+  padding:clamp(80px,10vh,120px) clamp(28px,6vw,88px) clamp(60px,8vh,96px);
+  /* Single column mobile */
   display:grid;
   grid-template-columns:1fr;
-  gap:28px;
-  align-items:center;
+  gap:32px;
+  align-items:start;
 }
 @media (min-width:860px) {
   .hero-content {
-    grid-template-columns:55fr 45fr;
-    gap:clamp(28px,4vw,56px);
-    align-items:start;
-    padding-top:8px;
+    /* True two-column: copy gets 58%, form gets 42% */
+    grid-template-columns:58fr 42fr;
+    gap:clamp(32px,4vw,64px);
+    align-items:center;
+    min-height:100svh;
+    min-height:100dvh;
   }
 }
 .hero-copy { display:flex; flex-direction:column; }
@@ -480,15 +483,16 @@ body::after {
 }
 .hero-sub strong { color:var(--white); font-weight:500; }
 
-/* FREE OFFER BOX - crystal clear, single focus */
+/* FREE OFFER BOX - solid panel, readable over any background */
 .free-offer {
-  background:rgba(255,255,255,.04);
-  border:1.5px solid rgba(200,155,60,.28);
+  background:rgba(10,12,24,.88);
+  backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+  border:1.5px solid rgba(200,155,60,.32);
   border-radius:var(--r);
   padding:22px 22px 20px;
   margin-bottom:6px;
   opacity:0; animation:fadeUp .8s ease .5s forwards;
-  box-shadow:0 0 60px rgba(200,155,60,.08);
+  box-shadow:0 8px 48px rgba(0,0,0,.55), 0 0 40px rgba(200,155,60,.06);
 }
 .free-offer-label {
   font-size:11px; font-weight:800; letter-spacing:.14em; text-transform:uppercase;
@@ -918,10 +922,10 @@ footer {
   .scroll-nudge { display:none; }
 }
 
-/* On desktop, left column is 55% of viewport so headline needs to fit cleanly */
+/* Desktop: left column is 58% of viewport, headline can breathe */
 @media (min-width:860px) {
-  .h1 { font-size:clamp(40px,4vw,64px); line-height:1.05; }
-  .hero-sub { font-size:clamp(16px,1.6vw,20px); }
+  .h1 { font-size:clamp(52px,5.5vw,88px); line-height:1.0; }
+  .hero-sub { font-size:clamp(17px,1.5vw,21px); line-height:1.8; }
 }
 
 @media (min-width:640px) {
