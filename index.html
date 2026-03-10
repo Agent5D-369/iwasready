@@ -512,21 +512,23 @@ body::after {
 .vid-lb-backdrop {
   position:absolute; inset:0;
   background:rgba(4,5,12,.92);
-  backdrop-filter:blur(8px);
   cursor:pointer;
 }
 .vid-lb-inner {
   position:relative; z-index:1;
   width:min(880px, 94vw);
-  border-radius:14px; overflow:hidden;
+  border-radius:14px;
   box-shadow:0 24px 80px rgba(0,0,0,.8);
   border:1px solid rgba(200,155,60,.2);
   background:#000;
+  isolation:isolate;
 }
 .vid-lb-player {
   display:block; width:100%;
-  max-height:80vh; object-fit:contain;
+  max-height:80vh;
+  border-radius:14px;
   background:#000;
+  position:relative; z-index:1;
 }
 .vid-lb-close {
   position:absolute; top:10px; right:12px; z-index:2;
