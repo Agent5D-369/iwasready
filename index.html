@@ -419,7 +419,7 @@ body::after {
 .hero-inner {
   position:relative; z-index:1;
   width:100%; box-sizing:border-box;
-  padding:100px 28px 64px;
+  padding:72px 24px 48px;
   display:block;
 }
 
@@ -430,10 +430,10 @@ body::after {
 /* DESKTOP: left copy fills remaining space, right offer is fixed 400px */
 @media (min-width:900px) {
   .hero-inner {
-    padding:110px 60px 90px;
+    padding:80px 60px 60px;
     display:flex;
     align-items:center;
-    gap:60px;
+    gap:52px;
   }
   .hero-copy  {
     flex:1 1 auto;
@@ -495,6 +495,23 @@ body::after {
   opacity:0; animation:fadeUp .8s ease .36s forwards;
 }
 .hero-sub strong { color:var(--white); font-weight:500; }
+
+/* Mobile: hide the second sentence to shorten ATF */
+@media (max-width:899px) {
+  .sub-detail { display:none; }
+}
+
+/* Byline */
+.hero-byline {
+  display:flex; align-items:center; gap:10px; margin:0;
+  font-family:'Lora',serif; font-size:clamp(13px,1.2vw,15px);
+  font-style:italic; color:rgba(200,155,60,.9); line-height:1.5;
+}
+.byline-rule {
+  display:inline-block; width:20px; height:1px;
+  background:rgba(200,155,60,.4); flex-shrink:0;
+}
+.byline-text strong { font-style:normal; font-weight:600; color:var(--white); white-space:nowrap; }
 
 /* FREE OFFER BOX - solid panel, readable over any background */
 .free-offer {
@@ -1099,13 +1116,13 @@ details[open] > .faq-q::after {
 
       <p class="hero-sub">
         Seven structural patterns account for most of the ways regenerative communities,
-        intentional organizations, and mission-driven projects fail.<br>
-        <strong>They are identifiable. They are named. And they are almost certainly active in your project right now.</strong>
+        intentional organizations, and mission-driven projects fail.
+        <span class="sub-detail"><br><strong>They are identifiable. They are named. And they are almost certainly active in your project right now.</strong></span>
       </p>
 
-      <p style="font-family:'Lora',serif;font-size:clamp(14px,1.4vw,16px);font-style:italic;color:rgba(200,155,60,.9);margin:0;line-height:1.5;display:flex;align-items:center;gap:10px;">
-        <span style="display:inline-block;width:20px;height:1px;background:rgba(200,155,60,.4);flex-shrink:0;"></span>
-        Based on the 33-chapter audiobook <em style="font-style:normal;font-weight:600;color:var(--white);margin-left:4px;">Bridging Earth &amp; Kanaria</em>
+      <p class="hero-byline">
+        <span class="byline-rule"></span>
+        <span class="byline-text">Based on the 33-chapter audiobook <strong>Bridging Earth &amp; Kanaria</strong></span>
       </p>
 
       <div class="scroll-nudge" style="margin-top:32px;margin-bottom:0;">
@@ -1141,7 +1158,7 @@ details[open] > .faq-q::after {
           </div>
         </div>
         <div class="sb-shell">
-          <iframe src="https://rickbroider.substack.com/embed" width="100%" height="180" style="border:none;background:transparent" frameborder="0" scrolling="no" title="Subscribe free to get the Top 7 Collapse Patterns report"></iframe>
+          <iframe src="https://rickbroider.substack.com/embed" width="100%" height="150" style="border:none;background:transparent" frameborder="0" scrolling="no" title="Subscribe free to get the Top 7 Collapse Patterns report"></iframe>
         </div>
         <p class="form-micro"><strong>No spam. Unsubscribe any time.</strong> Powered by Substack.</p>
         <p class="form-guarantee">If the report doesn't name what's happening in your project, reply. Rick diagnoses it personally.</p>
@@ -1479,7 +1496,7 @@ details[open] > .faq-q::after {
     <span class="gate-lbl">Get the Free Diagnostic Report</span>
     <div class="gate-wrap">
       <div class="sb-shell">
-        <iframe src="https://rickbroider.substack.com/embed" width="100%" height="180" style="border:none;background:transparent" frameborder="0" scrolling="no" title="Subscribe free"></iframe>
+        <iframe src="https://rickbroider.substack.com/embed" width="100%" height="150" style="border:none;background:transparent" frameborder="0" scrolling="no" title="Subscribe free"></iframe>
       </div>
       <p class="gate-fine">No spam. Unsubscribe any time.</p>
       <p class="gate-fine" style="margin-top:6px;font-style:italic;opacity:.7;">If it doesn't name exactly what you're living, reply. Rick diagnoses it personally.</p>
@@ -1717,7 +1734,7 @@ details[open] > .faq-q::after {
   <div class="final-wrap">
     <span class="free-offer-label">Subscribe free to get all of this</span>
     <div class="sb-shell">
-      <iframe src="https://rickbroider.substack.com/embed" width="100%" height="180" style="border:none;background:transparent" frameborder="0" scrolling="no" title="Subscribe free"></iframe>
+      <iframe src="https://rickbroider.substack.com/embed" width="100%" height="150" style="border:none;background:transparent" frameborder="0" scrolling="no" title="Subscribe free"></iframe>
     </div>
     <p class="form-micro">Powered by Substack. No spam. Unsubscribe any time.</p>
     <p class="form-guarantee">Report doesn't name your situation? Reply to the welcome email. Rick diagnoses it personally.</p>
