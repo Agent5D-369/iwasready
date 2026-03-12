@@ -176,6 +176,11 @@
     .door-a .door-label{color:var(--teal);}
     .door-b .door-label{color:var(--violet);}
     .door-text{font-size:clamp(13px,1.7vw,14px);color:var(--silver);line-height:1.65;}
+    .door-cta{display:inline-flex;align-items:center;gap:7px;font-family:'Syne',sans-serif;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:10px 18px;border-radius:8px;text-decoration:none;transition:all .2s;}
+    .door-cta-a{background:rgba(14,138,122,.15);color:var(--teal);border:1px solid rgba(14,138,122,.35);}
+    .door-cta-a:hover{background:rgba(14,138,122,.25);border-color:var(--teal);}
+    .door-cta-b{background:rgba(123,94,167,.15);color:var(--violet);border:1px solid rgba(123,94,167,.35);}
+    .door-cta-b:hover{background:rgba(123,94,167,.25);border-color:var(--violet);}
 
     /* EMAIL / PRINT BLOCK */
     .save-block{background:linear-gradient(135deg,rgba(200,155,60,.06) 0%,rgba(14,18,36,.85) 100%);border:1px solid rgba(200,155,60,.18);border-radius:16px;padding:clamp(22px,4vw,34px);margin-bottom:22px;text-align:center;}
@@ -271,8 +276,8 @@
   <div class="screen active" id="screen-intro">
     <div style="text-align:center;width:100%;">
       <div class="intro-badge">Field Diagnostic · 4 Minutes</div>
-      <h1 class="intro-h1">Which <em>collapse pattern</em><br>is active right now?</h1>
-      <p class="intro-sub">Ninety percent of regenerative communities, intentional organizations, and mission-driven projects fail. Not because the people stopped caring. Because the structural patterns went unnamed.<br><br>Seven questions. Specific results. A named path forward.</p>
+      <h1 class="intro-h1">You can feel it.<br><em>Name the pattern.</em></h1>
+      <p class="intro-sub">Most builders know something is wrong before they can say what it is. This diagnostic names it. Seven structural failure modes. One dominant pattern. A specific path into the architecture that addresses it.<br><br>No inspiration. No philosophy. A named entry point and the chapters that repair it.</p>
       <div class="intro-meta">
         <span class="intro-meta-item">7 Questions</span>
         <span class="intro-meta-item">4 Minutes</span>
@@ -280,7 +285,7 @@
         <span class="intro-meta-item">Shareable results</span>
       </div>
       <button class="btn-primary" onclick="startQuiz()">
-        Begin the Diagnostic
+        Name My Pattern
         <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
       </button>
       <p style="margin-top:14px;font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mist);">Answer for your project as it is right now, not as you want it to be.</p>
@@ -723,8 +728,8 @@ function showResults() {
     });
 
     const noteText = activeOthers.length === 1
-      ? `${pat.code} is your primary pattern and ${activeOthers[0].pat.code} is active alongside it. These two patterns compound each other. Address ${pat.code} first, then return to ${activeOthers[0].pat.code}.`
-      : `${pat.code} is your primary pattern. The ${activeOthers.length} additional active patterns listed above are compounding. Each scored pattern is a live structural weakness. Address the primary first.`;
+      ? `${pat.code} is your primary pattern. ${activeOthers[0].pat.code} is active alongside it. When two patterns compound, the project does not get twice as hard. It gets exponentially more fragile. Start with ${pat.code}. Do not wait.`
+      : `${pat.code} is your primary pattern. The ${activeOthers.length} additional active patterns below are not independent problems. Each one accelerates the others. This is how projects that had soul end up having neither soul nor structure. Address ${pat.code} first. The rest become clearer once you do.`;
 
     activePatternsHTML = `
       <div class="active-patterns">
@@ -734,17 +739,31 @@ function showResults() {
       </div>`;
   }
 
-  // Door block
+  // Door block - with CTA, Dream Target voice per locked profile
   const doorHTML = isDoorA
-    ? `<div class="door-block door-a"><div class="door-label">Your Entry Path &middot; The Architect</div><div class="door-text">Your pattern scores lean structural. The chapters for ${pat.code} address the architectural failure directly: the missing system, the absent document, the unwritten protocol. Start there. Build the container before you revisit the conversation.</div></div>`
-    : `<div class="door-block door-b"><div class="door-label">Your Entry Path &middot; The Weaver</div><div class="door-text">Your pattern scores lean relational. The chapters for ${pat.code} work with the felt experience of the collapse: the depletion, the fractured field, the invisible load. Start there. The structural repair follows once the relational ground is named.</div></div>`;
+    ? `<div class="door-block door-a">
+        <div class="door-label">Your Entry Path &middot; The Architect</div>
+        <div class="door-text" style="margin-bottom:14px;">You feel this in the structure. The governance gap. The decision-making void. Nothing is written down, so everything is personal.<br><br>The chapters mapped to ${pat.code} give you the blueprint first. Named protocols. Architecture you can hand your team without explaining your entire cosmology. Start there. Build the container before you reopen the conversation.</div>
+        <a class="door-cta door-cta-a" href="https://stopthecollapse.com" target="_blank" rel="noopener">
+          Get the ${pat.code} chapters now
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>`
+    : `<div class="door-block door-b">
+        <div class="door-label">Your Entry Path &middot; The Weaver</div>
+        <div class="door-text" style="margin-bottom:14px;">You felt this before anyone named it. The trust eroding in the room. The weight you have been carrying alone. The container that is supposed to hold the project is holding you instead.<br><br>The chapters mapped to ${pat.code} start with the felt experience. They name what you already know and redistribute the load so the structure holds it instead of you. Start there. The structural repair will follow.</div>
+        <a class="door-cta door-cta-b" href="https://stopthecollapse.com" target="_blank" rel="noopener">
+          Get the ${pat.code} chapters now
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>`;
 
-  // Share URLs
+  // Share URLs - co-diagnosis framing, not promotion (per Diagnostic Share Loop canon)
   const shareURL = window.location.href;
-  const shareTextRaw = 'I ran the Collapse Diagnostic. My primary pattern is ' + pat.code + ': ' + pat.name + '. Score ' + total + '/14.\n\nWhich one is yours? stopthecollapse.com/diagnostic';
-  const tweetURL = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareTextRaw);
-  const fbURL = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent('https://stopthecollapse.com/diagnostic') + '&quote=' + encodeURIComponent('I ran the Collapse Diagnostic. My primary pattern is ' + pat.code + ': ' + pat.name + '. Which one is yours?');
-  const igText = encodeURIComponent('I ran the Collapse Diagnostic at stopthecollapse.com/diagnostic\n\nMy primary pattern: ' + pat.code + ' ' + pat.name + '\nScore: ' + total + '/14\n\nWhich one is yours? Link in bio.');
+  const shareTextRaw = 'I ran the Stopping the Collapse diagnostic. Primary pattern: ' + pat.code + ' ' + pat.name + '. Score ' + total + '/14.\n\nWhich pattern is most active in what you\'re building? stopthecollapse.com/diagnostic';
+  const tweetURL = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent('Just ran the Collapse Diagnostic.\n\nMy primary pattern: ' + pat.code + ' - ' + pat.name + ' (score ' + total + '/14).\n\nWhich one is yours? @rickbroider stopthecollapse.com/diagnostic');
+  const fbURL = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent('https://stopthecollapse.com/diagnostic') + '&quote=' + encodeURIComponent('My primary collapse pattern is ' + pat.code + ': ' + pat.name + '. Which one is most active in your project? stopthecollapse.com/diagnostic');
+  const igText = encodeURIComponent('Just ran the Collapse Diagnostic.\n\nMy primary pattern: ' + pat.code + ' - ' + pat.name + '\nScore: ' + total + '/14\n\nIf you\'re building something and it feels like it\'s starting to fracture: stopthecollapse.com/diagnostic\n\nWhich pattern do you think is most active in what we\'re building right now?');
 
   document.getElementById('resultsContent').innerHTML = `
     <!-- PRIMARY CARD -->
@@ -796,27 +815,28 @@ function showResults() {
 
     <!-- SAVE / PRINT -->
     <div class="save-block" id="saveBlock">
-      <div class="save-h">Save your results</div>
-      <div class="save-sub">Print this page as a PDF, or send the link to your inbox. Your results are encoded in the URL above and will be waiting when you return.</div>
+      <div class="save-h">Keep your results</div>
+      <div class="save-sub">Your results are encoded in this page's URL. Copy the link or bookmark it now. It will restore your full results whenever you return. Or print to PDF for your files.</div>
       <div class="save-actions">
         <button class="save-print" onclick="window.print()">
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4V2h8v2M4 12H2V7h12v5h-2M4 12v2h8v-2"/></svg>
           Save as PDF
         </button>
       </div>
-      <div class="save-divider"><div class="save-divider-line"></div><div class="save-divider-text">or send to inbox</div><div class="save-divider-line"></div></div>
-      <div class="email-form">
+      <div class="save-divider"><div class="save-divider-line"></div><div class="save-divider-text">or send the link to your inbox</div><div class="save-divider-line"></div></div>
+      <div class="email-form" id="emailForm">
         <input type="email" class="email-input" id="emailInput" placeholder="Your email address">
-        <button class="email-submit" onclick="submitEmail('${pat.code}','${pat.name}')">Send the link</button>
+        <button class="email-submit" onclick="submitEmail()">Send the link</button>
       </div>
-      <p class="email-note">Sends you this results URL. You will be subscribed to the free tier of Stopping the Collapse on Substack. Unsubscribe anytime.</p>
-      <p class="email-sent" id="emailSent">Sent. Check your inbox.</p>
+      <p class="email-note">Subscribes you to the free tier of Stopping the Collapse on Substack. Your welcome email will include a reminder to bookmark this URL. No spam. Unsubscribe anytime.</p>
+      <p class="email-sent" id="emailSent">Done. Check your inbox. Your results URL is in the browser bar above.</p>
     </div>
 
     <!-- SHARE -->
     <div class="share-block">
-      <div class="share-h">Pass it to your co-founder or core team</div>
-      <p class="share-quote">"This pattern is easier to repair when more than one person can see it. Forward this link and ask: which pattern do you think is most active in what we are building right now?"</p>
+      <div class="share-h">Co-diagnosis is faster than solo analysis</div>
+      <p class="share-quote">"This pattern is easier to name when someone else in the same project reads it too. Send this link and ask: which pattern do you think is most active in what we are building right now?"</p>
+      <p style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.06em;color:var(--mist);margin-bottom:14px;line-height:1.65;">Do not keep this diagnostic to yourself if more than one person is carrying the same project. Their read may surface what you normalized.</p>
       <div class="share-btns">
         <button class="share-btn share-copy" id="copyBtn" onclick="copyLink()">
           <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="5" width="9" height="9" rx="1"/><path d="M11 5V3a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h2"/></svg>
@@ -841,11 +861,11 @@ function showResults() {
 
     <!-- CTA -->
     <div class="cta-block">
-      <div class="cta-h">The repair architecture exists.</div>
-      <div class="cta-sub">The 33-chapter audiobook maps every pattern to the structural intervention that addresses it. Delivered as a private podcast to Apple, Spotify, or any app. Start with the chapter for ${pat.code}. That is your entry point.</div>
+      <div class="cta-h">The architecture exists. Start at your pattern, not Chapter 1.</div>
+      <div class="cta-sub">33 chapters. Every collapse pattern mapped to the structural intervention that addresses it. Delivered as a private podcast feed to Apple, Spotify, or any podcast app. Honest note: this is not a quick fix. It is a rigorous framework. Signal-sensitive builders who engage with the full architecture report it changes how they see every decision they make inside a project.</div>
       <div class="cta-btns">
         <a class="cta-primary" href="https://stopthecollapse.com">Get the Builder Pass</a>
-        <a class="cta-secondary" href="https://rickbroider.substack.com/subscribe">Subscribe Free First</a>
+        <a class="cta-secondary" href="https://rickbroider.substack.com/subscribe">Start free first</a>
       </div>
       <button class="restart-btn" onclick="restartQuiz()">Retake for a different project</button>
     </div>`;
@@ -855,18 +875,16 @@ function showResults() {
 // ACTIONS
 // ═══════════════════════════════════════════
 
-function submitEmail(patCode, patName) {
+function submitEmail() {
   const email = document.getElementById('emailInput').value.trim();
   if (!email || !email.includes('@')) {
     document.getElementById('emailInput').style.borderColor = '#E06050';
     setTimeout(() => document.getElementById('emailInput').style.borderColor = '', 2000);
     return;
   }
-  // Opens Substack subscribe in new tab with email pre-filled
-  // They receive the Substack welcome email (which you configure to include their results URL)
   const url = 'https://rickbroider.substack.com/subscribe?email=' + encodeURIComponent(email);
   window.open(url, '_blank');
-  document.getElementById('emailInput').parentElement.style.display = 'none';
+  document.getElementById('emailForm').style.display = 'none';
   document.getElementById('emailSent').style.display = 'block';
 }
 
