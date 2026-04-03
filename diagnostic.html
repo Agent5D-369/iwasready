@@ -788,7 +788,7 @@ function showResults() {
     ? `<div class="door-block door-a">
         <div class="door-label">Your Entry Path · The Architect</div>
         <div class="door-text" style="margin-bottom:14px;">You feel this in the structure. The governance gap. The decision-making void. Nothing is written down, so everything is personal.<br><br>The chapters mapped to ${pat.code} give you the blueprint first. Named protocols. Architecture you can hand your team without explaining your entire cosmology. Start there. Build the container before you reopen the conversation.</div>
-        <a class="door-cta door-cta-a" href="https://rickbroider.substack.com/subscribe?utm_source=diagnostic&utm_medium=results-door&utm_campaign=free-subscribe" target="_blank" rel="noopener">
+        <a class="door-cta door-cta-a" href="https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/signup" target="_blank" rel="noopener">
           Get the ${pat.code} chapters now
           <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
         </a>
@@ -796,7 +796,7 @@ function showResults() {
     : `<div class="door-block door-b">
         <div class="door-label">Your Entry Path · The Weaver</div>
         <div class="door-text" style="margin-bottom:14px;">You felt this before anyone named it. The trust eroding in the room. The weight you have been carrying alone. The container that is supposed to hold the project is holding you instead.<br><br>The chapters mapped to ${pat.code} start with the felt experience. They name what you already know and redistribute the load so the structure holds it instead of you. Start there. The structural repair will follow.</div>
-        <a class="door-cta door-cta-b" href="https://rickbroider.substack.com/subscribe?utm_source=diagnostic&utm_medium=results-door&utm_campaign=free-subscribe" target="_blank" rel="noopener">
+        <a class="door-cta door-cta-b" href="https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/signup" target="_blank" rel="noopener">
           Get the ${pat.code} chapters now
           <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
         </a>
@@ -868,41 +868,52 @@ function showResults() {
     <!-- OFFER LADDER -->
     <div class="offer-block" id="offerBlock">
       <div class="offer-h">The repair architecture for ${pat.code} is in the audiobook.</div>
-      <div class="offer-sub">Subscribe free. The Navigation Legend arrives immediately — every chapter mapped to your exact pattern. Three complete chapters matched to ${pat.code} follow. The field research, the real cases, and the structural repair. Start at your fire, not Chapter 1.</div>
+      <div class="offer-sub">33 chapters. Every collapse pattern mapped to structural repair. Delivered to your podcast app the same way any podcast reaches your phone.</div>
+
       <div class="offer-gives">
         <div class="offer-row">
           <span class="offer-check">✓</span>
-          <div class="offer-txt"><strong>Top 7 Collapse Patterns Report</strong> <span class="offer-badge ob-free">Free</span><br>Field research, warning signs, and repair architecture for all seven patterns. The in-depth version of what you just saw. Yours immediately on signup.</div>
+          <div class="offer-txt"><strong>Top 7 Collapse Patterns Report</strong> <span class="offer-badge ob-free">Free</span><br>Field research, warning signs, and repair architecture for all seven patterns. Deeper than what you just saw.</div>
         </div>
         <div class="offer-row">
           <span class="offer-check">✓</span>
-          <div class="offer-txt"><strong>Navigation Legend</strong> <span class="offer-badge ob-free">Free</span><br>Maps every collapse pattern to the exact audiobook chapters that address it. Designed to share with your co-founder or core team. Arrives in your second email.</div>
+          <div class="offer-txt"><strong>Navigation Legend</strong> <span class="offer-badge ob-free">Free</span><br>Every pattern mapped to the exact chapters that address it. Designed to share with your co-founder or team.</div>
         </div>
         <div class="offer-row">
           <span class="offer-check">✓</span>
-          <div class="offer-txt"><strong>Three full audiobook chapters,</strong> matched to ${pat.code}. <span class="offer-badge ob-free">Free</span><br>Start at your pattern. Not Chapter 1.</div>
+          <div class="offer-txt"><strong>Three full audiobook chapters</strong> matched to ${pat.code} <span class="offer-badge ob-free">Free</span><br>Start at your fire, not Chapter 1.</div>
         </div>
         <div class="offer-row" style="border-color:rgba(14,138,122,.2);">
           <span class="offer-check" style="color:var(--teal);">+</span>
-          <div class="offer-txt"><strong>Builder Pass: all 33 chapters</strong> <span class="offer-badge ob-paid">$7 / mo</span><br>Full audiobook on private podcast RSS. Apple Podcasts, Spotify, Overcast. Unlocks every chapter mapped to every pattern. 30-day refund if it’s not useful — reply and it’s done.</div>
+          <div class="offer-txt"><strong>Full 33-chapter audiobook</strong> <span class="offer-badge ob-paid">$27 one-time</span><br>Private podcast feed. Apple Podcasts, Spotify, Overcast, Pocket Casts. Every pattern. Every repair chapter. Start today.</div>
         </div>
       </div>
-      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:14px 16px;margin-bottom:16px;">
+
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:14px 16px;margin-bottom:20px;">
         <div style="font-family:Syne,sans-serif;font-size:9px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);margin-bottom:8px;">${pat.code} — Builder in the field</div>
-        <p style="font-family:Lora,serif;font-style:italic;font-size:clamp(13px,1.6vw,14px);color:var(--silver);line-height:1.7;margin-bottom:6px;">${pat.testimonial}</p>
+        <p style="font-family:Lora,serif;font-style:italic;font-size:clamp(13px,1.6vw,14px);color:var(--silver);line-height:1.7;margin:0;">${pat.testimonial}</p>
       </div>
-      <div class="email-form" id="emailForm">
-        <input type="email" class="email-input" id="emailInput" placeholder="Your email address">
-        <button class="email-cta-btn" onclick="submitEmail()">Get the free report</button>
+
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <a href="https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/signup" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:10px;font-family:Syne,sans-serif;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--gold);color:#07080E;padding:15px 24px;border-radius:10px;text-decoration:none;transition:background .2s;">
+          Get the Complete Audiobook &middot; $27
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <p style="font-family:Syne,sans-serif;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mist);text-align:center;margin:0;">33 chapters &middot; Private podcast feed &middot; Instant access</p>
+
+        <div style="display:flex;align-items:center;gap:10px;margin:4px 0;">
+          <div style="flex:1;height:1px;background:rgba(255,255,255,.08);"></div>
+          <span style="font-family:Syne,sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);">or</span>
+          <div style="flex:1;height:1px;background:rgba(255,255,255,.08);"></div>
+        </div>
+
+        <a href="https://rickbroider.substack.com/subscribe?utm_source=diagnostic&utm_medium=results-offer&utm_campaign=free-subscribe" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:8px;font-family:Syne,sans-serif;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--silver);background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);padding:13px 24px;border-radius:10px;text-decoration:none;transition:all .2s;">
+          Subscribe free &middot; Report + Navigation Legend + 3 chapters
+        </a>
+        <p style="font-family:Syne,sans-serif;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mist);text-align:center;margin:0;">No spam. Unsubscribe any time. Powered by Substack.</p>
       </div>
-      <p class="offer-note">No spam. Unsubscribe any time. Powered by Substack.<br>Honest note: the Builder Pass upgrade is separate, optional, and clearly explained. Nothing is hidden.</p>
-      <p class="email-sent" id="emailSent">You are in. Check your inbox. The report is on its way.</p>
-      <div class="offer-alt">
-        <div class="offer-alt-line"></div>
-        <div class="offer-alt-text">or just save your results</div>
-        <div class="offer-alt-line"></div>
-      </div>
-      <div style="text-align:center;margin-top:10px;">
+
+      <div style="text-align:center;margin-top:16px;">
         <button class="save-pdf-btn" onclick="window.print()">
           <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4V2h8v2M4 12H2V7h12v5h-2M4 12v2h8v-2"/></svg>
           Save as PDF
@@ -953,18 +964,7 @@ function showResults() {
 // ACTIONS
 // ═══════════════════════════════════════════
 
-function submitEmail() {
-  const email = document.getElementById('emailInput').value.trim();
-  if (!email || !email.includes('@')) {
-    document.getElementById('emailInput').style.borderColor = '#E06050';
-    setTimeout(() => document.getElementById('emailInput').style.borderColor = '', 2000);
-    return;
-  }
-  const url = 'https://rickbroider.substack.com/subscribe?utm_source=diagnostic&utm_medium=results-email-form&utm_campaign=free-subscribe' + '&email=' + encodeURIComponent(email);
-  window.open(url, '_blank');
-  document.getElementById('emailForm').style.display = 'none';
-  document.getElementById('emailSent').style.display = 'block';
-}
+// submitEmail removed — results shown immediately, no gate
 
 function copyLink() {
   const shareURL = window.location.href;
